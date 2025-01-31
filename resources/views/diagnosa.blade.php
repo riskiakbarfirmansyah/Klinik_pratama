@@ -49,7 +49,7 @@
                         <td>{{ $row->nomorantrian }}</td>
                         <td>{{ $row->pasien == '' ? 'Belum ada kode' : $row->pasien->kodepasien }}</td>
                         <td>{{ $row->pasien->nama }}</td>
-                        <td>{{ $row->pasien->lahir->format('d/M/Y'); }}</td>
+                        <td>{{ $row->pasien->lahir->format('d/M/Y') }}</td>
                         <td>{{ $row->pasien->lahir->age }} Tahun</td>
                         <td>{{ $row->layanan }}</td>
                         <td>{{ $row->keluhan }}</td>

@@ -111,7 +111,7 @@
 
                     <option selected value="">pilih...</option>
                     <option value="R.Jalan" {{ old('Ruang') != 'R.Jalan' ?: 'selected' }}>R. Jalan</option>
-                    <option value="R.Inap" {{ old('Ruang') != 'R.Inap' ?: 'selected' }}>R. Inap</option>
+                    {{-- <option value="R.Inap" {{ old('Ruang') != 'R.Inap' ?: 'selected' }}>R. Inap</option> --}}
                 </select>
             </div>
         </div>

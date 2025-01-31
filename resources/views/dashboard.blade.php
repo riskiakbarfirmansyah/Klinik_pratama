@@ -103,7 +103,7 @@
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
-                <span>Powered by &copy; KLINIK {{ env('APP_NAME') }} 2022</span>
+                <span>Powered by &copy; KLINIK KALISARI HEALTHCARE 2025</span>
             </div>
         </div>
     </footer>

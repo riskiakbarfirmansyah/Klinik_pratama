@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link href="{{ asset ('img/icon.ico') }}" rel="SHORTCUT ICON" />
+    <link href="{{ asset ('img/logo_utama_kalisari.png') }}" rel="SHORTCUT ICON" />
 <head>
     @include('partials.head')
 </head>
@@ -18,7 +18,7 @@
                 <div class="sidebar-brand-icon">
                     <i class="fas fa-hospital"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">KLINIK {{ env("APP_NAME") }} </div>
+                <div class="sidebar-brand-text mx-3">KALISARI HEALTHCARE </div>
             </a>
 
             <!-- Divider -->
@@ -140,8 +140,8 @@
 
             <li class="nav-item">
                 <div class="sidebar-card d-none d-lg-flex">
-                    <img class="sidebar-card-illustration mb-2" src={{ asset ("img/logo.png") }} alt="...">
-                    <p class="text-center mb-2"><strong></strong>Klinik {{ env("APP_NAME") }}</p>
+                    <img class="sidebar-card-illustration mb-2" src={{ asset ("img/logo_bulet_kalisari.png") }} alt="...">
+                    <p class="text-center mb-2"><strong></strong>Klinik Kalisari Healthcare</p>
                     <a class="btn btn-success btn-sm" href="/">Ke Beranda</a>
                 </div>
         
@@ -157,7 +157,7 @@
             </li>
         
             <div class="sidebar-heading">
-                Powered by &copy; KLINIK {{ env("APP_NAME") }} <br>2022
+                Powered by &copy; KLINIK KALISARI HEALTHCARE <br>2025
             </div>
 
         </ul>

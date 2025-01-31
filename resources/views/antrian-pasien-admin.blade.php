@@ -64,9 +64,9 @@
                             </form>
                             </td>
                             <td>{{ $row->nomorantrian }}</td>
-                            <td>{{ $row->updated_at->format('H:i:s -- d/m/Y'); }}</td>   
+                            <td>{{ $row->updated_at->format('H:i:s -- d/m/Y') }}</td>   
                             <td>{{ $row->pasien->nama }}</td>
-                            <td>{{ $row->pasien->lahir->format('d/M/Y'); }}</td>
+                            <td>{{ $row->pasien->lahir->format('d/M/Y') }}</td>
                             <td>{{ $row->pasien->kelamin }}</td>
                             <td>{{ $row->layanan }}</td>
                             <td>{{ $row->keluhan }}</td>

@@ -84,9 +84,9 @@
                                 @endphp
                             </td>
                             <td> {{ $p->dosis=='' ? 'Dosis Belum ada' : $p->dosis }}</td>
-                            <td> {{ "Rp " . number_format($p->harga,2,',','.'); }}</td>
-                            <td> {{ $p->created_at->format('d/m/Y   H:i:s'); }}</td>
-                            <td> {{ date("d/m/Y", strtotime($p->expired=='' ? 'Expired belum di Set' : $p->expired)); }}</td>
+                            <td> {{ "Rp " . number_format($p->harga,2,',','.') }}</td>
+                            <td> {{ $p->created_at->format('d/m/Y   H:i:s') }}</td>
+                            <td> {{ date("d/m/Y", strtotime($p->expired=='' ? 'Expired belum di Set' : $p->expired)) }}</td>
                             <td> 
                                 @if($p->photo=='')
                                     {{ 'Gambar Belum ada' }}
