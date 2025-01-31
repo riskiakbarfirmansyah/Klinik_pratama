@@ -48,7 +48,7 @@
             <label class="col-sm-2 col-form-label">Lahir</label>
             <div class="col-sm-5">
                 <input type="text" class="form-control @error('Lahir') is-invalid @enderror" name="Lahir"
-                    placeholder="Lahir" value="{{ date("d/m/Y", strtotime($rekam->pasien->lahir)); }}" readonly>
+                    placeholder="Lahir" value="{{ date("d/m/Y", strtotime($rekam->pasien->lahir)) }}" readonly>
                 @error('Lahir')
                     <div class="invalid-feedback">
                         "tanggal lahir masih kosong
@@ -155,7 +155,7 @@
 
                         <option selected value="">pilih...</option>
                         <option value="R.Jalan" {{ $rekam->rawat == 'R.Jalan' ? 'selected' : '' }}>R. Jalan</option>
-                        <option value="R.Inap" {{ $rekam->rawat == 'R.Inap' ? 'selected' : '' }}>R. Inap</option>
+                        {{-- <option value="R.Inap" {{ $rekam->rawat == 'R.Inap' ? 'selected' : '' }}>R. Inap</option> --}}
                     </select>
                     @error('Ruang')
                         <div class="invalid-feedback">

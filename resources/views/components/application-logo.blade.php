@@ -1,1 +1,1 @@
-<img src="{{ asset('/img/icon.ico')}}" alt="" style="width:150px;">
+<img src="{{ asset('/img/logo_utama_kalisari.png')}}" alt="" style="width:150px;">

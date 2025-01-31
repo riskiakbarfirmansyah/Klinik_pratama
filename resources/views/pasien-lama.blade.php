@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Klinik {{ env('APP_NAME') }}</title>
+    <title>KALISARI HEALTHCARE</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
@@ -20,14 +20,14 @@
         type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles-index.css" rel="stylesheet" />
-    <link href="{{ asset('img/icon.ico') }}" rel="SHORTCUT ICON" />
+    <link href="{{ asset('img/logo_utama_kalisari.png') }}" rel="SHORTCUT ICON" />
 </head>
 
 <body id="page-top" onload="initClock()">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="#page-top"><img src="{{ asset('img/logo.png') }}" style=”float:left;
+            <a class="navbar-brand" href="#page-top"><img src="{{ asset('img/logo_bulet_kalisari.png') }}" style=”float:left;
                     width="55";height="55"” />KLINIK</a>
             <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -129,9 +129,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">
-                            <img src="{{ asset('img/logo.png') }}" style=”float:left;
-                                width="55";height="55"” />Klinik {{ env('APP_NAME') }}
-                        </h5>
+                            <img src="{{ asset('img/logo_bulet_kalisari.png') }}" style=”float:left;
+                                width="55";height="55"” />KALISARI HEALTHCARE</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -140,7 +139,7 @@
                         <p class="h3" style="color:RED;">Tidak Ditemukan</p>
                         <p class="p" style="color:rgb(129, 129, 129); font-style: italic;">"coba ingat
                             kembali,
-                            apakah anda sudah pernah berobat diklinik {{ env('APP_NAME') }} sebelumnya"</p>
+                            apakah anda sudah pernah berobat diklinik Kalisari Healthcare sebelumnya"</p>
                     </div>
                 </div>
             </div>
@@ -155,9 +154,9 @@
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <h4 class="text-uppercase mb-4">Lokasi</h4>
                     <p class="lead mb-0">
-                        Jl. Moh. Hatta Handil 7
+                        Jl. Moh. Hatta
                         <br />
-                        Kecamatan MuaraJawa, Kutai Kartanegara
+                        Pasar Rebo, Jakarta Timur
                     </p>
                 </div>
                 <!-- Footer Social Icons-->
@@ -176,7 +175,7 @@
                 <div class="col-lg-4">
                     <h4 class="text-uppercase mb-4">Tentang Klinik</h4>
                     <p class="lead mb-0">
-                        Klinik {{ env('APP_NAME') }} dibangun sejak tahun 2002 yang berada di kecamatan MuaraJawa, Handil Kutai Kartanegara
+                        Klinik Kalisari Healthcare dibangun sejak tahun 2023 yang berada di kecamatan Pasar Rebo
                     </p>
                 </div>
             </div>
@@ -184,7 +183,7 @@
     </footer>
     <!--------------------------------------------------------copyright----------------------------------------------------------------------------------->
     <div class="copyright py-4 text-center text-white">
-        <div class="container"><small>Powered by &copy; Klinik {{ env('APP_NAME') }} 2022</small></div>
+        <div class="container"><small>Powered by &copy; Klinik Kalisari Healthcare 2025</small></div>
     </div>
 
 
@@ -197,8 +196,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">
-                            <img src="{{ asset('img/logo.png') }}" style=”float:left;
-                                width="55";height="55"” />Klinik {{ env('APP_NAME') }}
+                            <img src="{{ asset('img/logo_bulet_kalisari.png') }}" style=”float:left;
+                                width="55";height="55"” />KALISARI HEALTHCARE
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
@@ -239,8 +238,8 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="staticBackdropLabel">
-                                <img src="{{ asset('img/logo.png') }}" style=”float:left;
-                                    width="55";height="55"” />Klinik {{ env('APP_NAME') }}
+                                <img src="{{ asset('img/logo_bulet_kalisari.png') }}" style=”float:left;
+                                    width="55";height="55"” />KALISARI HEALTHCARE
                             </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
@@ -326,8 +325,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">
-                            <img src="{{ asset('img/logo.png') }}" style=”float:left;
-                                width="55";height="55"” />Klinik {{ env('APP_NAME') }}
+                            <img src="{{ asset('img/logo_bulet_kalisari.png') }}" style=”float:left;
+                                width="55";height="55"” />KALISARI HEALTHCARE
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>

@@ -37,7 +37,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Lahir</label>
                 <div class="col-sm-5">
-                    <input class="form-control" value="{{ date("d/m/Y", strtotime($rekam->pasien->lahir)); }}" readonly>
+                    <input class="form-control" value="{{ date("d/m/Y", strtotime($rekam->pasien->lahir)) }}" readonly>
                         
                     
                 </div>

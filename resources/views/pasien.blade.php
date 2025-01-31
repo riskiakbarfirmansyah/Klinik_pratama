@@ -16,7 +16,7 @@
     @endif
     <div class="container">
         <h1>Database Pasien</h1>
-        <h3>Klinik {{ env("APP_NAME") }}</h3>
+        <h3>KALISARI HEALTHCARE</h3>
         <br>
 
         </-------------------------------------------------------- Tabel

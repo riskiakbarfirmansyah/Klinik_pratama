@@ -1,6 +1,6 @@
 <?php
     $klinikkk= "Antah";
-    $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073!2d117.22912786566681!3d-0.8342596379442541!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcd748a34b972a55b!2sKlinik%20Maju%20Sejahtera!5e1!3m2!1sid!2sid!4v1664207204197!5m2!1sid!2sid";
+    $mappp= "https://www.google.com/maps/embed/v1/place?q=-6.1234567,106.7654321&key=API_KEY";
     
 ?>
 
@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Klinik {{ env('APP_NAME') }}</title>
+    <title>KHC</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
@@ -26,7 +26,7 @@
         type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles-index.css" rel="stylesheet" />
-    <link href="{{ asset('img/icon.ico') }}" rel="SHORTCUT ICON" />
+    <link href="{{ asset('img/logo_utama_kalisari.png') }}" rel="SHORTCUT ICON" />
 </head>
 
 
@@ -41,7 +41,7 @@
     
     <style>
         .spinner-wrapper {
-            background-color: #1ABC9C;
+            background-color: #58D1D7;
             position: fixed;
             top: 0;
             left: 0;
@@ -71,10 +71,11 @@
 <!------------------------------ loading loading spinner ------------------------------>
 
 <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top shadow-lg" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="#page-top"><img src="{{ asset('img/logo.png') }}" style=”float:left;
-                    width="55";height="55"” />KLINIK</a>
+            <a class="navbar-brand" href="#page-top">
+                <img src="{{ asset('img/logo_kalisari.png') }}" style="float:left; width:160px; height:65px;" />
+            </a>            
             <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -121,17 +122,17 @@
     <header class="masthead bg-primary text-white text-center">
         <div class="container d-flex align-items-center flex-column">
             <!-- Masthead Avatar Image-->
-            <img class="masthead-avatar mb-5" src="img/logo.png" alt="..." />
+            <img class="masthead-avatar mb-5" src="img/Group 23.png" alt="..." />
             <!-- Masthead Heading-->
-            <h1 class="masthead-heading text-uppercase mb-0">Klinik {{ env('APP_NAME') }}</h1>
+            <h1 class="masthead-heading text-uppercase mb-0">Kalisari Healthcare</h1>
             <!-- Icon Divider-->
             <div class="divider-custom divider-light">
                 <div class="divider-custom-line"></div>
                 <div class="divider-custom-icon"><i class="fas fa-hospital"></i></div>
                 <div class="divider-custom-line"></div>
             </div>
-            <!-- Masthead Subheading-->
-            <p class="masthead-subheading font-weight-light mb-0">Muara Jawa</p>
+            {{-- <!-- Masthead Subheading-->
+            <p class="masthead-subheading font-weight-light mb-0">Muara Jawa</p> --}}
         </div>
     </header>
     <!--------------------------------------------------------Bagian Isi Konten----------------------------------------------------------------------------------->
@@ -146,7 +147,7 @@
                 <div class="divider-custom-line"></div>
             </div>
             <!-- Portfolio Grid Items-->
-            <div class="row justify-content-center">
+            {{-- <div class="row justify-content-center">
                 <!-- Portfolio Item 1-->
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
@@ -179,7 +180,7 @@
                         </div>
                         <img class="img-fluid" src="img/luar1.jpg" alt="..." />
                     </div>
-                </div>
+                </div> --}}
 
 
             </div>
@@ -251,16 +252,16 @@
     <!--------------------------------------------------------Footer----------------------------------------------------------------------------------->
     <footer class="footer text-center">
         <div class="container">
-            <div class="row">
+            <div class="d-flex justify-content-center align-items-center text-center">
                 <!-- Footer Location-->
-                <div class="col-lg-4 mb-5 mb-lg-0">
+                {{-- <div class="col-lg-4 mb-5 mb-lg-0">
                     <h4 class="text-uppercase mb-4">Lokasi</h4>
                     <p class="lead mb-0">
                         Jl. Moh. Hatta Handil 7
                         <br />
                         Kecamatan MuaraJawa, Kutai Kartanegara
                     </p>
-                </div>
+                </div> --}}
                 <!-- Footer Social Icons-->
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <h4 class="text-uppercase mb-4">Media Social</h4>
@@ -270,22 +271,22 @@
                             class="fab fa-fw fa-twitter"></i></a>
                     <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
                             class="fab fa-fw fa-linkedin-in"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-dribbble"></i></a>
+                    {{-- <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
+                            class="fab fa-fw fa-dribbble"></i></a> --}}
                 </div>
                 <!-- Footer About Text-->
-                <div class="col-lg-4">
+                {{-- <div class="col-lg-4">
                     <h4 class="text-uppercase mb-4">Tentang Klinik</h4>
                     <p class="lead mb-0">
-                        Klinik {{ env('APP_NAME') }} dibangun sejak tahun 2002 yang berada di kecamatan MuaraJawa, Handil Kutai Kartanegara
+                        Kalisari Healthcare dibangun sejak tahun 2024 yang berada di kecamatan MuaraJawa, Handil Kutai Kartanegara
                     </p>
-                </div>
+                </div> --}}
             </div>
         </div>
     </footer>
     <!--------------------------------------------------------copyright----------------------------------------------------------------------------------->
     <div class="copyright py-4 text-center text-white">
-        <div class="container"><small>Powered by &copy; Klinik {{ env('APP_NAME') }} 2022</small></div>
+        <div class="container"><small>Powered by &copy; Klinik Pratama</small></div>
     </div>
     <!-- Portfolio Modals-->
 

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Klinik {{ env('APP_NAME') }}</title>
+    <title>KALISARI HEALTHCARE</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
@@ -20,15 +20,15 @@
         type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles-index.css" rel="stylesheet" />
-    <link href="{{ asset('img/icon.ico') }}" rel="SHORTCUT ICON" />
+    <link href="{{ asset('img/logo_utama_kalisari.png') }}" rel="SHORTCUT ICON" />
 </head>
 
 <body id="page-top" onload="initClock()">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="/#page-top"><img src="{{ asset('img/logo.png') }}" style=”float:left;
-                    width="55";height="55"” />KLINIK {{ env('APP_NAME') }}</a>
+            <a class="navbar-brand" href="/#page-top"><img src="{{ asset('img/logo_bulet_kalisari.png') }}" style=”float:left;
+                    width="55";height="55"” />KALISARI HEALTHCARE</a>
             <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -110,7 +110,7 @@
 
     <!--------------------------------------------------------copyright----------------------------------------------------------------------------------->
     <div class="copyright py-4 text-center text-white">
-        <div class="container"><small>Powered by &copy; Klinik {{ env('APP_NAME') }} 2022</small></div>
+        <div class="container"><small>Powered by &copy; Klinik Kalisari Healthcare 2025</small></div>
     </div>
     @push('scripts')
 
