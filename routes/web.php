@@ -13,6 +13,7 @@ use App\Http\Controllers\PoliController;
 use App\Http\Controllers\RekamController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\FeedbackController;
 use League\CommonMark\Extension\SmartPunct\DashParser;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -27,7 +28,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 // user
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/antrian-pasien', [PasienController::class, 'antrianpasien']);
 Route::post('/cekpasienlama', [PasienController::class, 'cekpasienlama']);
 Route::get('/pasien-lama', [PasienController::class, 'pasienlama']);
@@ -36,6 +37,11 @@ Route::post('/addrekam', [RekamController::class, 'store']);
 
 Route::view("buku-panduan", 'buku-panduan');
 Route::view("buku-panduan-admin", 'buku-panduan-admin');
+
+Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
+Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
+Route::get('/feedback/thank-you', [FeedbackController::class, 'thankYou'])->name('feedback.thank-you');
+
 
 // admin
 Route::group(['middleware' => 'isAdmin'], function () {
