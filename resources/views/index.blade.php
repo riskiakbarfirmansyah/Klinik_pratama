@@ -1,6 +1,6 @@
 <?php
     $klinikkk= "Antah";
-    $mappp= "https://www.google.com/maps/embed/v1/place?q=-6.1234567,106.7654321&key=API_KEY";
+    $mappp= "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.49177223431!2d106.85003697453266!3d-6.330269861939016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ed8b9c14261b%3A0xbaca66ee48dd8659!2sKlinik%20Pratama%20Kalisari%20Healthcare!5e0!3m2!1sen!2sid!4v1738385250473!5m2!1sen!2sid";
     
 ?>
 
@@ -27,6 +27,9 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles-index.css" rel="stylesheet" />
     <link href="{{ asset('img/logo_utama_kalisari.png') }}" rel="SHORTCUT ICON" />
+
+    <!--captcha-->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 
@@ -754,29 +757,31 @@
 
     <!--------------------------------------------------------modal error----------------------------------------------------------------------------------->
     <div class="modal fade" id="error" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="antrianLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div id="kartuantrian">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">
-                            <img src="{{ asset('img/logo.png') }}" style=”float:left;
-                                width="55";height="55"” />Klinik {{ env('APP_NAME') }}
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        @foreach ($errors->all() as $item)
-                            <div class="alert alert-danger" role="alert">
-                                {{ $item }}
-                            </div>
-                        @endforeach
+    aria-labelledby="antrianLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div id="kartuantrian">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">
+                        <img src="{{ asset('img/logo.png') }}" style="float:left; width:55px; height:55px;" />
+                        Klinik {{ env('APP_NAME') }}
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @foreach ($errors->all() as $item)
+                        <div class="alert alert-danger" role="alert">
+                            {{ $item }}
+                        </div>
+                    @endforeach
+                    <div class="mb-3">
+                        <div class="g-recaptcha" data-sitekey="6Ld2s_0qAAAAANXRLM_c5p5dBZwqT_VeeCqUMFbH"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
     <!--------------------------------------------------------Bootstrap JS----------------------------------------------------------------------------------->
     <!-- Bootstrap core JS-->
