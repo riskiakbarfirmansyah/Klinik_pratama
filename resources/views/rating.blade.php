@@ -54,6 +54,10 @@
             display: none;
         }
         
+        .star-rating .fas {
+            color: #FFD700 !important;
+        }
+
         .star-rating label {
             font-size: 40px;
             color: #ccc;
@@ -127,19 +131,19 @@
                 </div>
                 
                 <div class="star-rating">
-                    <input type="radio" id="star5" name="rating" value="5">
+                    <input type="radio" id="star5" name="rating" value="1">
                     <label for="star5" class="far fa-star"></label>
                     
-                    <input type="radio" id="star4" name="rating" value="4">
+                    <input type="radio" id="star4" name="rating" value="2">
                     <label for="star4" class="far fa-star"></label>
                     
                     <input type="radio" id="star3" name="rating" value="3">
                     <label for="star3" class="far fa-star"></label>
                     
-                    <input type="radio" id="star2" name="rating" value="2">
+                    <input type="radio" id="star2" name="rating" value="4">
                     <label for="star2" class="far fa-star"></label>
                     
-                    <input type="radio" id="star1" name="rating" value="1">
+                    <input type="radio" id="star1" name="rating" value="5">
                     <label for="star1" class="far fa-star"></label>
                 </div>
                 
@@ -158,24 +162,56 @@
     <!-- JavaScript untuk fungsionalitas bintang -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const stars = document.querySelectorAll('.star-rating label');
+        // Dapatkan semua elemen input radio
+        const starInputs = document.querySelectorAll('.star-rating input');
+        // Dapatkan semua label bintang
+        const starLabels = document.querySelectorAll('.star-rating label');
+        
+        // Fungsi untuk mewarnai bintang
+        function updateStars(rating) {
+            // Reset semua bintang ke kosong
+            starLabels.forEach(label => {
+                label.className = 'far fa-star';
+            });
             
-            stars.forEach(function(star) {
-                star.addEventListener('click', function() {
-                    const starValue = this.previousElementSibling.value;
-                    
-                    // Reset semua bintang ke far (outline)
-                    stars.forEach(s => s.classList.replace('fas', 'far'));
-                    
-                    // Mengisi bintang yang dipilih dan yang sebelumnya
-                    for (let i = 0; i < stars.length; i++) {
-                        if (stars[i].previousElementSibling.value <= starValue) {
-                            stars[i].classList.replace('far', 'fas');
-                        }
-                    }
-                });
+            // Isi bintang sampai rating yang dipilih
+            for (let i = 0; i < rating; i++) {
+                starLabels[i].className = 'fas fa-star';
+            }
+        }
+        
+        // Event listener untuk input radio
+        starInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                updateStars(this.value);
             });
         });
+        
+        // Event listener untuk hover
+        starLabels.forEach((label, index) => {
+            // Saat mouse masuk ke bintang
+            label.addEventListener('mouseenter', function() {
+                updateStars(index + 1);
+            });
+        });
+        
+        // Event listener untuk mouse meninggalkan area rating
+        const ratingContainer = document.querySelector('.star-rating');
+        ratingContainer.addEventListener('mouseleave', function() {
+            // Cari rating yang dipilih
+            const checkedInput = document.querySelector('.star-rating input:checked');
+            
+            if (checkedInput) {
+                // Jika ada yang dipilih, perbarui bintang sesuai pilihan
+                updateStars(checkedInput.value);
+            } else {
+                // Jika tidak ada yang dipilih, reset semua bintang
+                starLabels.forEach(label => {
+                    label.className = 'far fa-star';
+                });
+            }
+        });
+    });
     </script>
 </body>
 </html>
