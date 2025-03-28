@@ -42,6 +42,10 @@ Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.in
 Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 Route::get('/feedback/thank-you', [FeedbackController::class, 'thankYou'])->name('feedback.thank-you');
 
+// Tambahan route untuk tentangkami.blade.php
+Route::get('/tentangkami', function () {
+    return view('tentangkami');
+});
 
 // admin
 Route::group(['middleware' => 'isAdmin'], function () {
@@ -92,7 +96,6 @@ Route::group(['middleware' => 'isAdmin'], function () {
     Route::resource('/user', UserController::class)->middleware('auth');
     Route::resource("/pegawai", PegawaiController::class)->middleware('auth');
 });
-
 
 Route::group(['middleware' => 'isSuperAdmin'], function () {
     Route::get('/akun', [UserController::class, 'index'])->middleware('auth');
