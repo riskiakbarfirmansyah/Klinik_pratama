@@ -41,6 +41,11 @@ Route::view("buku-panduan-admin", 'buku-panduan-admin');
 Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
 Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 Route::get('/feedback/thank-you', [FeedbackController::class, 'thankYou'])->name('feedback.thank-you');
+Route::get('/admin/reviews', function () {
+    return view('admin.feedadmin', [
+        'feedbacks' => \App\Models\Feedback::latest()->get(),
+    ]);
+})->middleware('isAdmin')->name('admin.reviews.index');
 
 // Tambahan route untuk tentangkami.blade.php
 Route::get('/tentangkami', function () {

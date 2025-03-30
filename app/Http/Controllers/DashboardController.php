@@ -10,6 +10,7 @@ use App\Models\Rekam;
 use App\Models\Obat; 
 use App\Models\Pasien; 
 use App\Models\Jadwal;
+use App\Models\Feedback;
 
 
 class DashboardController extends Controller
