@@ -107,18 +107,16 @@
 
             <!--------------------------------------------------------NAVBAR----------------------------------------------------------------------------------->
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#portfolio">Tentang
-                            kami</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#about">Pendaftaran</a>
-                    </li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#contact">Alamat</a></li>
-                </ul>
-            </div>
-        </div>
+    <ul class="navbar-nav ms-auto">
+        <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url('/tentangkami') }}">Tentang Kami</a>
+        </li>
+        <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Artikel</a>
+        </li>
+    </ul>
+</div>
+
     </nav>
 
     <!--------------------------------------------------------Bagian Isi Konten Teratas----------------------------------------------------------------------------------->
@@ -139,56 +137,251 @@
         </div>
     </header>
     <!--------------------------------------------------------Bagian Isi Konten----------------------------------------------------------------------------------->
-    <section class="page-section portfolio" id="portfolio">
-        <div class="container">
-            <!-- Portfolio Section Heading-->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Tentang Kami</h2>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-camera"></i></div>
-                <div class="divider-custom-line"></div>
+    <section class="page-section portfolio" id="layanan">
+    <div class="container">
+        <!-- Layanan Section Heading -->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Layanan</h2>
+        <!-- Icon Divider -->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-concierge-bell"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Custom 3D Styled Carousel -->
+        <div id="layananCarousel" class="carousel-container">
+            <div class="carousel-wrapper">
+                <div class="carousel-card active">
+                    <div class="card shadow-lg layanan-card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Homecare</h5>
+                            <p class="card-text">Layanan kesehatan di rumah untuk kenyamanan Anda.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card shadow-lg layanan-card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Poli Klinik</h5>
+                            <p class="card-text">Pelayanan medis dengan berbagai spesialisasi.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card shadow-lg layanan-card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Apotik</h5>
+                            <p class="card-text">Ketersediaan obat dengan kualitas terjamin.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card shadow-lg layanan-card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Telemedicine</h5>
+                            <p class="card-text">Konsultasi medis online dari mana saja.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card shadow-lg layanan-card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Poli Gigi</h5>
+                            <p class="card-text">Perawatan kesehatan gigi profesional.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card shadow-lg layanan-card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Vaksinasi</h5>
+                            <p class="card-text">Layanan vaksinasi lengkap dan aman.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-card">
+                    <div class="card shadow-lg layanan-card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Bidan</h5>
+                            <p class="card-text">Pelayanan kesehatan ibu dan anak.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- Portfolio Grid Items-->
-            {{-- <div class="row justify-content-center">
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <img class="img-fluid" src="img/dalam2.jpg" alt="..." />
-                    </div>
-                </div>
-                <!-- Portfolio Item 2-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal2">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <img class="img-fluid" src="img/dalam1.jpg" alt="..." />
-                    </div>
-                </div>
-                <!-- Portfolio Item 3-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal3">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <img class="img-fluid" src="img/luar1.jpg" alt="..." />
-                    </div>
-                </div> --}}
-
-
+            <div class="carousel-controls">
+                <button class="carousel-prev">&lt;</button>
+                <button class="carousel-next">&gt;</button>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<style>
+    .carousel-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        perspective: 1500px;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .carousel-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        position: relative;
+        height: 300px;
+    }
+
+    .carousel-card {
+        position: absolute;
+        width: 20rem;
+        transition: all 0.5s ease-in-out;
+        opacity: 0.6;
+        transform: scale(0.8) translateX(200%);
+    }
+
+    .carousel-card.active {
+        opacity: 1;
+        transform: scale(1) translateX(0);
+        z-index: 10;
+    }
+
+    .layanan-card {
+        border-radius: 15px;
+        padding: 20px;
+        background: linear-gradient(145deg, #f4f7f9, #e6eef3);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        border: 1px solid #e0e0e0;
+    }
+
+    /* More detailed positioning for multiple cards */
+    .carousel-card:nth-child(2) {
+        transform: scale(0.9) translateX(80%) rotateY(-20deg);
+        z-index: 5;
+    }
+
+    .carousel-card:nth-child(3) {
+        transform: scale(0.9) translateX(-80%) rotateY(20deg);
+        z-index: 5;
+    }
+
+    .carousel-card:nth-child(4) {
+        transform: scale(0.8) translateX(-200%);
+        z-index: 1;
+    }
+
+    .carousel-card:nth-child(5) {
+        transform: scale(0.8) translateX(200%);
+        z-index: 1;
+    }
+
+    .carousel-card:nth-child(6) {
+        transform: scale(0.7) translateX(-300%);
+        z-index: 0;
+    }
+
+    .carousel-card:nth-child(7) {
+        transform: scale(0.7) translateX(300%);
+        z-index: 0;
+    }
+
+    .carousel-controls {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .carousel-prev, .carousel-next {
+        margin: 0 10px;
+        padding: 10px 15px;
+        background-color: #f0f4f8;
+        color: #333;
+        border: 1px solid #d0d7de;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .carousel-prev:hover, .carousel-next:hover {
+        background-color: #e0e6eb;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const carousel = document.querySelector('.carousel-wrapper');
+        const cards = carousel.querySelectorAll('.carousel-card');
+        const prevButton = document.querySelector('.carousel-prev');
+        const nextButton = document.querySelector('.carousel-next');
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            cards.forEach((card, index) => {
+                card.classList.remove('active');
+                
+                // Calculate the position relative to the current index
+                let offset = (index - currentIndex + cards.length) % cards.length;
+                
+                card.style.transform = getTransform(offset);
+                card.style.opacity = getOpacity(offset);
+                card.style.zIndex = getZIndex(offset);
+                
+                if (offset === 0) {
+                    card.classList.add('active');
+                }
+            });
+        }
+
+        function getTransform(offset) {
+            switch(offset) {
+                case 0: return 'scale(1) translateX(0)';
+                case 1: return 'scale(0.9) translateX(80%) rotateY(-20deg)';
+                case 2: return 'scale(0.9) translateX(-80%) rotateY(20deg)';
+                case 3: return 'scale(0.8) translateX(-200%)';
+                case 4: return 'scale(0.8) translateX(200%)';
+                case 5: return 'scale(0.7) translateX(-300%)';
+                case 6: return 'scale(0.7) translateX(300%)';
+                default: return 'scale(0.7) translateX(300%)';
+            }
+        }
+
+        function getOpacity(offset) {
+            switch(offset) {
+                case 0: return '1';
+                case 1:
+                case 2: return '0.8';
+                default: return '0.6';
+            }
+        }
+
+        function getZIndex(offset) {
+            switch(offset) {
+                case 0: return '10';
+                case 1:
+                case 2: return '5';
+                case 3:
+                case 4: return '1';
+                default: return '0';
+            }
+        }
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % cards.length;
+            updateCarousel();
+        });
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+            updateCarousel();
+        });
+
+        // Initial setup
+        updateCarousel();
+    });
+</script>
     <!-- About Section-->
     <section class="page-section bg-primary text-white mb-0" id="about">
         <div class="container">
@@ -252,6 +445,7 @@
             </div>
         </div>
     </section>
+    
     <!--------------------------------------------------------Footer----------------------------------------------------------------------------------->
     <footer class="footer text-center">
         <div class="container">
@@ -755,7 +949,7 @@
         </div>
     </div>
 
-    <!--------------------------------------------------------modal error----------------------------------------------------------------------------------->
+    <!------------------------------------------------------------------------------------------------------------------------------------------->
     <div class="modal fade" id="error" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="antrianLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

@@ -9,6 +9,9 @@ use Carbon\Carbon;
 use App\Models\Rekam; 
 use App\Models\Obat; 
 use App\Models\Pasien; 
+use App\Models\Jadwal;
+use App\Models\Feedback;
+
 
 class DashboardController extends Controller
 {
@@ -317,6 +320,12 @@ class DashboardController extends Controller
         $rekam = Rekam::where('id_pasien', $validated['idpasien'])->whereNotNull('diagnosa')->get();
 
         return back()->with('success', 'Data terupdate');
+    }
+
+    public function showJadwal()
+    {
+    $jadwals = Jadwal::all(); // Fetch all jadwal entries
+    return view('index', compact('jadwals')); // Pass the data to the view
     }
 
     public function indexlaporan()
