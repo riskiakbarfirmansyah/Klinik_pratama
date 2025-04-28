@@ -52,6 +52,10 @@ Route::get('/tentangkami', function () {
     return view('tentangkami');
 });
 
+Route::get('/index', function () {
+    return view('index');
+});
+
 // admin
 Route::group(['middleware' => 'isAdmin'], function () {
     // Route::view("pasien-form", 'pasien-form')->middleware('auth');
