@@ -213,7 +213,87 @@
             </div>
         </div>
     </div>
-</section>
+    
+    <!-- Jadwal Table Section (added here, same section) -->
+    <!-- Jadwal Praktek Section -->
+    <div class="mt-5 text-center">
+    <h2 class="text-uppercase text-primary mb-5 fw-bold" style="font-size: 2.5rem;">Jadwal Praktek</h2>
+
+    <div class="table-responsive d-flex justify-content-center">
+        <table id="schedule-table" class="table custom-table">
+            <thead>
+                <tr>
+                    <th style="font-size: 1.4rem;">Hari</th>
+                    <th style="font-size: 1.4rem;">Jam</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($jadwalvariabel as $jp)
+                    <tr>
+                        <td style="font-size: 1.25rem;">{{ $jp->day }}</td>
+                        <td style="font-size: 1.25rem;">{{ $jp->hour }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .custom-table {
+        width: 85%;
+        max-width: 1000px;
+        background-color: #ffffff;
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .custom-table thead {
+        background: linear-gradient(to right, #00c6ff, #0072ff);
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .custom-table th, .custom-table td {
+        padding: 24px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .custom-table tbody tr:nth-child(odd) {
+        background-color: #eefaff;
+    }
+
+    .custom-table tbody tr:nth-child(even) {
+        background-color: #d4f1ff;
+    }
+
+    .custom-table tbody tr:hover {
+        background-color: #a8e4ff;
+        transition: background-color 0.3s ease;
+    }
+</style>
+
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('#schedule-table').DataTable({
+            paging: false,
+            searching: false,
+            info: false,
+            language: {
+                "zeroRecords": "Tidak ditemukan jadwal",
+                "emptyTable": "Tidak terdapat jadwal di tabel"
+            }
+        });
+    });
+</script>
+@endpush
+
+
 
 <style>
     .carousel-container {
@@ -862,24 +942,32 @@
                 </div>
             </div>
 
-            <!--------------------------------------------------------pilih dokter----------------------------------------------------------------------------------- -->
-            <div class="form-group row mt-2">
-                <label class="col-form-label col-sm-2 pt-0">Dokter</label>
-                <div class="col-sm">
-                    <select name="doktor" class="form-control " required
-                        oninvalid="this.setCustomValidity('Silahkan pilih dokter yang tersedia')"
-                        oninput="setCustomValidity('')">
-                        <option value="">pilih dokter...</option>
-                        @foreach ($dokter as $row)
-                        <option {{ $row->jadwal->jadwalpraktek == 'LIBUR' ? 'disabled' : ''}} {{ $row->jadwal->jadwalpraktek == 'CUTI' ? 'disabled' : ''}} value="{{ $row->id }}">
-                                {{ $row->nama }}({{ $row->poli == '' ? '-' : $row->poli->name }}) |
-                                {{ $row->jadwal == '' ? 'Belum ada Jadwal' : $row->jadwal->jadwalpraktek }}
-                                
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
+            <!-- Pilih Dokter -->
+<div class="form-group row mt-2">
+    <label class="col-form-label col-sm-2 pt-0">Dokter</label>
+    <div class="col-sm">
+        <select name="doktor" class="form-control" required
+            oninvalid="this.setCustomValidity('Silahkan pilih dokter yang tersedia')"
+            oninput="setCustomValidity('')">
+            
+            <option value="">pilih dokter...</option>
+
+            @foreach ($dokter as $row)
+                @php
+                    $jadwal = $row->jadwal;
+                    $jadwalPraktek = $jadwal->jadwalpraktek ?? 'Belum ada Jadwal';
+                    $isDisabled = in_array($jadwalPraktek, ['LIBUR', 'CUTI']);
+                @endphp
+                <option value="{{ $row->id }}" {{ $isDisabled ? 'disabled' : '' }}>
+                    {{ $row->nama }}
+                    ({{ $row->poli->name ?? '-' }}) |
+                    {{ $jadwalPraktek }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
 
             <!--------------------------------------------------------pilih dokter----------------------------------------------------------------------------------- -->
             <div class="mt-2 d-flex justify-content-center" required>
