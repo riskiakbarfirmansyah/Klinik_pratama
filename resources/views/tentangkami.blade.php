@@ -215,39 +215,19 @@
     
     <!--------------------------------------------------------Footer----------------------------------------------------------------------------------->
     <footer class="footer text-center">
-        <div class="container">
-            <div class="d-flex justify-content-center align-items-center text-center">
-                <!-- Footer Location-->
-                {{-- <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">Lokasi</h4>
-                    <p class="lead mb-0">
-                        Jl. Moh. Hatta Handil 7
-                        <br />
-                        Kecamatan MuaraJawa, Kutai Kartanegara
-                    </p>
-                </div> --}}
-                <!-- Footer Social Icons-->
-                <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">Media Social</h4>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-twitter"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-linkedin-in"></i></a>
-                    {{-- <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-dribbble"></i></a> --}}
-                </div>
-                <!-- Footer About Text-->
-                {{-- <div class="col-lg-4">
-                    <h4 class="text-uppercase mb-4">Tentang Klinik</h4>
-                    <p class="lead mb-0">
-                        Kalisari Healthcare dibangun sejak tahun 2024 yang berada di kecamatan MuaraJawa, Handil Kutai Kartanegara
-                    </p>
-                </div> --}}
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Footer Social Icons Only -->
+            <div class="col-lg-4 mb-4">
+                <h4 class="text-uppercase mb-4">Media Social</h4>
+                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="https://www.instagram.com/kalisarihealthcare/?hl=en"><i class="fab fa-fw fa-instagram"></i></a>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
+
     <!--------------------------------------------------------copyright----------------------------------------------------------------------------------->
     <div class="copyright py-4 text-center text-white">
         <div class="container"><small>Powered by &copy; Klinik Pratama</small></div>

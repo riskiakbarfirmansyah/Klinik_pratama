@@ -86,9 +86,9 @@
                 <i class="fas fa-bars"></i>
             </button>
             <!--------------------------------------------------------Jam Navbar----------------------------------------------------------------------------------->
-            <a href="#" class="nav-link disabled">
+            <a href="#" class="nav-link disabled ">
                 <!--digital clock start-->
-                <div class="datetime">
+                <div class="datetime ">
                     <div class="date">
                         <span id="dayname">Day</span>,
                         <span id="month">Month</span>
@@ -214,7 +214,6 @@
         </div>
     </div>
     
-    <!-- Jadwal Table Section (added here, same section) -->
     <!-- Jadwal Praktek Section -->
     <div class="mt-5 text-center">
     <h2 class="text-uppercase text-primary mb-5 fw-bold" style="font-size: 2.5rem;">Jadwal Praktek</h2>
@@ -223,15 +222,20 @@
         <table id="schedule-table" class="table custom-table">
             <thead>
                 <tr>
-                    <th style="font-size: 1.4rem;">Hari</th>
-                    <th style="font-size: 1.4rem;">Jam</th>
+                    <th style="font-size: 1.4rem;">Nama Dokter</th>
+                    <th style="font-size: 1.4rem;">Poli</th>
+                    <th style="font-size: 1.4rem;">Jadwal Praktek</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($jadwalvariabel as $jp)
+                @foreach ($dokter as $row)
+                    @php
+                        $jadwalPraktek = $row->jadwal->jadwalpraktek ?? 'Belum ada Jadwal';
+                    @endphp
                     <tr>
-                        <td style="font-size: 1.25rem;">{{ $jp->day }}</td>
-                        <td style="font-size: 1.25rem;">{{ $jp->hour }}</td>
+                        <td style="font-size: 1.25rem;">{{ $row->nama }}</td>
+                        <td style="font-size: 1.25rem;">{{ $row->poli->name ?? '-' }}</td>
+                        <td style="font-size: 1.25rem;">{{ $jadwalPraktek }}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -257,7 +261,8 @@
         letter-spacing: 1px;
     }
 
-    .custom-table th, .custom-table td {
+    .custom-table th,
+    .custom-table td {
         padding: 24px;
         text-align: center;
         vertical-align: middle;
@@ -276,10 +281,10 @@
         transition: background-color 0.3s ease;
     }
 </style>
-
+</section>
 @push('scripts')
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#schedule-table').DataTable({
             paging: false,
             searching: false,
@@ -292,8 +297,6 @@
     });
 </script>
 @endpush
-
-
 
 <style>
     .carousel-container {
@@ -528,191 +531,24 @@
     
     <!--------------------------------------------------------Footer----------------------------------------------------------------------------------->
     <footer class="footer text-center">
-        <div class="container">
-            <div class="d-flex justify-content-center align-items-center text-center">
-                <!-- Footer Location-->
-                {{-- <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">Lokasi</h4>
-                    <p class="lead mb-0">
-                        Jl. Moh. Hatta Handil 7
-                        <br />
-                        Kecamatan MuaraJawa, Kutai Kartanegara
-                    </p>
-                </div> --}}
-                <!-- Footer Social Icons-->
-                <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">Media Social</h4>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-twitter"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-linkedin-in"></i></a>
-                    {{-- <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-dribbble"></i></a> --}}
-                </div>
-                <!-- Footer About Text-->
-                {{-- <div class="col-lg-4">
-                    <h4 class="text-uppercase mb-4">Tentang Klinik</h4>
-                    <p class="lead mb-0">
-                        Kalisari Healthcare dibangun sejak tahun 2024 yang berada di kecamatan MuaraJawa, Handil Kutai Kartanegara
-                    </p>
-                </div> --}}
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Footer Social Icons Only -->
+            <div class="col-lg-4 mb-4">
+                <h4 class="text-uppercase mb-4">Media Social</h4>
+                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="https://www.instagram.com/kalisarihealthcare/?hl=en"><i class="fab fa-fw fa-instagram"></i></a>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
+
     <!--------------------------------------------------------copyright----------------------------------------------------------------------------------->
     <div class="copyright py-4 text-center text-white">
         <div class="container"><small>Powered by &copy; Klinik Pratama</small></div>
     </div>
-    <!-- Portfolio Modals-->
 
-    <!-- Portfolio Modal 2-->
-    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Ruang Tunggu 1
-                                </h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="img/dalam1.jpg" alt="..." />
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-4">======</p>
-                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                    <i class="fas fa-xmark fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Portfolio Modal 3-->
-    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" aria-labelledby="portfolioModal3"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Halaman Parkiran
-                                </h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="img/luar1.jpg" alt="..." />
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-4">======</p>
-                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                    <i class="fas fa-xmark fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Portfolio Modal 4-->
-    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" aria-labelledby="portfolioModal4"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Aktifitas
-                                    Pendaftaran</h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="img/dalam2.jpg" alt="..." />
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-4">======</p>
-                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                    <i class="fas fa-xmark fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Portfolio Modal 5-->
-    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" aria-labelledby="portfolioModal5"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Halaman Parkiran 2
-                                </h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="img/luar3.jpg" alt="..." />
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-4">======</p>
-                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                    <i class="fas fa-xmark fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Daftar Pasien Modalllllllllllll -->
     <!-- Daftar Pasien Modal -->
     <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
         id="daftarPasien" tabindex="-1" aria-labelledby="daftarPasienLabel" aria-modal="true" role="dialog">
@@ -1214,5 +1050,4 @@
         }
     </script>
 </body>
-
 </html>
