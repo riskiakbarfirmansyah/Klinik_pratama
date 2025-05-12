@@ -46,4 +46,14 @@ class HomeController extends Controller
             'jadwalvariabel' => $jadwalvariabel
         ]);
     }
+
+    public function prosesReservasi(Request $request)
+    {
+    // Validasi data bisa ditambahkan di sini
+    $data = $request->all();
+
+    // Simpan ke database atau lakukan proses lainnya
+
+    return redirect()->back()->with('success', 'Reservasi berhasil dikirim!');
+    }
 }

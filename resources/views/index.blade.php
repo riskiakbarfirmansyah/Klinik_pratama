@@ -243,6 +243,101 @@
     </div>
 </div>
 
+<!-- Services Section -->
+<div id="layanan" class="container mt-5">
+    <h2 class="text-center" style="color: #8EDBE6; margin-bottom: 40px; font-weight: bold;">Layanan Homecare</h2>
+    <div class="row justify-content-center">
+        <!-- Card 1 -->
+        <div class="col-md-3 mb-4 d-flex justify-content-center">
+            <div class="card text-center" style="width: 650px; background-color: #007B7F; border-radius: 15px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; height: 450px;">
+                <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
+                    <img src="/image/layanan_umum.png" alt="Layanan Umum" style="width: 280px; height: auto; border-radius: 10px; margin-bottom: 20px;">
+                    <p style="color: #8EDBE6; font-weight: bold;">Layanan Umum</p>
+                </div>
+            </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-md-3 mb-4 d-flex justify-content-center">
+            <div class="card text-center" style="width: 650px; background-color: #007B7F; border-radius: 15px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; height: 450px;">
+                <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
+                    <img src="/image/vitamin.png" alt="Suntik/Infus Vitamin" style="width: 280px; height: auto; border-radius: 10px; margin-bottom: 20px;">
+                    <p style="color: #8EDBE6; font-weight: bold;">Suntik/Infus Vitamin</p>
+                </div>
+            </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-md-3 mb-4 d-flex justify-content-center">
+            <div class="card text-center" style="width: 650px; background-color: #007B7F; border-radius: 15px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; height: 450px;">
+                <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
+                    <img src="/image/vaksin.png" alt="Vaksin" style="width: 280px; height: auto; border-radius: 10px; margin-bottom: 20px;">
+                    <p style="color: #8EDBE6; font-weight: bold;">Vaksin</p>
+                </div>
+            </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-md-3 mb-4 d-flex justify-content-center">
+            <div class="card text-center" style="width: 650px; background-color: #007B7F; border-radius: 15px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; height: 450px;">
+                <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
+                    <img src="/image/ambil_darah.png" alt="Pengambilan Darah" style="width: 280px; height: auto; border-radius: 10px; margin-bottom: 20px;">
+                    <p style="color: #8EDBE6; font-weight: bold;">Pengambilan Darah (Lab)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="steps text-center py-5">
+    <h2 class="mb-4" style="color: #8EDBE6;">Kalisari Homecare</h2>
+    <div class="container text-center my-5">
+        <div class="row">
+            <div class="col-md-4 fade-in" style="animation-delay: 0s;">
+                <div class="text-center">
+                    <img src="{{ asset('/image/hubungi_kami.png') }}" alt="Hubungi Kami" class="mb-3" style="width: 190px; height: auto;">
+                    <h5 class="mb-2">Hubungi Kami</h5>
+                    <p class="text-muted">Anda dapat menghubungi kami dengan WhatsApp melalui nomor yang sudah tertera pada website kami.</p>
+                </div>
+            </div>
+            <div class="col-md-4 fade-in" style="animation-delay: 0.3s;">
+                <div class="text-center">
+                    <img src="{{ asset('/image/konsultasi.png') }}" alt="Konsultasi" class="mb-3" style="width: 190px; height: auto;">
+                    <h5 class="mb-2">Konsultasi</h5>
+                    <p class="text-muted">Berikan keluhan Anda untuk pengambilan tindakan medis.</p>
+                </div>
+            </div>
+            <div class="col-md-4 fade-in" style="animation-delay: 0.6s;">
+                <div class="text-center">
+                    <img src="{{ asset('/image/tim_medis_datang.png') }}" alt="Tim Medis" class="mb-3" style="width: 190px; height: auto;">
+                    <h5 class="mb-2">Tim Medis Datang</h5>
+                    <p class="text-muted">Tenaga medis kami akan datang untuk memberikan pelayanan kepada Anda.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="why-homecare py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="d-flex justify-content-center align-items-center" style="height: 100%; min-height: 300px;">
+                    <div class="p-4" style="background-color: #007B7F; color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px; text-align: justify;">
+                        <h3 class="text-center">Kenapa Kalisari Homecare?</h3>
+                        <ul class="list-unstyled mt-3" style="line-height: 1.8;">
+                            <li>1. Tenaga yang terpercaya</li>
+                            <li>2. Perawatan Berkualitas</li>
+                            <li>3. Aman & Nyaman</li>
+                            <li>4. Berkomitmen & Dedikasi</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="/image/kenapa_homecare.png" class="card-img-top" alt="Hubungi Kami">
+            </div>
+        </div>
+    </div>
+</div>
+
 <style>
     .custom-table {
         width: 85%;
@@ -501,6 +596,13 @@
                     Masuk Sebagai Staff
                 </a>
             </div>
+
+            <div class="text-center mt-4">
+                <a class="btn btn-xl btn-outline-light" href="{{ route('reservasi.homecare') }}">
+                    <i class="fas fa-user me-2"></i>
+                    Reservasi Homecare
+                </a>
+            </div>            
         </div>
     </section>
     <!--------------------------------------------------------Kontak Klinik----------------------------------------------------------------------------------->
