@@ -44,8 +44,6 @@
                         <th>Pekerjaan</th>                       
                     </tr>
                 </thead>
-                
-                
             </table>
         </div>
 

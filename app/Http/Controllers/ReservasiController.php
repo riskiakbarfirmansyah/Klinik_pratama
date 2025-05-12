@@ -14,7 +14,7 @@ class ReservasiController extends Controller
         $reservasi = Reservasi::all(); // or you can use any filtering or pagination if needed
         
         // Pass the data to the view
-        return view('antrian-homecare', compact('reservasi')); // Make sure you pass 'reservasi'
+        return view('reservasi-homecare', compact('reservasi')); // Make sure you pass 'reservasi'
     }
 
     public function process(Request $request)
