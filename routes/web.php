@@ -14,6 +14,7 @@ use App\Http\Controllers\RekamController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\ReservasiController;
 use League\CommonMark\Extension\SmartPunct\DashParser;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -51,6 +52,23 @@ Route::get('/admin/reviews', function () {
 Route::get('/tentangkami', function () {
     return view('tentangkami');
 });
+
+Route::get('/index', function () {
+    return view('index');
+});
+
+//Reservasi Homecare
+Route::get('/reservasi-homecare', function () {
+    return view('reservasi-homecare');
+})->name('reservasi.homecare');
+
+Route::get('/antrian-homecare', function () {
+    return view('antrian-homecare');
+})->name('antrian.homecare');
+
+Route::get('/reservasi-homecare', [ReservasiController::class, 'index'])->name('reservasi.homecare');
+
+Route::post('/reservasi/process', [ReservasiController::class, 'process'])->name('reservasi.process');
 
 // admin
 Route::group(['middleware' => 'isAdmin'], function () {

@@ -9,8 +9,9 @@ class Jadwal extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'jadwalpraktek'
-        
+        'jadwalpraktek',
+        'day',
+        'hour'    
     ];
     protected $guarded =['id'];
     public function dokter()
