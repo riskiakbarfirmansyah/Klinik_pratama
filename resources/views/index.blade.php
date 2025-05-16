@@ -112,7 +112,7 @@
             <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url('/tentangkami') }}">Tentang Kami</a>
         </li>
         <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Artikel</a>
+            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Pendaftaran</a>
         </li>
     </ul>
 </div>
@@ -438,11 +438,11 @@
                     src=<?php echo $mappp; ?> allowfullscreen=""></iframe></div>
 
 
-            <div class="divider-custom">
+            {{-- <div class="divider-custom">
                 <div class="divider-custom-line"></div>
                 <div class="divider-custom-icon"><i class="fas fa-map"></i></div>
                 <div class="divider-custom-line"></div>
-            </div>
+            </div> --}}
         </div>
     </section>
     
