@@ -62,11 +62,13 @@ Route::get('/reservasi-homecare', function () {
     return view('reservasi-homecare');
 })->name('reservasi.homecare');
 
-Route::get('/antrian-homecare', function () {
-    return view('antrian-homecare');
-})->name('antrian.homecare');
+Route::get('/antrian-homecare', [ReservasiController::class, 'index'])->name('antrian.homecare');
 
 Route::get('/reservasi-homecare', [ReservasiController::class, 'index'])->name('reservasi.homecare');
+Route::get('/reservasi-homecare', function () {
+    return view('reservasi-homecare'); // pastikan nama file = resources/views/reservasi-homecare.blade.php
+})->name('reservasi.homecare');
+
 
 Route::post('/reservasi/process', [ReservasiController::class, 'process'])->name('reservasi.process');
 
