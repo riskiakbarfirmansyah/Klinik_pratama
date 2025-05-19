@@ -10,12 +10,10 @@ class ReservasiController extends Controller
 {
     public function index()
     {
-        // Fetch all reservasi records
-        $reservasi = Reservasi::all(); // or you can use any filtering or pagination if needed
-        
-        // Pass the data to the view
-        return view('reservasi-homecare', compact('reservasi')); // Make sure you pass 'reservasi'
+        $reservasi = Reservasi::latest()->get();
+        return view('antrian-homecare', compact('reservasi'));
     }
+
 
     public function process(Request $request)
     {
@@ -41,7 +39,7 @@ class ReservasiController extends Controller
         Reservasi::create($validated);
 
         // Redirect atau response
-        return redirect()->back()->with('success', 'Reservasi berhasil dikirim!');
+        return redirect()->route('antrian.homecare')->with('success', 'Reservasi berhasil dikirim!');
     }
     
 }

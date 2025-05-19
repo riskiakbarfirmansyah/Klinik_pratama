@@ -1,5 +1,6 @@
-<title>Antrian-Pasien (Jam {{  \Carbon\Carbon::now()->format("H:i") }})</title>
+<title>Antrian-Pasien (Jam {{ \Carbon\Carbon::now()->format("H:i") }})</title>
 @extends('layouts.main')
+
 @section('content')
     @if ($errors->any())
         @foreach ($errors->all() as $item)
@@ -14,14 +15,11 @@
             {{ session('success') }}
         </div>
     @endif
-    
+
     <div class="container">
         <h1>Data Antrian Homecare</h1>
         <br>
 
-        </-------------------------------------------------------- Tabel
-            -----------------------------------------------------------------------------------* />
-        <br />
         <div class="table-responsive">
             <table class="table table-flush" id="products-list">
                 <thead class="thead-dark">
@@ -40,16 +38,32 @@
                         <th>Jam Praktek</th>
                         <th>Jam Kedatangan</th>
                         <th>Keluhan</th>
-                        <th>Pendidikan</th>
-                        <th>Pekerjaan</th>                       
                     </tr>
                 </thead>
+                <tbody>
+                    @foreach ($reservasi as $key => $item)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $item->nama_pasien }}</td>
+                            <td>{{ $item->alamat }}</td>
+                            <td>{{ $item->no_hp }}</td>
+                            <td>{{ $item->email }}</td>
+                            <td>{{ $item->jenis_kelamin }}</td>
+                            <td>{{ $item->tanggal_lahir }}</td>
+                            <td>{{ $item->poliklinik }}</td>
+                            <td>{{ $item->dokter }}</td>
+                            <td>{{ $item->jaminan }}</td>
+                            <td>{{ $item->tanggal_booking }}</td>
+                            <td>{{ $item->jam_praktek }}</td>
+                            <td>{{ $item->jam_kedatangan }}</td>
+                            <td>{{ $item->keluhan }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
             </table>
         </div>
-
-
-
     </div>
+
     @push('scripts')
         <script>
             $(document).ready(function() {
@@ -62,14 +76,12 @@
                     buttons: [{
                             extend: 'excel',
                             text: 'Excel',
-                            messageTop: 'Data Antrian Harian per Tanggal '+'{{  \Carbon\Carbon::now()->format("d-M(m)-Y") }}'
-                            
+                            messageTop: 'Data Antrian Harian per Tanggal '+'{{ \Carbon\Carbon::now()->format("d-M-Y") }}'
                         },
                         {
                             extend: 'copy',
                             text: 'Copy Isi',
-                            messageTop: 'Data Antrian Harian per Tanggal '+'{{  \Carbon\Carbon::now()->format("d-M(m)-Y") }}'
-                            
+                            messageTop: 'Data Antrian Harian per Tanggal '+'{{ \Carbon\Carbon::now()->format("d-M-Y") }}'
                         },
                     ],
                     language: {
@@ -80,7 +92,6 @@
                 });
             });
 
-            // <!--------------------------------------------------------auto refresh page----------------------------------------------------------------------------------->
             setTimeout(function() {
                 window.location.reload();
             }, 16000);
