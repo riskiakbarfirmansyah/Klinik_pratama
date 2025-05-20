@@ -37,36 +37,52 @@
       <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              @if(auth()->check() && auth()->user()->is_superadmin === 1)
-              <span class="mr-2 d-none d-lg-inline text-primary-600 small">  <font color="blue">SuperAdmin</font></span>
+
+              @if (auth()->check())
+                  @if (auth()->user()->is_superadmin === 1)
+                      <span class="mr-2 d-none d-lg-inline text-primary-600 small">
+                          <font color="blue">SuperAdmin</font>
+                      </span>
+                  @endif
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                      {{ auth()->user()->name }}
+                  </span>
+              @else
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                      Tamu
+                  </span>
               @endif
-              <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
-             
           </a>
+
           <!-- Dropdown - User Information -->
           <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
               aria-labelledby="userDropdown">
-              
-              <a class="dropdown-item" href="#">
-                  <i class="fas fa-id-card fa-sm fa-fw mr-2 text-gray-400"></i>
-                  {{ auth()->user()->name }}
-              </a>
 
-              <a class="dropdown-item" href="/user">
-                  <i class="fas fa-cogs text-gray-400"></i>
-                  Settings
-              </a>
-              
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt text-red-400"></i>
-                  Logout
-              </a>
+              @if(auth()->check())
+                  <a class="dropdown-item" href="#">
+                      <i class="fas fa-id-card fa-sm fa-fw mr-2 text-gray-400"></i>
+                      {{ auth()->user()->name }}
+                  </a>
+
+                  <a class="dropdown-item" href="/user">
+                      <i class="fas fa-cogs text-gray-400"></i>
+                      Settings
+                  </a>
+
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                      <i class="fas fa-sign-out-alt text-red-400"></i>
+                      Logout
+                  </a>
+              @else
+                  <a class="dropdown-item disabled" href="#">
+                      <i class="fas fa-user-slash fa-sm fa-fw mr-2 text-gray-400"></i>
+                      Belum Login
+                  </a>
+              @endif
           </div>
       </li>
-
   </ul>
-
 </nav>
 
 <script type="text/javascript">
