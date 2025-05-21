@@ -39,13 +39,30 @@ class HomeController extends Controller
     
     public function index()
     {
-        $dokter = Dokter::all();
-        $jadwalvariabel = Jadwal::all();
+        // Ambil semua dokter beserta relasi poli > layanan dan jadwal
+        $dokter = Dokter::with(['poli.layanan', 'jadwal'])->get();
+
+        // Siapkan data yang akan dikirim ke Blade (dokterData)
+        $dokterData = $dokter->mapWithKeys(function ($d) {
+            return [
+                $d->id => [
+                    'layanan' => $d->poli && $d->poli->layanan
+                        ? $d->poli->layanan->pluck('nama', 'id')
+                        : [],
+                    'jadwal' => $d->jadwal
+                        ? $d->jadwal->hari . ' - ' . $d->jadwal->jam_mulai . ' s/d ' . $d->jadwal->jam_selesai
+                        : null
+                ]
+            ];
+        });
+
         return view('index', [
-            'dokter' => $dokter, 
-            'jadwalvariabel' => $jadwalvariabel
+            'dokter' => $dokter,
+            'jadwalvariabel' => Jadwal::all(),
+            'dokterData' => $dokterData,
         ]);
     }
+
 
     public function prosesReservasi(Request $request)
     {

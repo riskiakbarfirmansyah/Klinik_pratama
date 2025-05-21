@@ -107,17 +107,21 @@
 
             <!--------------------------------------------------------NAVBAR----------------------------------------------------------------------------------->
             <div class="collapse navbar-collapse" id="navbarResponsive">
-    <ul class="navbar-nav ms-auto">
-        <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url('/tentangkami') }}">Tentang Kami</a>
-        </li>
-        <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Pendaftaran</a>
-            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Alamat</a>
-        </li>
-    </ul>
-</div>
-
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#layanan">Layanan</a>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url('/tentangkami') }}">Tentang Kami</a>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Pendaftaran</a>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Alamat</a>
+                    </li>
+                </ul>
+            </div>
     </nav>
 
     <!--------------------------------------------------------Bagian Isi Konten Teratas----------------------------------------------------------------------------------->
@@ -216,7 +220,7 @@
     </div>
     
     <!-- Jadwal Praktek Section -->
-    <div class="mt-5 text-center">
+    <div class="mt-7 pt-5 text-center">
     <h2 class="text-uppercase text-primary mb-5 fw-bold" style="font-size: 2.5rem;">Jadwal Praktek</h2>
 
     <div class="table-responsive d-flex justify-content-center">
@@ -584,7 +588,7 @@
                 </div>
                 <div class="col-lg-4 me-auto">
                     <p class="lead">Anda bisa mendaftar secara online tanpa perlu mengantri atau
-                        langsung datang keKlinik <a class="btn btn-outline-light" href="/antrian-pasien">
+                        langsung datang ke Klinik <a class="btn btn-outline-light" href="/antrian-pasien">
                             <i class="fas fa-users me-2"></i>
                             Cek Antrian disini
                         </a></p>
@@ -857,7 +861,7 @@
             <br>
             <hr class="sidebar-divider d-none d-md-block">
             <!--------------------------------------------------------pilih layanan----------------------------------------------------------------------------------- -->
-            <div class="form-group row mt-2">
+            {{-- <div class="form-group row mt-2">
                 <label class="col-form-label col-sm-2 pt-0">Layanan</label>
                 <div class="col-sm">
                     <select name="layanan" class="form-control " required
@@ -868,7 +872,7 @@
                         <option value="Asuransi">Asuransi</option>
                     </select>
                 </div>
-            </div>
+            </div> --}}
             <!--------------------------------------------------------rekam medis----------------------------------------------------------------------------------- -->
             <div class="form-group row mt-2">
                 <label class="col-sm-2 col-form-label">Keluhan</label>
@@ -882,30 +886,36 @@
             </div>
 
             <!-- Pilih Dokter -->
-<div class="form-group row mt-2">
-    <label class="col-form-label col-sm-2 pt-0">Dokter</label>
-    <div class="col-sm">
-        <select name="doktor" class="form-control" required
-            oninvalid="this.setCustomValidity('Silahkan pilih dokter yang tersedia')"
-            oninput="setCustomValidity('')">
-            
-            <option value="">pilih dokter...</option>
+            {{-- Dropdown Dokter --}}
+            <div class="form-group row mt-2">
+                <label class="col-form-label col-sm-2 pt-0">Dokter</label>
+                <div class="col-sm">
+                    <select name="dokter" id="dokter" class="form-control" required>
+                        <option value="">Pilih dokter...</option>
+                        @foreach ($dokter as $row)
+                            <option value="{{ $row->id }}">{{ $row->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
 
-            @foreach ($dokter as $row)
-                @php
-                    $jadwal = $row->jadwal;
-                    $jadwalPraktek = $jadwal->jadwalpraktek ?? 'Belum ada Jadwal';
-                    $isDisabled = in_array($jadwalPraktek, ['LIBUR', 'CUTI']);
-                @endphp
-                <option value="{{ $row->id }}" {{ $isDisabled ? 'disabled' : '' }}>
-                    {{ $row->nama }}
-                    ({{ $row->poli->name ?? '-' }}) |
-                    {{ $jadwalPraktek }}
-                </option>
-            @endforeach
-        </select>
-    </div>
-</div>
+            {{-- Layanan (otomatis diisi dari dokter terpilih) --}}
+            <div class="form-group row mt-2">
+                <label class="col-form-label col-sm-2 pt-0">Layanan</label>
+                <div class="col-sm">
+                    <input type="text" name="layanan" id="layanan" class="form-control" readonly>
+                </div>
+            </div>
+
+            {{-- Jadwal (otomatis diisi dari dokter terpilih) --}}
+            <div class="form-group row mt-2">
+                <label class="col-form-label col-sm-2 pt-0">Jadwal</label>
+                <div class="col-sm">
+                    <input type="text" name="jadwal" id="jadwal" class="form-control" readonly>
+                </div>
+            </div>
+
+
 
 
             <!--------------------------------------------------------pilih dokter----------------------------------------------------------------------------------- -->
@@ -1152,5 +1162,32 @@
             }
         }
     </script>
+
+    <!--------------------------------------------------------pilih layanan----------------------------------------------------------------------------------->
+    <script>
+        const dokterData = @json($dokter->mapWithKeys(function($d) {
+            return [
+                $d->id => [
+                    'layanan' => $d->poli->name ?? '-',
+                    'jadwal' => $d->jadwal->jadwalpraktek ?? 'Belum ada jadwal'
+                ]
+            ];
+        }));
+        
+        document.getElementById('dokter').addEventListener('change', function () {
+            const dokterId = this.value;
+            const layananInput = document.getElementById('layanan');
+            const jadwalInput = document.getElementById('jadwal');
+
+            if (dokterData[dokterId]) {
+                layananInput.value = dokterData[dokterId].layanan;
+                jadwalInput.value = dokterData[dokterId].jadwal;
+            } else {
+                layananInput.value = '';
+                jadwalInput.value = '';
+            }
+        });
+    </script>
+
 </body>
 </html>

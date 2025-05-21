@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>KALISARI HEALTHCARE</title>
+    <title>KHC | Antrian Pasien</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
@@ -23,7 +23,7 @@
     <link href="{{ asset('img/logo_utama_kalisari.png') }}" rel="SHORTCUT ICON" />
 </head>
 
-<body id="page-top" onload="initClock()">
+<body id="page-top" class="d-flex flex-column min-vh-100" onload="initClock()">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
         <div class="container">
@@ -41,9 +41,12 @@
             <!--------------------------------------------------------NAVBAR----------------------------------------------------------------------------------->
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url('/index') }}">Layanan</a>
+                    </li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="/#portfolio">Tentang
-                            kami</a></li>
+                            href="{{ url('/tentangkami') }}">Tentang kami</a>
+                    </li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="/#about">Pendaftaran</a>
                     </li>
@@ -109,9 +112,12 @@
     <!--------------------------------------------------------Footer----------------------------------------------------------------------------------->
 
     <!--------------------------------------------------------copyright----------------------------------------------------------------------------------->
-    <div class="copyright py-4 text-center text-white">
-        <div class="container"><small>Powered by &copy; Klinik Kalisari Healthcare 2025</small></div>
-    </div>
+    <footer class="mt-auto">
+        <div class="copyright py-4 text-center text-white bg-dark">
+            <div class="container"><small>Powered by &copy; Klinik Kalisari Healthcare 2025</small></div>
+        </div>
+    </footer>
+
     @push('scripts')
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

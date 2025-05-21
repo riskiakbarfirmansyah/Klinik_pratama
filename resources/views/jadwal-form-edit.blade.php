@@ -24,13 +24,34 @@
             </div>
         </div>
 
-        <!-- Jam -->
+        @php
+            $jam = explode(' - ', $jadwal->hour);
+            $jam_mulai = $jam[0] ?? '';
+            $jam_selesai = $jam[1] ?? '';
+        @endphp
+
+        <!-- Jam Mulai -->
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Jam</label>
+            <label class="col-sm-2 col-form-label">Jam Mulai</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" name="jam" value="{{ old('jam', $jadwal->jam) }}">
+                <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai" value="{{ old('jam_mulai', $jam_mulai) }}">
+                @error('jam_mulai')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
         </div>
+
+        <!-- Jam Selesai -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Jam Selesai</label>
+            <div class="col-sm-5">
+                <input type="time" class="form-control @error('jam_selesai') is-invalid @enderror" name="jam_selesai" value="{{ old('jam_selesai', $jam_selesai) }}">
+                @error('jam_selesai')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+
 
         <div class="form-group row">
             <div class="col-sm-10">

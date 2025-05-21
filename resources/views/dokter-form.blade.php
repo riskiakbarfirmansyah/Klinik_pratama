@@ -43,7 +43,7 @@
                 <label class="col-form-label col-sm-2 pt-0">Spesialis</label>
                 <div class="col-sm-3">
                     <select name="Spesialis" class="form-control @error('Spesialis') is-invalid @enderror">
-                        <option selected value="">pilih poli / spesialis</option>
+                        <option selected value="">pilih poliklinik</option>
                         @foreach($poli as $p)
                             <option value="{{ $p->id }}">{{ $p->name }}</option>
                         @endforeach
@@ -60,8 +60,9 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Telepon</label>
                 <div class="col-sm-3">
-                    <input type="number" class="form-control @error('Telepon') is-invalid @enderror" id="notelp"
-                        name="Telepon" placeholder="Nomer Telepon (aktif)" value="{{ old('Telepon') }}">
+                    <input type="tel" class="form-control @error('Telepon') is-invalid @enderror" id="notelp"
+                        name="Telepon" placeholder="Nomer Telepon (aktif)" value="{{ old('Telepon') }}"
+                        pattern="[0-9]+" inputmode="numeric">
                     @error('Telepon')
                         <div class="invalid-feedback">
                             "nomer telepon masih kosong
@@ -69,7 +70,6 @@
                     @enderror
                 </div>
             </div>
-
 
         </--------------------------------------------------------Jadwal Praktek-----------------------------------------------------------------------------------* />
             <div class="form group row">

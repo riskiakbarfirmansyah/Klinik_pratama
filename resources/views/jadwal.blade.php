@@ -45,7 +45,7 @@
                                     <i class="fas fa-pen text-white"></i>
                                 </a>
 
-                                @if(auth()->check() && auth()->user()->is_superadmin === 1)
+                                @if(auth()->check() && auth()->user()->is_admin === 1)
                                     <form action="{{ route('jadwal.destroy', $jp->id) }}" method="POST" style="display:inline;">
                                         @method('DELETE')
                                         @csrf

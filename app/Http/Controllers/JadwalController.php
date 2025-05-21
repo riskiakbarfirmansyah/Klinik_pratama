@@ -37,17 +37,23 @@ class JadwalController extends Controller
     public function store(Request $request)
 {
     $this->validate($request, [
-        'hari' => 'required',
-        'jam' => 'required',
+    'hari' => 'required',
+    'jam_mulai' => 'required|date_format:H:i',
+    'jam_selesai' => 'required|date_format:H:i|after:jam_mulai',
     ], [
-        'hari.required' => 'Hari wajib diisi.',
-        'jam.required' => 'Jam wajib diisi.',
+    'hari.required' => 'Hari wajib diisi.',
+    'jam_mulai.required' => 'Jam mulai wajib diisi.',
+    'jam_mulai.date_format' => 'Format jam mulai harus HH:MM.',
+    'jam_selesai.required' => 'Jam selesai wajib diisi.',
+    'jam_selesai.date_format' => 'Format jam selesai harus HH:MM.',
+    'jam_selesai.after' => 'Jam selesai harus lebih besar dari jam mulai.',
     ]);
+
 
     Jadwal::create([
         'day' => $request->hari,
-        'hour' => $request->jam,
-        'jadwalpraktek' => $request->hari . ' - ' . $request->jam,
+        'hour' => $request->jam_mulai . ' - ' . $request->jam_selesai,
+        'jadwalpraktek' => $request->hari . ' - ' . $request->jam_mulai . ' - ' . $request->jam_selesai,
     ]);
 
     return redirect('/jadwal')->with('success', 'Jadwal berhasil ditambahkan');
@@ -87,19 +93,24 @@ class JadwalController extends Controller
      */
     public function update(Request $request, $id)
 {
-    $request->validate([
-        'hari' => 'required',
-        'jam' => 'required',
+     $this->validate($request, [
+    'hari' => 'required',
+    'jam_mulai' => 'required|date_format:H:i',
+    'jam_selesai' => 'required|date_format:H:i|after:jam_mulai',
     ], [
-        'hari.required' => 'Hari wajib diisi.',
-        'jam.required' => 'Jam wajib diisi.',
+    'hari.required' => 'Hari wajib diisi.',
+    'jam_mulai.required' => 'Jam mulai wajib diisi.',
+    'jam_mulai.date_format' => 'Format jam mulai harus HH:MM.',
+    'jam_selesai.required' => 'Jam selesai wajib diisi.',
+    'jam_selesai.date_format' => 'Format jam selesai harus HH:MM.',
+    'jam_selesai.after' => 'Jam selesai harus lebih besar dari jam mulai.',
     ]);
 
-    $jadwal = Jadwal::find($id);
+    $jadwal = Jadwal::findOrFail($id);
     $jadwal->update([
         'day' => $request->hari,
-        'hour' => $request->jam,
-        'jadwalpraktek' => $request->hari . ' - ' . $request->jam,
+        'hour' => $request->jam_mulai . ' - ' . $request->jam_selesai,
+        'jadwalpraktek' => $request->hari . ' - ' . $request->jam_mulai . ' - ' . $request->jam_selesai,
     ]);
 
     return redirect()->route('jadwal.index')->with('success', 'Jadwal telah diubah');

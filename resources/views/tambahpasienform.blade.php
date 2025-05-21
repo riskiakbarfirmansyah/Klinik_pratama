@@ -161,7 +161,7 @@
                                     oninput="setCustomValidity('')">
                         <option value="">pilih layanan...</option>
                         <option value="Umum">Umum</option>
-                        <option value="Asuransi">Asuransi</option>
+                        <option value="BPJS">BPJS</option>
                     </select>
                 </div>
             </div>

@@ -3,6 +3,8 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiagnosaController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Dokter;
+use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\DokterController;
@@ -35,7 +37,6 @@ Route::post('/cekpasienlama', [PasienController::class, 'cekpasienlama']);
 Route::get('/pasien-lama', [PasienController::class, 'pasienlama']);
 Route::post('/pasien', [PasienController::class, 'store'])->name('pasien.store');
 Route::post('/addrekam', [RekamController::class, 'store']);
-
 Route::view("buku-panduan", 'buku-panduan');
 Route::view("buku-panduan-admin", 'buku-panduan-admin');
 
@@ -54,7 +55,8 @@ Route::get('/tentangkami', function () {
 });
 
 Route::get('/index', function () {
-    return view('index');
+    $dokter = Dokter::all();
+    return view('index', ['dokter' => $dokter]); 
 });
 
 //Reservasi Homecare
