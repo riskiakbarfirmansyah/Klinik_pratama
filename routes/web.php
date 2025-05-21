@@ -39,6 +39,7 @@ Route::post('/addrekam', [RekamController::class, 'store']);
 Route::view("buku-panduan", 'buku-panduan');
 Route::view("buku-panduan-admin", 'buku-panduan-admin');
 
+Route::get('/feedback', [App\Http\Controllers\FeedbackController::class, 'create'])->name('feedback.create');
 Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
 Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 Route::get('/feedback/thank-you', [FeedbackController::class, 'thankYou'])->name('feedback.thank-you');
@@ -82,6 +83,7 @@ Route::group(['middleware' => 'isAdmin'], function () {
     Route::view('/diagnosa-form', 'diagnosa-form')->middleware('auth');
     Route::view('/obat-stok', 'obat-stok')->middleware('auth');
     Route::view('/jenis-obat-create', 'jenis-obat-form')->middleware('auth');
+    Route::get('/admin/feedback', [FeedbackController::class, 'adminIndex'])->name('feedback.admin');
 
     Route::get('/antrian-pasien-admin', [DashboardController::class, 'antrianpasien'])->middleware('auth');
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard')->middleware('auth');

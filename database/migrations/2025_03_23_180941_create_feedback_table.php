@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('rating');
             $table->text('comment')->nullable();
-            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('dokter_id')->nullable()->constrained('dokters')->nullOnDelete();
             $table->timestamps();
         });
     }
