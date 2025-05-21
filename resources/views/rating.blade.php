@@ -43,32 +43,44 @@
             font-size: 28px;
         }
         
-        .star-rating {
+        .numeric-rating {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            flex-wrap: wrap;
+            gap: 8px;
             margin: 30px 0;
         }
         
-        .star-rating input {
+        .numeric-rating input {
             display: none;
         }
         
-        .star-rating .fas {
-            color: #FFD700 !important;
-        }
-
-        .star-rating label {
-            font-size: 40px;
-            color: #ccc;
+        .numeric-rating label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            color: #555;
+            font-weight: bold;
+            font-size: 18px;
             cursor: pointer;
             transition: all 0.2s ease;
+            border: 2px solid transparent;
         }
         
-        .star-rating label:hover,
-        .star-rating label:hover ~ label,
-        .star-rating input:checked ~ label {
-            color: #FFD700;
+        .numeric-rating label:hover {
+            background-color: #e0e0e0;
+            transform: scale(1.05);
+        }
+        
+        .numeric-rating input:checked + label {
+            background-color: #3EB8BE;
+            color: white;
+            border: 2px solid #2a9599;
+            transform: scale(1.1);
         }
         
         .feedback-question {
@@ -87,15 +99,18 @@
         .form-control {
             border-radius: 10px;
             padding: 15px;
-            min-height: 120px;
             box-shadow: none;
             border: 1px solid #ddd;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
         }
         
         .btn-submit {
             width: 100%;
             padding: 12px;
-            background-color: #c1c7d0;
+            background-color: #3EB8BE;
             border: none;
             border-radius: 10px;
             color: white;
@@ -105,14 +120,56 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            transition: all 0.2s ease;
         }
         
         .btn-submit:hover {
-            background-color: #adb5c1;
+            background-color: #2a9599;
         }
 
         .btn-submit i {
             font-size: 16px;
+        }
+        
+        .rating-value-display {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #3EB8BE;
+            margin: 15px 0;
+            min-height: 36px;
+        }
+        
+        .rating-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .doctor-select {
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .doctor-label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+        
+        .select-wrapper {
+            position: relative;
+        }
+        
+        .select-wrapper i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #3EB8BE;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -130,24 +187,62 @@
                     Bagaimana pengalaman Anda dengan pelayanan kami?
                 </div>
                 
-                <div class="star-rating">
-                    <input type="radio" id="star5" name="rating" value="1">
-                    <label for="star5" class="far fa-star"></label>
-                    
-                    <input type="radio" id="star4" name="rating" value="2">
-                    <label for="star4" class="far fa-star"></label>
-                    
-                    <input type="radio" id="star3" name="rating" value="3">
-                    <label for="star3" class="far fa-star"></label>
-                    
-                    <input type="radio" id="star2" name="rating" value="4">
-                    <label for="star2" class="far fa-star"></label>
-                    
-                    <input type="radio" id="star1" name="rating" value="5">
-                    <label for="star1" class="far fa-star"></label>
+                <div class="rating-value-display" id="ratingValueDisplay">
+                    Pilih rating 1-10
                 </div>
                 
-                <div class="mb-3">
+                <div class="numeric-rating">
+                    <input type="radio" id="rating1" name="rating" value="1">
+                    <label for="rating1">1</label>
+                    
+                    <input type="radio" id="rating2" name="rating" value="2">
+                    <label for="rating2">2</label>
+                    
+                    <input type="radio" id="rating3" name="rating" value="3">
+                    <label for="rating3">3</label>
+                    
+                    <input type="radio" id="rating4" name="rating" value="4">
+                    <label for="rating4">4</label>
+                    
+                    <input type="radio" id="rating5" name="rating" value="5">
+                    <label for="rating5">5</label>
+                    
+                    <input type="radio" id="rating6" name="rating" value="6">
+                    <label for="rating6">6</label>
+                    
+                    <input type="radio" id="rating7" name="rating" value="7">
+                    <label for="rating7">7</label>
+                    
+                    <input type="radio" id="rating8" name="rating" value="8">
+                    <label for="rating8">8</label>
+                    
+                    <input type="radio" id="rating9" name="rating" value="9">
+                    <label for="rating9">9</label>
+                    
+                    <input type="radio" id="rating10" name="rating" value="10">
+                    <label for="rating10">10</label>
+                </div>
+                
+                <div class="rating-labels">
+                    <span>Sangat Tidak Puas</span>
+                    <span>Sangat Puas</span>
+                </div>
+                
+                <!-- Tambahkan dropdown pilihan dokter di sini -->
+                <div class="mb-3 doctor-select">
+                    <label for="dokter_id" class="form-label doctor-label">Pilih Dokter</label>
+                    <div class="select-wrapper">
+                        <select class="form-select form-control" id="dokter_id" name="dokter_id" required>
+                            <option value="" selected disabled>-- Pilih Dokter --</option>
+                            @foreach($dokters as $dokter)
+                                <option value="{{ $dokter->id }}">{{ $dokter->nama }}</option>
+                            @endforeach
+                        </select>
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                </div>
+                
+                <div class="mb-3 mt-4">
                     <label for="comment" class="form-label comment-label">Berikan Komentar Anda (Opsional)</label>
                     <textarea class="form-control" id="comment" name="comment" rows="4" placeholder="Bagikan pengalaman Anda dengan kami..."></textarea>
                 </div>
@@ -159,59 +254,26 @@
         </div>
     </div>
 
-    <!-- JavaScript untuk fungsionalitas bintang -->
+    <!-- JavaScript untuk fungsionalitas angka rating -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-        // Dapatkan semua elemen input radio
-        const starInputs = document.querySelectorAll('.star-rating input');
-        // Dapatkan semua label bintang
-        const starLabels = document.querySelectorAll('.star-rating label');
-        
-        // Fungsi untuk mewarnai bintang
-        function updateStars(rating) {
-            // Reset semua bintang ke kosong
-            starLabels.forEach(label => {
-                label.className = 'far fa-star';
-            });
+            // Dapatkan semua elemen input radio
+            const ratingInputs = document.querySelectorAll('.numeric-rating input');
+            // Dapatkan elemen untuk menampilkan nilai rating
+            const ratingDisplay = document.getElementById('ratingValueDisplay');
             
-            // Isi bintang sampai rating yang dipilih
-            for (let i = 0; i < rating; i++) {
-                starLabels[i].className = 'fas fa-star';
-            }
-        }
-        
-        // Event listener untuk input radio
-        starInputs.forEach(input => {
-            input.addEventListener('change', function() {
-                updateStars(this.value);
-            });
-        });
-        
-        // Event listener untuk hover
-        starLabels.forEach((label, index) => {
-            // Saat mouse masuk ke bintang
-            label.addEventListener('mouseenter', function() {
-                updateStars(index + 1);
-            });
-        });
-        
-        // Event listener untuk mouse meninggalkan area rating
-        const ratingContainer = document.querySelector('.star-rating');
-        ratingContainer.addEventListener('mouseleave', function() {
-            // Cari rating yang dipilih
-            const checkedInput = document.querySelector('.star-rating input:checked');
-            
-            if (checkedInput) {
-                // Jika ada yang dipilih, perbarui bintang sesuai pilihan
-                updateStars(checkedInput.value);
-            } else {
-                // Jika tidak ada yang dipilih, reset semua bintang
-                starLabels.forEach(label => {
-                    label.className = 'far fa-star';
+            // Event listener untuk input radio
+            ratingInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    // Update tampilan nilai rating
+                    ratingDisplay.textContent = `Rating Anda: ${this.value}/10`;
+                    
+                    // Aktifkan tombol submit
+                    document.querySelector('.btn-submit').style.backgroundColor = '#3EB8BE';
+                    document.querySelector('.btn-submit').style.cursor = 'pointer';
                 });
-            }
+            });
         });
-    });
     </script>
 </body>
 </html>

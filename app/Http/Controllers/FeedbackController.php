@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dokter;
 use App\Models\Feedback;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -15,7 +16,10 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        return view('rating');
+        // Mengambil semua data dokter untuk ditampilkan di dropdown
+        $dokters = Dokter::all();
+        
+        return view('rating', compact('dokters'));
     }
 
     /**
@@ -27,7 +31,8 @@ class FeedbackController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'rating' => 'required|integer|min:1|max:5',
+            'rating' => 'required|integer|min:1|max:10',
+            'dokter_id' => 'required|exists:dokters,id', // Tambahkan validasi dokter_id
             'comment' => 'nullable|string|max:1000',
         ]);
 
@@ -40,6 +45,7 @@ class FeedbackController extends Controller
         // Membuat record feedback baru
         Feedback::create([
             'rating' => $request->rating,
+            'dokter_id' => $request->dokter_id, // Simpan dokter_id
             'comment' => $request->comment,
             // Tambahkan user_id jika ada sistem login
             // 'user_id' => auth()->id(),
