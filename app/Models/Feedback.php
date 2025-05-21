@@ -16,16 +16,17 @@ class Feedback extends Model
      */
     protected $fillable = [
         'rating',
+        'dokter_id',
         'comment',
-        'user_id', // Opsional, jika Anda ingin menghubungkan dengan user
+        
     ];
 
     /**
      * Hubungan ke model User.
      * Aktifkan jika sistem memiliki autentikasi.
      */
-    public function user()
+    public function dokter()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Dokter::class);
     }
 }
