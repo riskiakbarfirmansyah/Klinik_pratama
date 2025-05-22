@@ -1,7 +1,6 @@
 <?php
     $klinikkk= "Antah";
     $mappp= "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.49177223431!2d106.85003697453266!3d-6.330269861939016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ed8b9c14261b%3A0xbaca66ee48dd8659!2sKlinik%20Pratama%20Kalisari%20Healthcare!5e0!3m2!1sen!2sid!4v1738385250473!5m2!1sen!2sid";
-    
 ?>
 
 <!DOCTYPE html>
@@ -861,7 +860,7 @@
             <br>
             <hr class="sidebar-divider d-none d-md-block">
             <!--------------------------------------------------------pilih layanan----------------------------------------------------------------------------------- -->
-            {{-- <div class="form-group row mt-2">
+            <div class="form-group row mt-2">
                 <label class="col-form-label col-sm-2 pt-0">Layanan</label>
                 <div class="col-sm">
                     <select name="layanan" class="form-control " required
@@ -869,10 +868,10 @@
                         oninput="setCustomValidity('')">
                         <option value="">pilih layanan...</option>
                         <option value="Umum">Umum</option>
-                        <option value="Asuransi">Asuransi</option>
+                        <option value="BPJS">BPJS</option>
                     </select>
                 </div>
-            </div> --}}
+            </div>
             <!--------------------------------------------------------rekam medis----------------------------------------------------------------------------------- -->
             <div class="form-group row mt-2">
                 <label class="col-sm-2 col-form-label">Keluhan</label>
@@ -901,9 +900,9 @@
 
             {{-- Layanan (otomatis diisi dari dokter terpilih) --}}
             <div class="form-group row mt-2">
-                <label class="col-form-label col-sm-2 pt-0">Layanan</label>
+                <label class="col-form-label col-sm-2 pt-0">Layanan FasKes</label>
                 <div class="col-sm">
-                    <input type="text" name="layanan" id="layanan" class="form-control" readonly>
+                    <input type="text" name="Poli" id="Poli" class="form-control" readonly>
                 </div>
             </div>
 
@@ -923,22 +922,16 @@
                 {!! NoCaptcha::renderJs() !!}
                 {!! NoCaptcha::display() !!}
             </div>
-        </div>
-        <div class="modal-footer">
-            <input type="checkbox" id="check" onclick="enable()">
-<label style="color:RED;"> Data yang diisi Benar</label><br>
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-            <button id="btn" disabled="True" type="submit" class="btn btn-primary">Daftar</button>
-        </div>
-    </form>
+            <div class="modal-footer">
+                <input type="checkbox" id="check" onclick="enable()">
+                <label style="color:RED;"> Data yang diisi Benar</label><br>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                <button id="btn" disabled="True" type="submit" class="btn btn-primary">Daftar</button>
+            </div>
       </div>
     </div>
   </div>
-    <!-- Daftar Pasien Modal -->
-        
-    <!-- Antrian -->
-
-
+    
     <!--------------------------------------------------------modal kartu antrian----------------------------------------------------------------------------------->
     <div class="modal fade" id="antrian" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="antrianLabel" aria-hidden="true">
@@ -994,8 +987,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">
-                        <img src="{{ asset('img/logo.png') }}" style="float:left; width:55px; height:55px;" />
-                        Klinik {{ env('APP_NAME') }}
+                        <img src="{{ asset('img/logo_kalisari.png') }}" style="float:left; width:55px; height:55px;" />
+                        kalisari healthcare
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -1168,7 +1161,7 @@
         const dokterData = @json($dokter->mapWithKeys(function($d) {
             return [
                 $d->id => [
-                    'layanan' => $d->poli->name ?? '-',
+                    'poli' => $d->poli->name ?? 'Tidak ada jadwal poli',
                     'jadwal' => $d->jadwal->jadwalpraktek ?? 'Belum ada jadwal'
                 ]
             ];
@@ -1176,11 +1169,11 @@
         
         document.getElementById('dokter').addEventListener('change', function () {
             const dokterId = this.value;
-            const layananInput = document.getElementById('layanan');
+            const layananInput = document.getElementById('Poli');
             const jadwalInput = document.getElementById('jadwal');
 
             if (dokterData[dokterId]) {
-                layananInput.value = dokterData[dokterId].layanan;
+                layananInput.value = dokterData[dokterId].poli;
                 jadwalInput.value = dokterData[dokterId].jadwal;
             } else {
                 layananInput.value = '';
