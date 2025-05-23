@@ -102,7 +102,7 @@
             </--------------------------------------------------------jalan /
             inap-----------------------------------------------------------------------------------* />
         <div class="form-group row">
-            <label class="col-form-label col-sm-2 pt-0">Ruang</label>
+            <label class="col-form-label col-sm-2 pt-0">Jenis Layanan</label>
             <div class="col-sm-5">
                 <select name="Ruang" value="{{ old('Ruang') }}"
                     class="form-control bg-primary text-white" required
@@ -192,13 +192,13 @@
             </div>
 
             <!--------------------------------------------------------lingkar Pinggang----------------------------------------------------------------------------------- -->
-            <div class="form-group row">
+            {{-- <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Lingkar Badan</label>
                 <div class="col-sm-5">
                     <input type="number" class="form-control" name="LingkarBadan" placeholder="Lingkar Badan (Cm)"
                         value="{{ old('LingkarBadan') }}"><i>*Cm</i>
                 </div>
-            </div>
+            </div> --}}
 
 
 
