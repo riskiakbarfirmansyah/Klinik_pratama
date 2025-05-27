@@ -27,17 +27,30 @@
             </div>
         </div>
 
-        <!-- Jam -->
+        <!-- Jam Mulai -->
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Jam</label>
+            <label class="col-sm-2 col-form-label">Jam Mulai</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control @error('jam') is-invalid @enderror" name="jam"
-                    placeholder="Contoh: 08:00 - 12:00" value="{{ old('jam') }}">
-                @error('jam')
-                    <div class="invalid-feedback">Jam masih kosong</div>
+                <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai"
+                    value="{{ old('jam_mulai') }}">
+                @error('jam_mulai')
+                    <div class="invalid-feedback">Jam mulai masih kosong</div>
                 @enderror
             </div>
         </div>
+
+        <!-- Jam Selesai -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Jam Selesai</label>
+            <div class="col-sm-7">
+                <input type="time" class="form-control @error('jam_selesai') is-invalid @enderror" name="jam_selesai"
+                    value="{{ old('jam_selesai') }}">
+                @error('jam_selesai')
+                    <div class="invalid-feedback">Jam selesai masih kosong</div>
+                @enderror
+            </div>
+        </div>
+
 
         <div class="form-group row">
             <div class="col-sm-10">

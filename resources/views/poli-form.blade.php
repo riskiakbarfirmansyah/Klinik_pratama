@@ -1,4 +1,4 @@
-<title>Poli / Spesialis</title>
+<title>Poliklinik</title>
     @include('partials.navdashboard')
 
     @if ($errors->any())
@@ -15,14 +15,14 @@
         @endif
     @endif
     <div class="container">
-        <h1>Pilihan Poli / Spesialis Dokter</h1>
+        <h1>Pilihan Poliklinik</h1>
         <br>
         <form action="{{ route('poli.store') }}" method="post">
             @csrf
 
             </--------------------------------------------------------Poli-----------------------------------------------------------------------------------* />
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Poli / Spesials Baru</label>
+                <label class="col-sm-2 col-form-label">Poli Baru</label>
                 <div class="col-sm-7">
                     <input type="text" class="form-control"
                         placeholder="tuliskan Poli..." value="{{ old('Poli') }}" name="name" 
@@ -46,7 +46,7 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>No</th>
-                        <th>Pilihan Poli / Spesialis</th>
+                        <th>Pilihan Poli</th>
                         <th>Tools</th>
                     </tr>
                 </thead>
@@ -76,3 +76,5 @@
                 </tbody>
             </table>
         </div>
+
+    

@@ -14,8 +14,7 @@ class Dokter extends Model
         'alamat',
         'id_poli',
         'telepon',
-        'jadwalpraktek'
-        
+        'jadwalpraktek'   
     ];
     protected $guarded =['id'];
 

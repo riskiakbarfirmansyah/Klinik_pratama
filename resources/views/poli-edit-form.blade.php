@@ -1,4 +1,4 @@
-<title>Ubah Poli/Spesialis</title>
+<title>Ubah Poliklinik</title>
 @include('partials.navdashboard')
 
     @if ($errors->any())
@@ -15,7 +15,7 @@
         @endif
     @endif
     <div class="container">
-        <h1>Perubahan Poli / Spesialis</h1>
+        <h1>Perubahan Poliklinik</h1>
         <br>
         <form action="{{ route('poli.update', $poli->id) }}" method="post">
             @method('PATCH')
@@ -23,7 +23,7 @@
 
             </--------------------------------------------------------Poli lama-----------------------------------------------------------------------------------* />
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Poli / Spesialis Sebelumnya</label>
+                <label class="col-sm-2 col-form-label">Poli Sebelumnya</label>
                 <div class="col-sm-7">
                     <input type="text" class="form-control"
                         value="{{ $poli->name }}" readonly>
@@ -31,7 +31,7 @@
             </div>
             </--------------------------------------------------------Poli baru-----------------------------------------------------------------------------------* />
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Perubahan Poli / Spesialis</label>
+                <label class="col-sm-2 col-form-label">Perubahan Poli</label>
                 <div class="col-sm-7">
                     <input type="text" class="form-control @error('Poli') is-invalid @enderror" name="name"
                         placeholder="tuliskan perubahan poli..." value="{{ $poli->name }}" required oninvalid="this.setCustomValidity('isi poli terbaru')" oninput="setCustomValidity('')">

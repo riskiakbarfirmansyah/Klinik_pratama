@@ -107,34 +107,37 @@
 
             <!--------------------------------------------------------NAVBAR----------------------------------------------------------------------------------->
             <div class="collapse navbar-collapse" id="navbarResponsive">
-    <ul class="navbar-nav ms-auto">
-        <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url('/tentangkami') }}">Tentang Kami</a>
-        </li>
-        <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Alamat</a>
-        </li>
-    </ul>
-</div>
-
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url('/index') }}">Layanan</a>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#head">Tentang Kami</a>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Alamat</a>
+                    </li>
+                </ul>
+            </div>
     </nav>
 
     <!--------------------------------------------------------Bagian Isi Konten Teratas----------------------------------------------------------------------------------->
-    <header class="masthead text-white text-center"
-        style="position: relative;
-               height: 24rem;                         /* ~ h-96 */
-               background: url('{{ asset('img/hero-bg.png') }}') center/cover no-repeat;">
-  <!-- dark overlay -->
-  <div class="position-absolute top-0 start-0 w-100 h-100"
-       style="background-color: rgba(0,0,0,0.5);">
-  </div>
+    <section id = "head">
+        <header class="masthead text-white text-center"
+            style="position: relative;
+                height: 24rem;                         /* ~ h-96 */
+                background: url('{{ asset('img/hero-bg.png') }}') center/cover no-repeat;">
+            <!-- dark overlay -->
+            <div class="position-absolute top-0 start-0 w-100 h-100"
+                style="background-color: rgba(0,0,0,0.5);">
+            </div>
 
-  <!-- centered title -->
-  <div class="container position-relative h-100 d-flex align-items-center justify-content-center">
-    <h1 class="display-4 fw-bold">Tentang Kami</h1>
-  </div>
-</header>
-
+            <!-- centered title -->
+            <div class="container position-relative h-100 d-flex align-items-center justify-content-center">
+                <h1 class="display-4 fw-bold">Tentang Kami</h1>
+            </div>
+        </header>
+    </section>
     
     <!-- Tentang Kami + Visi & Misi -->
 <section id="tentangkami" class="page-section py-5 bg-light">

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('rekams', function (Blueprint $table) {
             $table->dateTime('jadwal_kedatangan')->nullable();
-$table->dateTime('jadwal_selesai')->nullable();
+            $table->dateTime('jadwal_selesai')->nullable();
         });
     }
 

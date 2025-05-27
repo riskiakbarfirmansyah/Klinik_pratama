@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>KALISARI HEALTHCARE</title>
+    <title>KHC | Antrian Pasien</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
@@ -21,9 +21,44 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles-index.css" rel="stylesheet" />
     <link href="{{ asset('img/logo_utama_kalisari.png') }}" rel="SHORTCUT ICON" />
+   <style>
+    @media print {
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body * {
+            visibility: hidden;
+        }
+
+        #preview-antrian, #preview-antrian * {
+            visibility: visible;
+        }
+
+        #preview-antrian {
+            width: 80mm;
+            padding: 10px;
+            font-size: 12pt;
+            font-family: Arial, sans-serif;
+            border: 1px dashed #000;
+            box-shadow: none;
+            background-color: white;
+        }
+
+        /* Sembunyikan elemen lain */
+        header, footer, nav, .navbar, .sidebar, .btn, .table, #antrian-list, .dataTables_wrapper {
+            display: none !important;
+        }
+    }
+    </style>
 </head>
 
-<body id="page-top" onload="initClock()">
+<body id="page-top" class="d-flex flex-column min-vh-100" onload="initClock()">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
         <div class="container">
@@ -41,9 +76,12 @@
             <!--------------------------------------------------------NAVBAR----------------------------------------------------------------------------------->
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url('/index') }}">Layanan</a>
+                    </li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="/#portfolio">Tentang
-                            kami</a></li>
+                            href="{{ url('/tentangkami') }}">Tentang kami</a>
+                    </li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="/#about">Pendaftaran</a>
                     </li>
@@ -78,40 +116,65 @@
     </header>
 
 
-    <div class="container">
-        <br>
-
-        <div class="table-responsive">
-            <table class="table table-flush" id="products-list">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>No Antrian</th>
-                        <th>Nama Pasien</th>
-                        <th>Umur</th>
-                        <th>Mendaftar Pada</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($datarekam as $row)
+    <div class="row">
+    <!-- Kolom Kiri: Tabel Antrian -->
+        <div class="col-md-8">
+            <div class="table-responsive w-100">
+                <table class="table table-striped table-bordered" id="antrian-table">
+                    <thead class="thead-dark">
                         <tr>
-                            <td> {{ $row->nomorantrian }} </td>
-                            <td> {{ $row->pasien->nama }}</td>
-                            <td> {{ $row->pasien->lahir->age }} Tahun</td>
-                            <td> {{ $row->updated_at->format('H:i:s -- d/m/Y') }}</td>
+                            <th class="text-center">No Antrian</th>
+                            <th class="text-center">Nama Pasien</th>
+                            <th class="text-center">Umur</th>
+                            <th class="text-center">Mendaftar Pada</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($datarekam as $row)
+                            <tr class="antrian-row" 
+                                data-nomor="{{ $row->nomorantrian }}" 
+                                data-nama="{{ $row->pasien->nama }}" 
+                                data-umur="{{ $row->pasien->lahir->age }}" 
+                                data-jam="{{ $row->updated_at->format('H:i:s') }}" 
+                                data-tanggal="{{ $row->updated_at->format('d/m/Y') }}">
+                                <td class="text-center">{{ $row->nomorantrian }}</td>
+                                <td class="text-center">{{ $row->pasien->nama }}</td>
+                                <td class="text-center">{{ $row->pasien->lahir->age }} Tahun</td>
+                                <td class="text-center">{{ $row->updated_at->format('H:i:s -- d/m/Y') }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
 
+        <!-- Kolom Kanan: Format Cetak -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center p-3">
+                    <h6 class="card-title mb-3">Format Cetak Antrian</h6>
+                    <div id="preview-antrian" class="border rounded p-2" style="font-size: 0.85rem; max-width: 250px; margin: 0 auto;">
+                        <h6 class="mb-1">No. Antrian</h6>
+                        <h2 class="fw-bold" id="preview-nomor">-</h2>
+                        <p class="mb-1"><strong>Nama:</strong> <span id="preview-nama">-</span></p>
+                        <p class="mb-1"><strong>Umur:</strong> <span id="preview-umur">-</span></p>
+                        <p class="mb-1"><strong>Jam Daftar:</strong> <span id="preview-jam">-</span></p>
+                        <p class="mb-2"><strong>Tanggal:</strong> <span id="preview-tanggal">-</span></p>
+                    </div>
+                    <button onclick="printPreview()" class="btn btn-sm btn-primary mt-3">Cetak</button>
+                </div>
+            </div>
+        </div>
+        
     <!--------------------------------------------------------Footer----------------------------------------------------------------------------------->
 
     <!--------------------------------------------------------copyright----------------------------------------------------------------------------------->
-    <div class="copyright py-4 text-center text-white">
-        <div class="container"><small>Powered by &copy; Klinik Kalisari Healthcare 2025</small></div>
-    </div>
+    <footer class="mt-auto">
+        <div class="copyright py-4 text-center text-white bg-dark">
+            <div class="container"><small>Powered by &copy; Klinik Kalisari Healthcare 2025</small></div>
+        </div>
+    </footer>
+
     @push('scripts')
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -163,5 +226,45 @@
             setTimeout(function() {
                 window.location.reload();
             }, 16000);
+        </script>
+        <!-- Script: Interaksi dan Cetak -->
+        <script>
+            document.querySelectorAll('.antrian-row').forEach(row => {
+                row.addEventListener('click', function () {
+                    // Ambil data dari baris yang diklik
+                    const nomor = this.dataset.nomor;
+                    const nama = this.dataset.nama;
+                    const umur = this.dataset.umur;
+                    const jam = this.dataset.jam;
+                    const tanggal = this.dataset.tanggal;
+
+                    // Isi data ke kolom kanan
+                    document.getElementById('preview-nomor').textContent = nomor;
+                    document.getElementById('preview-nama').textContent = nama;
+                    document.getElementById('preview-umur').textContent = umur + ' Tahun';
+                    document.getElementById('preview-jam').textContent = jam;
+                    document.getElementById('preview-tanggal').textContent = tanggal;
+
+                    // Highlight baris yang dipilih
+                    document.querySelectorAll('.antrian-row').forEach(r => r.classList.remove('table-primary'));
+                    this.classList.add('table-primary');
+                });
+            });
+
+            function printPreview() {
+                const printContents = document.getElementById('preview-antrian').innerHTML;
+                const originalContents = document.body.innerHTML;
+
+                document.body.innerHTML = printContents;
+                window.print();
+                document.body.innerHTML = originalContents;
+                location.reload(); // reload untuk mengembalikan tampilan awal
+            }
+        </script>
+        <script>
+            function printPreview() {
+                document.getElementById('preview-antrian').style.display = 'block';
+                window.print();
+            }
         </script>
     </body>

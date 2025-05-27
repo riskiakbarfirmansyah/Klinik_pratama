@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>KALISARI HEALTHCARE</title>
+    <title>KHC | Pasien Lama</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
@@ -58,9 +58,12 @@
             <!--------------------------------------------------------NAVBAR----------------------------------------------------------------------------------->
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url('/index') }}">Layanan</a>
+                    </li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="/#portfolio">Tentang
-                            kami</a></li>
+                            href="{{ url('/tentangkami') }}">Tentang kami</a>
+                    </li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="/#about">Pendaftaran</a>
                     </li>

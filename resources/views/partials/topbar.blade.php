@@ -64,10 +64,10 @@
                       {{ auth()->user()->name }}
                   </a>
 
-                  <a class="dropdown-item" href="/user">
+                  {{-- <a class="dropdown-item" href="/user">
                       <i class="fas fa-cogs text-gray-400"></i>
                       Settings
-                  </a>
+                  </a> --}}
 
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">

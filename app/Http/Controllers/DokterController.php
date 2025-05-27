@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dokter;
 use App\Models\Poli;
 use App\Models\Jadwal;
+use App\Rules\ScheduleConflict;
 use Illuminate\Http\Request;
 
 class DokterController extends Controller
@@ -45,27 +46,28 @@ class DokterController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            
             'Nama' => 'required',
             'Alamat' => 'required',
             'Spesialis' => 'required',
             'Telepon' => 'required',
-            'Jadwal' => 'required'
-
+            'Jadwal' => ['required', new ScheduleConflict()]
+        ], [
+            'Nama.required' => 'Nama dokter wajib diisi.',
+            'Alamat.required' => 'Alamat dokter wajib diisi.',
+            'Spesialis.required' => 'Spesialis wajib dipilih.',
+            'Telepon.required' => 'Nomor telepon wajib diisi.',
+            'Jadwal.required' => 'Jadwal praktik wajib dipilih.'
         ]);
 
-        $Dokter= Dokter::create([
-           
-            'nama'=>ucwords(strtolower($request->Nama)),
-            'alamat'=>$request->Alamat,            
-            'id_poli'=>$request->Spesialis,            
-            'telepon'=>$request->Telepon,
-            'jadwalpraktek'=>$request->Jadwal
-
+        $Dokter = Dokter::create([
+            'nama' => ucwords(strtolower($request->Nama)),
+            'alamat' => $request->Alamat,            
+            'id_poli' => $request->Spesialis,            
+            'telepon' => $request->Telepon,
+            'jadwalpraktek' => $request->Jadwal
         ]);
-     
 
-        return redirect('/dokter')->with('success','Data berhasil ditambahkan');
+        return redirect('/dokter')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -103,28 +105,28 @@ class DokterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request);
         $this->validate($request, [
-            
             'Nama' => 'required',
             'Alamat' => 'required',
             'Spesialis' => 'required',
             'Telepon' => 'required',
-            'Jadwal' => 'required'
-
+            'Jadwal' => ['required', new ScheduleConflict($id)]
+        ], [
+            'Nama.required' => 'Nama dokter wajib diisi.',
+            'Alamat.required' => 'Alamat dokter wajib diisi.',
+            'Spesialis.required' => 'Spesialis wajib dipilih.',
+            'Telepon.required' => 'Nomor telepon wajib diisi.',
+            'Jadwal.required' => 'Jadwal praktik wajib dipilih.'
         ]);
 
-        $dokteredit = $request->all();
         $dokter = Dokter::find($id);
 
         $dokter->update([
-          
-            'nama'=>ucwords(strtolower($request->Nama)),
-            'alamat'=>$request->Alamat,            
-            'id_poli'=>$request->Spesialis,            
-            'telepon'=>$request->Telepon,
-            'jadwalpraktek'=>$request->Jadwal
-
+            'nama' => ucwords(strtolower($request->Nama)),
+            'alamat' => $request->Alamat,            
+            'id_poli' => $request->Spesialis,            
+            'telepon' => $request->Telepon,
+            'jadwalpraktek' => $request->Jadwal
         ]);
 
         return redirect()->route('dokter.index')->with('success', 'Data telah diubah');

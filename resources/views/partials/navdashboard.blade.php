@@ -96,7 +96,7 @@
                         <h6 class="collapse-header">Dokter</h6>
                         <a class="collapse-item fa fa-user-md" href="/dokter"> Dokter</a>
                         <a class="collapse-item fa fa-clock" href="/jadwal"> Jadwal Praktek</a>
-                        <a class="collapse-item fa fa-heartbeat" href="/poli-form"> Poli/Spesialis</a>
+                        <a class="collapse-item fa fa-heartbeat" href="/poli-form"> Poli</a>
                     </div>
                 </div>
             </li>

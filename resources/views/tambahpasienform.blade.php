@@ -161,7 +161,7 @@
                                     oninput="setCustomValidity('')">
                         <option value="">pilih layanan...</option>
                         <option value="Umum">Umum</option>
-                        <option value="Asuransi">Asuransi</option>
+                        <option value="BPJS">BPJS</option>
                     </select>
                 </div>
             </div>
@@ -177,19 +177,32 @@
             </div>
 
             <!--------------------------------------------------------pilih dokter----------------------------------------------------------------------------------- -->
+            {{-- Dropdown Dokter --}}
             <div class="form-group row mt-2">
                 <label class="col-form-label col-sm-2 pt-0">Dokter</label>
-                <div class="col-sm-7">
-                    <select name="dokter" class="form-control"
-                    required oninvalid="this.setCustomValidity('pilih dokter yang memeriksa...')"
-                                    oninput="setCustomValidity('')">
-                        <option selected value="">Pilih dokter..</option>
-                        
-                        @foreach($dokter as $row)
-                        <option value= "{{ $row->id }}">{{ $row->nama }}({{ $row->poli == '' ? '-' : $row->poli->name }})  | {{ $row->jadwal == '' ? 'Belum ada Jadwal' : $row->jadwal->jadwalpraktek }}</option>
-
+                <div class="col-sm">
+                    <select name="dokter" id="dokter" class="form-control" required>
+                        <option value="">Pilih dokter...</option>
+                        @foreach ($dokter as $row)
+                            <option value="{{ $row->id }}">{{ $row->nama }}</option>
                         @endforeach
                     </select>
+                </div>
+            </div>
+
+            {{-- Layanan (otomatis diisi dari dokter terpilih) --}}
+            <div class="form-group row mt-2">
+                <label class="col-form-label col-sm-2 pt-0">Layanan FasKes</label>
+                <div class="col-sm">
+                    <input type="text" name="Poli" id="Poli" class="form-control" readonly>
+                </div>
+            </div>
+
+            {{-- Jadwal (otomatis diisi dari dokter terpilih) --}}
+            <div class="form-group row mt-2">
+                <label class="col-form-label col-sm-2 pt-0">Jadwal</label>
+                <div class="col-sm">
+                    <input type="text" name="jadwal" id="jadwal" class="form-control" readonly>
                 </div>
             </div>
 
@@ -237,4 +250,28 @@
         setInputFilter(document.getElementById("notelp"), function(value) {
             return /^-?\d*$/.test(value);
         }, "Isi dengan Angka");
+    </script>
+    <script>
+        const dokterData = @json($dokter->mapWithKeys(function($d) {
+            return [
+                $d->id => [
+                    'poli' => $d->poli->name ?? 'Tidak ada jadwal poli',
+                    'jadwal' => $d->jadwal->jadwalpraktek ?? 'Belum ada jadwal'
+                ]
+            ];
+        }));
+        
+        document.getElementById('dokter').addEventListener('change', function () {
+            const dokterId = this.value;
+            const layananInput = document.getElementById('Poli');
+            const jadwalInput = document.getElementById('jadwal');
+
+            if (dokterData[dokterId]) {
+                layananInput.value = dokterData[dokterId].poli;
+                jadwalInput.value = dokterData[dokterId].jadwal;
+            } else {
+                layananInput.value = '';
+                jadwalInput.value = '';
+            }
+        });
     </script>
