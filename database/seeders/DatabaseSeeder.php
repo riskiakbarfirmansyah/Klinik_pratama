@@ -34,5 +34,19 @@ class DatabaseSeeder extends Seeder
             'is_superadmin' => 0,
             'is_admin' => 1,
         ]);
+
+        // Membuat akun User
+        User::create([
+            'name' => 'User',
+            'email' => 'user@example.com',
+            'password' => Hash::make('password123'),
+        ]);
+
+        // Membuat akun User
+        User::create([
+            'name' => 'User2',
+            'email' => 'user2@example.com',
+            'password' => Hash::make('password123'),
+        ]);
     }
 }

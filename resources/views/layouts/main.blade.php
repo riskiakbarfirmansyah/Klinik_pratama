@@ -3,6 +3,7 @@
 
 <head>
     @include('partials.head')
+    @livewireStyles
 </head>
 
 <body id="page-top" onload="initClock()">
@@ -26,7 +27,7 @@
             </div>
 
         <!-- End of Content Wrapper -->
-    
+
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
@@ -38,9 +39,9 @@
     @include('partials.logoutmodal')
 
     <!-- Bootstrap core JavaScript-->
-    
+
     @include('partials.javascripts')
-    
+    @livewireScripts
 </body>
 
-</html> 
+</html>

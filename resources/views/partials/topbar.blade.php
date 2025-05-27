@@ -26,10 +26,20 @@
   <ul class="navbar-nav ml-auto">
 
       <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-      
-      
 
-     
+
+
+
+      @if(auth()->check() && auth()->user()->is_superadmin == 1)
+      <!-- Chat Icon -->
+      <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link" href="{{ route('admin.chat.list') }}" role="button">
+              <i class="fas fa-comments fa-fw"></i>
+              <!-- Counter - Messages -->
+              {{-- <span class="badge badge-danger badge-counter" id="unread-messages">0</span> --}}
+          </a>
+      </li>
+      @endif
 
       <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -41,12 +51,12 @@
               <span class="mr-2 d-none d-lg-inline text-primary-600 small">  <font color="blue">SuperAdmin</font></span>
               @endif
               <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
-             
+
           </a>
           <!-- Dropdown - User Information -->
           <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
               aria-labelledby="userDropdown">
-              
+
               <a class="dropdown-item" href="#">
                   <i class="fas fa-id-card fa-sm fa-fw mr-2 text-gray-400"></i>
                   {{ auth()->user()->name }}
@@ -56,7 +66,7 @@
                   <i class="fas fa-cogs text-gray-400"></i>
                   Settings
               </a>
-              
+
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt text-red-400"></i>

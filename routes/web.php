@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiagnosaController;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,7 @@ use App\Http\Controllers\RekamController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\AdminChatController;
 use League\CommonMark\Extension\SmartPunct\DashParser;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -41,6 +43,24 @@ Route::view("buku-panduan-admin", 'buku-panduan-admin');
 Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
 Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 Route::get('/feedback/thank-you', [FeedbackController::class, 'thankYou'])->name('feedback.thank-you');
+
+// User routes
+Route::middleware(['auth', 'isUser'])->group(function () {
+    Route::get('/user/dashboard-user', function () {
+        return view('user.dashboard-user', [
+            'users' => \App\Models\User::where('id','!=', auth()->id())->get(),
+        ]);
+    })->name('user.dashboard-user');
+
+    Route::get('/user/chat-user', function () {
+        return view('user.chat-user');
+    })->name('user.chat-user');
+
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('logout');
+});
+
 Route::get('/admin/reviews', function () {
     return view('admin.feedadmin', [
         'feedbacks' => \App\Models\Feedback::latest()->get(),
@@ -87,7 +107,7 @@ Route::group(['middleware' => 'isAdmin'], function () {
     Route::post('/tambahstok', [ObatController::class, 'tambahstok'])->middleware('auth');
     Route::post('/clearlaporan', [DashboardController::class, 'clearlaporan'])->middleware('auth');
     Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
-    
+
     Route::resource('/poli', PoliController::class)->middleware('auth');
     route::resource('/pasien', PasienController::class, [
         'except' => ['store']
@@ -100,6 +120,17 @@ Route::group(['middleware' => 'isAdmin'], function () {
     Route::resource('/jenis', JenisController::class)->middleware('auth');
     Route::resource('/user', UserController::class)->middleware('auth');
     Route::resource("/pegawai", PegawaiController::class)->middleware('auth');
+
+    // Add these new routes
+    Route::get('/admin/chat-list', [AdminChatController::class, 'index'])->name('admin.chat.list');
+
+    // Remove or comment out this route since we won't need it anymore
+    // Route::get('/admin/chat/{user}', function(\App\Models\User $user) {
+    //     return view('admin.chat', [
+    //         'user' => $user,
+    //         'users' => \App\Models\User::where('role', 'user')->get()
+    //     ]);
+    // })->name('admin.chat');
 });
 
 Route::group(['middleware' => 'isSuperAdmin'], function () {
@@ -110,7 +141,7 @@ Route::group(['middleware' => 'isSuperAdmin'], function () {
 
 // Route::middleware(['auth', 'roles:superadmin,admin'])->group(function () {
 //     Route::middleware('roles:superadmin')->group(function () {
-//         // Route::resource('user', UserController::class);    
+//         // Route::resource('user', UserController::class);
 //     });
 
 require __DIR__ . '/auth.php';

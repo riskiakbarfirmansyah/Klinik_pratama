@@ -1,5 +1,5 @@
 <script src="{{ asset ('vendor/jquery/jquery.min.js') }}"></script>
-    
+
 <script src= "{{ asset ('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 <!-- Core plugin JavaScript-->
@@ -24,86 +24,32 @@
 
 @stack('scripts')
 
+<script>
+    // Auto scroll chat area ke bawah setiap update Livewire
+    function scrollToBottom() {
+        let area = document.getElementById('messages-area');
+        if(area) area.scrollTop = area.scrollHeight;
+    }
 
+    document.addEventListener('livewire:load', function () {
+        scrollToBottom();
+        if (window.Livewire) {
+            Livewire.hook('message.processed', (message, component) => {
+                scrollToBottom();
+            });
+        }
+    });
+
+    document.addEventListener('submit', function(e) {
+        if (e.target.closest('form[wire\\:submit\\.prevent="sendMessage"]')) {
+            setTimeout(scrollToBottom, 300);
+        }
+    });
+</script>
 
 <script>
     $(document).ready(function() {
-        // $.ajax({
-        //     url: "/totalpengunjung",
-        //     type: "get",
-        //     success: function(response) {
-        //         var yValues = [response.senin, response.selasa, response.rabu, response.kamis,
-        //             response.jumat, response.sabtu, response.minggu
-        //         ];
-        //         var xValues = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
-        //         var barColors = [
-        //             "rgba(66, 135, 245)",
-        //             "rgba(114, 245, 66)",
-        //             "rgba(245, 218, 66)",
-        //             "rgba(245, 66, 66)",
-        //             "rgba(175, 64, 255)",
-        //             "rgba(12, 44, 64)",
-        //             "rgba(97, 102, 58)"
-        //         ];
-
-        //         new Chart("myChart", {
-        //             type: "bar",
-        //             data: {
-        //                 labels: xValues,
-        //                 datasets: [{
-        //                     backgroundColor: barColors,
-        //                     data: yValues
-        //                 }]
-        //             },
-        //             options: {
-        //                 legend: {
-        //                     display: false
-        //                 },
-        //                 title: {
-        //                     display: true,
-        //                     text: "Jumlah Pengunjung Mingguan"
-        //                 }
-        //             }
-        //         });
-        //     }
-        // });
-
-    //     $.ajax({
-    //         url: "/piechart",
-    //         type: 'get',
-    //         success: function(response){
-    //             var xValues = ["Laki-Laki", "Perempuan", "Asuransi", "Umum"];
-    //             var yValues = [response.laki, response.perempuan, response.asuransi, response.umum];
-    //             var barColors = [
-    //                 "#b91d47",
-    //                 "#00aba9",
-    //                 "#2b5797",
-    //                 "#e8c3b9",
-    //                 "#1e7145"
-    //             ];
-
-    //             new Chart("myPie", {
-    //                 type: "pie",
-    //                 data: {
-    //                     labels: xValues,
-    //                     datasets: [{
-    //                         backgroundColor: barColors,
-    //                         data: yValues
-    //                     }]
-    //                 },
-    //                 options: {
-    //                     title: {
-    //                         display: true,
-    //                         text: "Klasifikasi Pasien"
-    //                     }
-    //                 }
-    //             });
-    //         }
-    //     });
-    // });
-
-
-    $.ajax({
+        $.ajax({
             url: "/piechart",
             type: 'get',
             success: function(response){
@@ -112,7 +58,7 @@
                 var barColors = [
                     "#00aba9",
                     "#b91d47"
-                 
+
                 ];
 
                 new Chart("myPie", {
@@ -133,11 +79,8 @@
                 });
             }
         });
-    });
 
-
-
-     $.ajax({
+        $.ajax({
             url: "/piechart",
             type: "get",
             success: function(response) {
@@ -146,7 +89,7 @@
                 var barColors = [
                     "rgba(66, 135, 245)",
                     "rgba(114, 245, 66)"
-                    
+
                 ];
 
                 new Chart("myChart", {
@@ -170,6 +113,5 @@
                 });
             }
         });
-
-    
+    });
 </script>
