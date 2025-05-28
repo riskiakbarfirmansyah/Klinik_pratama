@@ -35,19 +35,24 @@ class JadwalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $this->validate($request, [
-            'Jadwal' => 'required'
-        ]);
+{
+    $this->validate($request, [
+        'hari' => 'required',
+        'jam' => 'required',
+    ], [
+        'hari.required' => 'Hari wajib diisi.',
+        'jam.required' => 'Jam wajib diisi.',
+    ]);
 
-        $Jadwal= Jadwal::create([
+    Jadwal::create([
+        'day' => $request->hari,
+        'hour' => $request->jam,
+        'jadwalpraktek' => $request->hari . ' - ' . $request->jam,
+    ]);
 
-            'jadwalpraktek'=>$request->Jadwal
+    return redirect('/jadwal')->with('success', 'Jadwal berhasil ditambahkan');
+}
 
-        ]);
-
-        return redirect('/jadwal')->with('success','Jadwal berhasil ditambahkan');
-    }
 
     /**
      * Display the specified resource.
@@ -80,22 +85,26 @@ class JadwalController extends Controller
      * @param  \App\Models\Jadwal  $jadwal
      * @return \Illuminate\Http\Response
      */
-     public function update(Request $request, $id)
-     {
-         // dd($request);
-         $request->validate([
-             'Jadwal' => 'required'
-         ]);
- 
-         $jadwaledit = $request->all();
-         $jadwal = Jadwal::find($id);
- 
-         $jadwal->update([
-             'jadwalpraktek' => $request->Jadwal
-         ]);
- 
-         return redirect()->route('jadwal.index')->with('success', 'Jadwal telah diubah');
-     }
+    public function update(Request $request, $id)
+{
+    $request->validate([
+        'hari' => 'required',
+        'jam' => 'required',
+    ], [
+        'hari.required' => 'Hari wajib diisi.',
+        'jam.required' => 'Jam wajib diisi.',
+    ]);
+
+    $jadwal = Jadwal::find($id);
+    $jadwal->update([
+        'day' => $request->hari,
+        'hour' => $request->jam,
+        'jadwalpraktek' => $request->hari . ' - ' . $request->jam,
+    ]);
+
+    return redirect()->route('jadwal.index')->with('success', 'Jadwal telah diubah');
+}
+    
  
      /**
       * Remove the specified resource from storage.

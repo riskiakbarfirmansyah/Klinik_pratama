@@ -16,6 +16,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\AdminChatController;
+use App\Http\Controllers\ReservasiController;
 use League\CommonMark\Extension\SmartPunct\DashParser;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -40,6 +41,7 @@ Route::post('/addrekam', [RekamController::class, 'store']);
 Route::view("buku-panduan", 'buku-panduan');
 Route::view("buku-panduan-admin", 'buku-panduan-admin');
 
+Route::get('/feedback', [App\Http\Controllers\FeedbackController::class, 'create'])->name('feedback.create');
 Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
 Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 Route::get('/feedback/thank-you', [FeedbackController::class, 'thankYou'])->name('feedback.thank-you');
@@ -72,6 +74,25 @@ Route::get('/tentangkami', function () {
     return view('tentangkami');
 });
 
+Route::get('/index', function () {
+    return view('index');
+});
+
+//Reservasi Homecare
+Route::get('/reservasi-homecare', function () {
+    return view('reservasi-homecare');
+})->name('reservasi.homecare');
+
+Route::get('/antrian-homecare', [ReservasiController::class, 'index'])->name('antrian.homecare');
+
+Route::get('/reservasi-homecare', [ReservasiController::class, 'index'])->name('reservasi.homecare');
+Route::get('/reservasi-homecare', function () {
+    return view('reservasi-homecare'); // pastikan nama file = resources/views/reservasi-homecare.blade.php
+})->name('reservasi.homecare');
+
+
+Route::post('/reservasi/process', [ReservasiController::class, 'process'])->name('reservasi.process');
+
 // admin
 Route::group(['middleware' => 'isAdmin'], function () {
     // Route::view("pasien-form", 'pasien-form')->middleware('auth');
@@ -82,6 +103,7 @@ Route::group(['middleware' => 'isAdmin'], function () {
     Route::view('/diagnosa-form', 'diagnosa-form')->middleware('auth');
     Route::view('/obat-stok', 'obat-stok')->middleware('auth');
     Route::view('/jenis-obat-create', 'jenis-obat-form')->middleware('auth');
+    Route::get('/admin/feedback', [FeedbackController::class, 'adminIndex'])->name('feedback.admin');
 
     Route::get('/antrian-pasien-admin', [DashboardController::class, 'antrianpasien'])->middleware('auth');
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard')->middleware('auth');

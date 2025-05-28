@@ -86,9 +86,9 @@
                 <i class="fas fa-bars"></i>
             </button>
             <!--------------------------------------------------------Jam Navbar----------------------------------------------------------------------------------->
-            <a href="#" class="nav-link disabled">
+            <a href="#" class="nav-link disabled ">
                 <!--digital clock start-->
-                <div class="datetime">
+                <div class="datetime ">
                     <div class="date">
                         <span id="dayname">Day</span>,
                         <span id="month">Month</span>
@@ -112,7 +112,7 @@
             <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url('/tentangkami') }}">Tentang Kami</a>
         </li>
         <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Artikel</a>
+            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Alamat</a>
         </li>
     </ul>
 </div>
@@ -213,7 +213,185 @@
             </div>
         </div>
     </div>
+    
+    <!-- Jadwal Praktek Section -->
+    <div class="mt-5 text-center">
+    <h2 class="text-uppercase text-primary mb-5 fw-bold" style="font-size: 2.5rem;">Jadwal Praktek</h2>
+
+    <div class="table-responsive d-flex justify-content-center">
+        <table id="schedule-table" class="table custom-table">
+            <thead>
+                <tr>
+                    <th style="font-size: 1.4rem;">Nama Dokter</th>
+                    <th style="font-size: 1.4rem;">Poli</th>
+                    <th style="font-size: 1.4rem;">Jadwal Praktek</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($dokter as $row)
+                    @php
+                        $jadwalPraktek = $row->jadwal->jadwalpraktek ?? 'Belum ada Jadwal';
+                    @endphp
+                    <tr>
+                        <td style="font-size: 1.25rem;">{{ $row->nama }}</td>
+                        <td style="font-size: 1.25rem;">{{ $row->poli->name ?? '-' }}</td>
+                        <td style="font-size: 1.25rem;">{{ $jadwalPraktek }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Services Section -->
+<div id="layanan" class="container mt-5">
+    <h2 class="text-center" style="color: #8EDBE6; margin-bottom: 40px; font-weight: bold;">Layanan Homecare</h2>
+    <div class="row justify-content-center">
+        <!-- Card 1 -->
+        <div class="col-md-3 mb-4 d-flex justify-content-center">
+            <div class="card text-center" style="width: 650px; background-color: #007B7F; border-radius: 15px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; height: 450px;">
+                <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
+                    <img src="/image/layanan_umum.png" alt="Layanan Umum" style="width: 280px; height: auto; border-radius: 10px; margin-bottom: 20px;">
+                    <p style="color: #8EDBE6; font-weight: bold;">Layanan Umum</p>
+                </div>
+            </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-md-3 mb-4 d-flex justify-content-center">
+            <div class="card text-center" style="width: 650px; background-color: #007B7F; border-radius: 15px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; height: 450px;">
+                <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
+                    <img src="/image/vitamin.png" alt="Suntik/Infus Vitamin" style="width: 280px; height: auto; border-radius: 10px; margin-bottom: 20px;">
+                    <p style="color: #8EDBE6; font-weight: bold;">Suntik/Infus Vitamin</p>
+                </div>
+            </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-md-3 mb-4 d-flex justify-content-center">
+            <div class="card text-center" style="width: 650px; background-color: #007B7F; border-radius: 15px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; height: 450px;">
+                <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
+                    <img src="/image/vaksin.png" alt="Vaksin" style="width: 280px; height: auto; border-radius: 10px; margin-bottom: 20px;">
+                    <p style="color: #8EDBE6; font-weight: bold;">Vaksin</p>
+                </div>
+            </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-md-3 mb-4 d-flex justify-content-center">
+            <div class="card text-center" style="width: 650px; background-color: #007B7F; border-radius: 15px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; height: 450px;">
+                <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
+                    <img src="/image/ambil_darah.png" alt="Pengambilan Darah" style="width: 280px; height: auto; border-radius: 10px; margin-bottom: 20px;">
+                    <p style="color: #8EDBE6; font-weight: bold;">Pengambilan Darah (Lab)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="steps text-center py-5">
+    <h2 class="mb-4" style="color: #8EDBE6;">Kalisari Homecare</h2>
+    <div class="container text-center my-5">
+        <div class="row">
+            <div class="col-md-4 fade-in" style="animation-delay: 0s;">
+                <div class="text-center">
+                    <img src="{{ asset('/image/hubungi_kami.png') }}" alt="Hubungi Kami" class="mb-3" style="width: 190px; height: auto;">
+                    <h5 class="mb-2">Hubungi Kami</h5>
+                    <p class="text-muted">Anda dapat menghubungi kami dengan WhatsApp melalui nomor yang sudah tertera pada website kami.</p>
+                </div>
+            </div>
+            <div class="col-md-4 fade-in" style="animation-delay: 0.3s;">
+                <div class="text-center">
+                    <img src="{{ asset('/image/konsultasi.png') }}" alt="Konsultasi" class="mb-3" style="width: 190px; height: auto;">
+                    <h5 class="mb-2">Konsultasi</h5>
+                    <p class="text-muted">Berikan keluhan Anda untuk pengambilan tindakan medis.</p>
+                </div>
+            </div>
+            <div class="col-md-4 fade-in" style="animation-delay: 0.6s;">
+                <div class="text-center">
+                    <img src="{{ asset('/image/tim_medis_datang.png') }}" alt="Tim Medis" class="mb-3" style="width: 190px; height: auto;">
+                    <h5 class="mb-2">Tim Medis Datang</h5>
+                    <p class="text-muted">Tenaga medis kami akan datang untuk memberikan pelayanan kepada Anda.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="why-homecare py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="d-flex justify-content-center align-items-center" style="height: 100%; min-height: 300px;">
+                    <div class="p-4" style="background-color: #007B7F; color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px; text-align: justify;">
+                        <h3 class="text-center">Kenapa Kalisari Homecare?</h3>
+                        <ul class="list-unstyled mt-3" style="line-height: 1.8;">
+                            <li>1. Tenaga yang terpercaya</li>
+                            <li>2. Perawatan Berkualitas</li>
+                            <li>3. Aman & Nyaman</li>
+                            <li>4. Berkomitmen & Dedikasi</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="/image/kenapa_homecare.png" class="card-img-top" alt="Hubungi Kami">
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .custom-table {
+        width: 85%;
+        max-width: 1000px;
+        background-color: #ffffff;
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .custom-table thead {
+        background: linear-gradient(to right, #00c6ff, #0072ff);
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .custom-table th,
+    .custom-table td {
+        padding: 24px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .custom-table tbody tr:nth-child(odd) {
+        background-color: #eefaff;
+    }
+
+    .custom-table tbody tr:nth-child(even) {
+        background-color: #d4f1ff;
+    }
+
+    .custom-table tbody tr:hover {
+        background-color: #a8e4ff;
+        transition: background-color 0.3s ease;
+    }
+</style>
 </section>
+@push('scripts')
+<script>
+    $(document).ready(function () {
+        $('#schedule-table').DataTable({
+            paging: false,
+            searching: false,
+            info: false,
+            language: {
+                "zeroRecords": "Tidak ditemukan jadwal",
+                "emptyTable": "Tidak terdapat jadwal di tabel"
+            }
+        });
+    });
+</script>
+@endpush
 
 <style>
     .carousel-container {
@@ -418,6 +596,13 @@
                     Masuk Sebagai Staff
                 </a>
             </div>
+
+            <div class="text-center mt-4">
+                <a class="btn btn-xl btn-outline-light" href="{{ route('reservasi.homecare') }}">
+                    <i class="fas fa-user me-2"></i>
+                    Reservasi Homecare
+                </a>
+            </div>            
         </div>
     </section>
     <!--------------------------------------------------------Kontak Klinik----------------------------------------------------------------------------------->
@@ -448,191 +633,24 @@
     
     <!--------------------------------------------------------Footer----------------------------------------------------------------------------------->
     <footer class="footer text-center">
-        <div class="container">
-            <div class="d-flex justify-content-center align-items-center text-center">
-                <!-- Footer Location-->
-                {{-- <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">Lokasi</h4>
-                    <p class="lead mb-0">
-                        Jl. Moh. Hatta Handil 7
-                        <br />
-                        Kecamatan MuaraJawa, Kutai Kartanegara
-                    </p>
-                </div> --}}
-                <!-- Footer Social Icons-->
-                <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">Media Social</h4>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-twitter"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-linkedin-in"></i></a>
-                    {{-- <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-dribbble"></i></a> --}}
-                </div>
-                <!-- Footer About Text-->
-                {{-- <div class="col-lg-4">
-                    <h4 class="text-uppercase mb-4">Tentang Klinik</h4>
-                    <p class="lead mb-0">
-                        Kalisari Healthcare dibangun sejak tahun 2024 yang berada di kecamatan MuaraJawa, Handil Kutai Kartanegara
-                    </p>
-                </div> --}}
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Footer Social Icons Only -->
+            <div class="col-lg-4 mb-4">
+                <h4 class="text-uppercase mb-4">Media Social</h4>
+                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="https://www.instagram.com/kalisarihealthcare/?hl=en"><i class="fab fa-fw fa-instagram"></i></a>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
+
     <!--------------------------------------------------------copyright----------------------------------------------------------------------------------->
     <div class="copyright py-4 text-center text-white">
         <div class="container"><small>Powered by &copy; Klinik Pratama</small></div>
     </div>
-    <!-- Portfolio Modals-->
 
-    <!-- Portfolio Modal 2-->
-    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Ruang Tunggu 1
-                                </h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="img/dalam1.jpg" alt="..." />
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-4">======</p>
-                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                    <i class="fas fa-xmark fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Portfolio Modal 3-->
-    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" aria-labelledby="portfolioModal3"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Halaman Parkiran
-                                </h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="img/luar1.jpg" alt="..." />
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-4">======</p>
-                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                    <i class="fas fa-xmark fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Portfolio Modal 4-->
-    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" aria-labelledby="portfolioModal4"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Aktifitas
-                                    Pendaftaran</h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="img/dalam2.jpg" alt="..." />
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-4">======</p>
-                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                    <i class="fas fa-xmark fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Portfolio Modal 5-->
-    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" aria-labelledby="portfolioModal5"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Halaman Parkiran 2
-                                </h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="img/luar3.jpg" alt="..." />
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-4">======</p>
-                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                    <i class="fas fa-xmark fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Daftar Pasien Modalllllllllllll -->
     <!-- Daftar Pasien Modal -->
     <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
         id="daftarPasien" tabindex="-1" aria-labelledby="daftarPasienLabel" aria-modal="true" role="dialog">
@@ -862,24 +880,32 @@
                 </div>
             </div>
 
-            <!--------------------------------------------------------pilih dokter----------------------------------------------------------------------------------- -->
-            <div class="form-group row mt-2">
-                <label class="col-form-label col-sm-2 pt-0">Dokter</label>
-                <div class="col-sm">
-                    <select name="doktor" class="form-control " required
-                        oninvalid="this.setCustomValidity('Silahkan pilih dokter yang tersedia')"
-                        oninput="setCustomValidity('')">
-                        <option value="">pilih dokter...</option>
-                        @foreach ($dokter as $row)
-                        <option {{ $row->jadwal->jadwalpraktek == 'LIBUR' ? 'disabled' : ''}} {{ $row->jadwal->jadwalpraktek == 'CUTI' ? 'disabled' : ''}} value="{{ $row->id }}">
-                                {{ $row->nama }}({{ $row->poli == '' ? '-' : $row->poli->name }}) |
-                                {{ $row->jadwal == '' ? 'Belum ada Jadwal' : $row->jadwal->jadwalpraktek }}
-                                
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
+            <!-- Pilih Dokter -->
+<div class="form-group row mt-2">
+    <label class="col-form-label col-sm-2 pt-0">Dokter</label>
+    <div class="col-sm">
+        <select name="doktor" class="form-control" required
+            oninvalid="this.setCustomValidity('Silahkan pilih dokter yang tersedia')"
+            oninput="setCustomValidity('')">
+            
+            <option value="">pilih dokter...</option>
+
+            @foreach ($dokter as $row)
+                @php
+                    $jadwal = $row->jadwal;
+                    $jadwalPraktek = $jadwal->jadwalpraktek ?? 'Belum ada Jadwal';
+                    $isDisabled = in_array($jadwalPraktek, ['LIBUR', 'CUTI']);
+                @endphp
+                <option value="{{ $row->id }}" {{ $isDisabled ? 'disabled' : '' }}>
+                    {{ $row->nama }}
+                    ({{ $row->poli->name ?? '-' }}) |
+                    {{ $jadwalPraktek }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
 
             <!--------------------------------------------------------pilih dokter----------------------------------------------------------------------------------- -->
             <div class="mt-2 d-flex justify-content-center" required>
@@ -1126,5 +1152,4 @@
         }
     </script>
 </body>
-
 </html>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dokter;
 use App\Models\Pasien;
+use App\Models\Jadwal;
 use App\Models\Pegawai;
 use App\Models\Rekam;
 use App\Models\Feedback;
@@ -39,8 +40,20 @@ class HomeController extends Controller
     public function index()
     {
         $dokter = Dokter::all();
+        $jadwalvariabel = Jadwal::all();
         return view('index', [
-            'dokter' => $dokter 
+            'dokter' => $dokter, 
+            'jadwalvariabel' => $jadwalvariabel
         ]);
+    }
+
+    public function prosesReservasi(Request $request)
+    {
+    // Validasi data bisa ditambahkan di sini
+    $data = $request->all();
+
+    // Simpan ke database atau lakukan proses lainnya
+
+    return redirect()->back()->with('success', 'Reservasi berhasil dikirim!');
     }
 }
