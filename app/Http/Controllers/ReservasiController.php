@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Reservasi; // Model jika kamu simpan ke database
+use App\Models\Reservasi; 
 
 class ReservasiController extends Controller
 {
@@ -13,7 +13,6 @@ class ReservasiController extends Controller
         $reservasi = Reservasi::latest()->get();
         return view('antrian-homecare', compact('reservasi'));
     }
-
 
     public function process(Request $request)
     {
@@ -35,11 +34,18 @@ class ReservasiController extends Controller
             'pernyataan' => 'accepted'
         ]);
 
-        // Simpan ke database (jika ada model Reservasi)
+        // Simpan ke database
         Reservasi::create($validated);
 
-        // Redirect atau response
+        // TAMBAHKAN INI - Cek jika request dari AJAX
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Reservasi berhasil dikirim!'
+            ]);
+        }
+
+        // Redirect biasa jika bukan AJAX
         return redirect()->route('antrian.homecare')->with('success', 'Reservasi berhasil dikirim!');
     }
-    
 }

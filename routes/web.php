@@ -54,15 +54,10 @@ Route::get('/tentangkami', function () {
     return view('tentangkami');
 });
 
-Route::get('/index', function () {
-    return view('index');
-});
+Route::get('/index', [HomeController::class, 'index'])->name('home.index');
+
 
 //Reservasi Homecare
-Route::get('/reservasi-homecare', function () {
-    return view('reservasi-homecare');
-})->name('reservasi.homecare');
-
 Route::get('/antrian-homecare', [ReservasiController::class, 'index'])->name('antrian.homecare');
 
 Route::get('/reservasi-homecare', [ReservasiController::class, 'index'])->name('reservasi.homecare');

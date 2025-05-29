@@ -22,11 +22,33 @@
         @keyframes fade-in {
             from {
                 opacity: 0;
-                transform: translateY(10px); /* Elemen sedikit turun */
+                transform: translateY(10px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0); /* Elemen kembali ke tempatnya */
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slide-up {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes slide-out {
+            from {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.8);
             }
         }
 
@@ -37,8 +59,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            backdrop-filter: blur(10px); /* Blur background */
-            z-index: 1; /* Di belakang form */
+            backdrop-filter: blur(10px);
+            z-index: 1;
         }
 
         /* Container Form */
@@ -70,7 +92,7 @@
         }
 
         .form-group label {
-            width: 150px; /* Lebar kolom label */
+            width: 150px;
             font-size: 14px;
             color: #333;
             text-align: left;
@@ -79,7 +101,7 @@
 
         .form-group input,
         .form-group select {
-            flex: 1; /* Kotak input akan mengambil sisa ruang */
+            flex: 1;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -121,21 +143,127 @@
             display: flex;
             align-items: center;
             margin-top: 10px;
-            margin-right: 1100px;  
-            white-space: nowrap;      /* Teks akan tetap dalam satu baris */
-            text-overflow: ellipsis;  /* Tambahkan "..." jika teks dipotong */
+            margin-right: 1100px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
 
         .pernyataan input[type="checkbox"] {
             width: 18px;
             height: 18px;
-            flex-shrink: 0; /* Pastikan checkbox tidak menyusut */
+            flex-shrink: 0;
         }
 
         .pernyataan label {
             font-weight: bold;
             color: red;
-            white-space: nowrap; /* Paksa teks tetap dalam satu baris */
+            white-space: nowrap;
+        }
+
+        /* Pop-up Notification Styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: slide-up 0.3s ease-out;
+        }
+
+        .popup-container.closing {
+            animation: slide-out 0.3s ease-in;
+        }
+
+        .popup-icon {
+            width: 80px;
+            height: 80px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .popup-icon::after {
+            content: '✓';
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .popup-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .popup-message {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .popup-button {
+            background: #67CED1;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .popup-button:hover {
+            background: #5BB3B8;
+            transform: translateY(-2px);
+        }
+
+        /* Loading state */
+        .btn-next.loading {
+            background-color: #ccc;
+            cursor: not-allowed;
+            position: relative;
+            color: transparent;
+        }
+
+        .btn-next.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid #fff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
     </style>
 </head>
@@ -241,23 +369,95 @@
         </form>        
     </div>
 
+    <!-- Pop-up Notification -->
+    <div class="popup-overlay" id="popup-overlay">
+        <div class="popup-container" id="popup-container">
+            <div class="popup-icon"></div>
+            <div class="popup-title">Berhasil!</div>
+            <div class="popup-message">Data yang diisi telah disimpan!</div>
+            <button class="popup-button" onclick="closePopupAndRedirect()">OK</button>
+        </div>
+    </div>
+
     <script>
         const form = document.getElementById('reservasi-form');
         const inputs = form.querySelectorAll('input, select');
         const nextButton = document.getElementById('next-button');
 
         // Aktifkan tombol jika semua input terisi
+        function checkFormValidity() {
+            const allFilled = Array.from(inputs).every(i => i.value.trim() !== '');
+            const pernyataanChecked = document.getElementById('pernyataan').checked;
+            nextButton.disabled = !(allFilled && pernyataanChecked);
+        }
+
         inputs.forEach(input => {
-            input.addEventListener('input', () => {
-                const allFilled = Array.from(inputs).every(i => i.value.trim() !== '');
-                nextButton.disabled = !allFilled;
+            input.addEventListener('input', checkFormValidity);
+            input.addEventListener('change', checkFormValidity);
+        });
+
+        // Aksi tombol Next - UBAH MENJADI AJAX
+        nextButton.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default form submission
+            
+            nextButton.classList.add('loading');
+            nextButton.disabled = true;
+
+            // Submit form menggunakan AJAX
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Berhasil - tampilkan pop-up
+                    showPopup();
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan saat mengirim data. Silakan coba lagi.');
+                
+                // Reset button state
+                nextButton.classList.remove('loading');
+                nextButton.disabled = false;
             });
         });
 
-        // Aksi tombol Next
-        nextButton.addEventListener('click', () => {
-            form.submit();
-        });
+        function showPopup() {
+            // Reset button state
+            nextButton.classList.remove('loading');
+            nextButton.disabled = false;
+            
+            const popupOverlay = document.getElementById('popup-overlay');
+            popupOverlay.style.display = 'flex';
+            
+            // Reset animation
+            const popupContainer = document.getElementById('popup-container');
+            popupContainer.classList.remove('closing');
+        }
+
+        function closePopupAndRedirect() {
+            const popupContainer = document.getElementById('popup-container');
+            const popupOverlay = document.getElementById('popup-overlay');
+            
+            // Add closing animation
+            popupContainer.classList.add('closing');
+            
+            // Hide popup after animation
+            setTimeout(() => {
+                popupOverlay.style.display = 'none';
+                // Redirect ke halaman index - GANTI SESUAI ROUTE ANDA
+                window.location.href = '{{ route("home.index") }}'; // atau route ke index.blade.php
+            }, 300);
+        }
 
         function updateJamPraktek() {
             const dokter = document.getElementById('dokter').value;
@@ -293,7 +493,13 @@
             }
         }
 
-            function formatDate(date) {
+        // Update jam kedatangan saat jam praktek dipilih
+        document.getElementById('jam_praktek').addEventListener('change', function() {
+            const jamKedatangan = document.getElementById('jam_kedatangan');
+            jamKedatangan.value = this.value;
+        });
+
+        function formatDate(date) {
             const year = date.getFullYear();
             const month = String(date.getMonth() + 1).padStart(2, '0');
             const day = String(date.getDate()).padStart(2, '0');
@@ -308,7 +514,7 @@
             let count = 0;
             while (count < 7) {
                 const date = new Date(today);
-                date.setDate(today.getDate() + count);  // Tambahkan i hari ke tanggal sekarang
+                date.setDate(today.getDate() + count);
 
                 // Skip hari Minggu (0 adalah kode untuk hari Minggu)
                 if (date.getDay() === 0) {
@@ -332,6 +538,11 @@
 
         // Panggil fungsi untuk mengisi dropdown saat halaman dimuat
         document.addEventListener('DOMContentLoaded', populateBookingDates);
+
+        // Make functions global so they can be called from HTML
+        window.showPopup = showPopup;
+        window.closePopupAndRedirect = closePopupAndRedirect;
+        window.updateJamPraktek = updateJamPraktek;
     </script>
 </body>
 </html>
