@@ -35,6 +35,10 @@
 
 
 <body id="page-top" onload="initClock()">
+   
+    <!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+    <div class="elfsight-app-500168c1-753c-4664-a39d-4ca993794cbb" data-elfsight-app-lazy></div>
     
   <!------------------------------ loading loading spinner ------------------------------>  
     <div class="spinner-wrapper text-light">
@@ -86,7 +90,7 @@
                 <i class="fas fa-bars"></i>
             </button>
             <!--------------------------------------------------------Jam Navbar----------------------------------------------------------------------------------->
-            <a href="#" class="nav-link disabled ">
+            <a href="#" class="nav-link disabled text-white">
                 <!--digital clock start-->
                 <div class="datetime ">
                     <div class="date">
@@ -137,7 +141,7 @@
         </div>
     </header>
     <!--------------------------------------------------------Bagian Isi Konten----------------------------------------------------------------------------------->
-    <section class="page-section portfolio" id="layanan">
+    <div class="page-section portfolio" id="layanan">
     <div class="container">
         <!-- Layanan Section Heading -->
         <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Layanan</h2>
@@ -213,10 +217,11 @@
             </div>
         </div>
     </div>
-    
+    <div class="my-5"></div>
     <!-- Jadwal Praktek Section -->
+    <section class="page-section bg-primary text-white mb-0" id="about">
     <div class="mt-5 text-center">
-    <h2 class="text-uppercase text-primary mb-5 fw-bold" style="font-size: 2.5rem;">Jadwal Praktek</h2>
+    <h2 class="text-uppercase text-white mb-5 fw-bold" style="font-size: 2.5rem;">Jadwal Praktek</h2>
 
     <div class="table-responsive d-flex justify-content-center">
         <table id="schedule-table" class="table custom-table">
@@ -241,6 +246,7 @@
             </tbody>
         </table>
     </div>
+    </section>
 </div>
 
 <!-- Services Section -->
@@ -286,49 +292,54 @@
     </div>
 </div>
 
+<section class="page-section bg-primary text-white mb-0" id="about">
 <div class="steps text-center py-5">
-    <h2 class="mb-4" style="color: #8EDBE6;">Kalisari Homecare</h2>
+    <h2 class="mb-4" style="color:rgb(246, 246, 246);">Kalisari Homecare</h2>
     <div class="container text-center my-5">
         <div class="row">
             <div class="col-md-4 fade-in" style="animation-delay: 0s;">
-                <div class="text-center">
-                    <img src="{{ asset('/image/hubungi_kami.png') }}" alt="Hubungi Kami" class="mb-3" style="width: 190px; height: auto;">
-                    <h5 class="mb-2">Hubungi Kami</h5>
-                    <p class="text-muted">Anda dapat menghubungi kami dengan WhatsApp melalui nomor yang sudah tertera pada website kami.</p>
-                </div>
-            </div>
-            <div class="col-md-4 fade-in" style="animation-delay: 0.3s;">
-                <div class="text-center">
-                    <img src="{{ asset('/image/konsultasi.png') }}" alt="Konsultasi" class="mb-3" style="width: 190px; height: auto;">
-                    <h5 class="mb-2">Konsultasi</h5>
-                    <p class="text-muted">Berikan keluhan Anda untuk pengambilan tindakan medis.</p>
-                </div>
-            </div>
-            <div class="col-md-4 fade-in" style="animation-delay: 0.6s;">
-                <div class="text-center">
-                    <img src="{{ asset('/image/tim_medis_datang.png') }}" alt="Tim Medis" class="mb-3" style="width: 190px; height: auto;">
-                    <h5 class="mb-2">Tim Medis Datang</h5>
-                    <p class="text-muted">Tenaga medis kami akan datang untuk memberikan pelayanan kepada Anda.</p>
-                </div>
-            </div>
+    <div class="text-center">
+        <img src="{{ asset('/image/hubungi_kami.png') }}" alt="Hubungi Kami" class="mb-3" style="width: 190px; height: auto;">
+        <h5 class="mb-2">Hubungi Kami</h5>
+        <p class="text-white fs-5">Anda dapat menghubungi kami dengan WhatsApp melalui nomor yang sudah tertera pada website kami.</p>
+    </div>
+</div>
+<div class="col-md-4 fade-in" style="animation-delay: 0.3s;">
+    <div class="text-center">
+        <img src="{{ asset('/image/konsultasi.png') }}" alt="Konsultasi" class="mb-3" style="width: 190px; height: auto;">
+        <h5 class="mb-2">Konsultasi</h5>
+        <p class="text-white fs-5">Berikan keluhan Anda untuk pengambilan tindakan medis.</p>
+    </div>
+</div>
+<div class="col-md-4 fade-in" style="animation-delay: 0.6s;">
+    <div class="text-center">
+        <img src="{{ asset('/image/tim_medis_datang.png') }}" alt="Tim Medis" class="mb-3" style="width: 190px; height: auto;">
+        <h5 class="mb-2">Tim Medis Datang</h5>
+        <p class="text-white fs-5">Tenaga medis kami akan datang untuk memberikan pelayanan kepada Anda.</p>
+    </div>
+</div>
+
+
         </div>
     </div>
 </div>
+</section>
 
 <div class="why-homecare py-5">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="d-flex justify-content-center align-items-center" style="height: 100%; min-height: 300px;">
-                    <div class="p-4" style="background-color: #007B7F; color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px; text-align: justify;">
-                        <h3 class="text-center">Kenapa Kalisari Homecare?</h3>
-                        <ul class="list-unstyled mt-3" style="line-height: 1.8;">
-                            <li>1. Tenaga yang terpercaya</li>
-                            <li>2. Perawatan Berkualitas</li>
-                            <li>3. Aman & Nyaman</li>
-                            <li>4. Berkomitmen & Dedikasi</li>
-                        </ul>
-                    </div>
+                    <<div class="p-4" style="background-color: #007B7F; color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px; text-align: justify;">
+    <h3 class="text-center">Kenapa Kalisari Homecare?</h3>
+    <ul class="list-unstyled mt-3 fs-5" style="line-height: 1.8;">
+        <li>1. Tenaga yang terpercaya</li>
+        <li>2. Perawatan Berkualitas</li>
+        <li>3. Aman & Nyaman</li>
+        <li>4. Berkomitmen & Dedikasi</li>
+    </ul>
+</div>
+
                 </div>
             </div>
             <div class="col-md-6 text-center">
@@ -562,49 +573,54 @@
 </script>
     <!-- About Section-->
     <section class="page-section bg-primary text-white mb-0" id="about">
-        <div class="container">
-            <!--------------------------------------------------------Bagian Tombol Login dan daftar----------------------------------------------------------------------------------->
-            <h2 class="page-section-heading text-center text-uppercase text-white">Pendaftaran</h2>
-            <!-- Icon Divider-->
-            <div class="divider-custom divider-light">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-pencil"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <!--------------------------------------------------------Daftar sebagai Pasien----------------------------------------------------------------------------------->
-            <div class="row">
-                <div class="col-lg-4 ms-auto">
-                    <button class="btn btn-xl btn-outline-light" data-bs-toggle="modal"
-                        data-bs-target="#daftarPasien">
-                        <i class="fas fa-book me-2"></i>
-                        Daftar Sebagai Pasien
-                    </button>
+    <div class="container">
+        <!-- Heading -->
+        <h2 class="page-section-heading text-center text-uppercase text-white">Pendaftaran</h2>
 
-                </div>
-                <div class="col-lg-4 me-auto">
-                    <p class="lead">Anda bisa mendaftar secara online tanpa perlu mengantri atau
-                        langsung datang keKlinik <a class="btn btn-outline-light" href="/antrian-pasien">
-                            <i class="fas fa-users me-2"></i>
-                            Cek Antrian disini
-                        </a></p>
-                </div>
-            </div>
-            <!--------------------------------------------------------Login Sebagai Staff Klinik----------------------------------------------------------------------------------->
-            <div class="text-center mt-4">
-                <a class="btn btn-xl btn-outline-light" href="/dashboard">
-                    <i class="fas fa-user me-2"></i>
-                    Masuk Sebagai Staff
-                </a>
-            </div>
-
-            <div class="text-center mt-4">
-                <a class="btn btn-xl btn-outline-light" href="{{ route('reservasi.homecare') }}">
-                    <i class="fas fa-user me-2"></i>
-                    Reservasi Homecare
-                </a>
-            </div>            
+        <!-- Icon Divider -->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-pencil"></i></div>
+            <div class="divider-custom-line"></div>
         </div>
-    </section>
+
+        <!-- Horizontal Buttons -->
+        <div class="row justify-content-center text-center g-3">
+            <!-- Daftar Sebagai Pasien -->
+            <div class="col-lg-3 col-md-6">
+                <button class="btn btn-xl btn-outline-light w-100" data-bs-toggle="modal" data-bs-target="#daftarPasien">
+                    <i class="fas fa-book me-2"></i>
+                    Daftar Pasien
+                </button>
+            </div>
+
+            <!-- Cek Antrian -->
+            <div class="col-lg-3 col-md-6">
+                <a class="btn btn-xl btn-outline-light w-100" href="/antrian-pasien">
+                    <i class="fas fa-users me-2"></i>
+                    Cek Antrian
+                </a>
+            </div>
+
+            <!-- Masuk Sebagai Staff -->
+            <div class="col-lg-3 col-md-6">
+                <a class="btn btn-xl btn-outline-light w-100" href="/dashboard">
+                    <i class="fas fa-user me-2"></i>
+                    Masuk Staff
+                </a>
+            </div>
+
+            <!-- Reservasi Homecare -->
+            <div class="col-lg-3 col-md-6">
+                <a class="btn btn-xl btn-outline-light w-100" href="{{ route('reservasi.homecare') }}">
+                    <i class="fas fa-home me-2"></i>
+                    Homecare
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
     <!--------------------------------------------------------Kontak Klinik----------------------------------------------------------------------------------->
     <section class="page-section" id="contact">
         <div class="container">
@@ -638,8 +654,6 @@
             <!-- Footer Social Icons Only -->
             <div class="col-lg-4 mb-4">
                 <h4 class="text-uppercase mb-4">Media Social</h4>
-                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
-                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
                 <a class="btn btn-outline-light btn-social mx-1" href="https://www.instagram.com/kalisarihealthcare/?hl=en"><i class="fab fa-fw fa-instagram"></i></a>
             </div>
         </div>

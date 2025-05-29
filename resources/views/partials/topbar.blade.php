@@ -26,10 +26,20 @@
   <ul class="navbar-nav ml-auto">
 
       <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-      
-      
 
-     
+
+
+
+      @if(auth()->check() && auth()->user()->is_superadmin == 1)
+      <!-- Chat Icon -->
+      <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link" href="{{ route('admin.chat.list') }}" role="button">
+              <i class="fas fa-comments fa-fw"></i>
+              <!-- Counter - Messages -->
+              {{-- <span class="badge badge-danger badge-counter" id="unread-messages">0</span> --}}
+          </a>
+      </li>
+      @endif
 
       <div class="topbar-divider d-none d-sm-block"></div>
 

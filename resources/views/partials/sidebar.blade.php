@@ -60,7 +60,7 @@
 
 
 
-  
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -87,7 +87,7 @@
             </div>
         </div>
     </li>
-    
+
 
     <li class="nav-item">
         <a class="nav-link" href="/pegawai">
@@ -117,7 +117,14 @@
                 <span>Akun</span></a>
         </li>
     @endif
-
+    {{-- Hapus atau komentari bagian ini
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.chat.list') }}">
+            <i class="fas fa-fw fa-comments"></i>
+            <span>Chat</span>
+        </a>
+    </li>
+    --}}
     {{-- <li class="nav-item">
         <form action="/logout" method="POST">
             @csrf

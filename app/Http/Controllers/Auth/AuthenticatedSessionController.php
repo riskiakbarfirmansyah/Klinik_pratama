@@ -32,6 +32,23 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        // Perbaikan logic redirect
+        if (auth()->user()->role === 'user') {
+            return redirect()->route('user.dashboard-user');
+        } elseif (auth()->user()->is_admin == 1) {
+            return redirect()->route('dashboard');
+        } elseif (auth()->user()->is_superadmin == 1) {
+            return redirect()->route('dashboard');
+        }
+
+        // if (auth()->user()->is_admin == 1) {
+        //     return redirect()->route('dashboard');
+        // } elseif (auth()->user()->is_superadmin == 1) {
+        //     return redirect()->route('dashboard');
+        // } else {
+        //     return redirect()->route('user.dashboard-user');
+        // }
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
