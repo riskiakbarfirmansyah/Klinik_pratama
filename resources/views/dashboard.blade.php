@@ -3,10 +3,10 @@
 @section('content')
     <!------------------------------------- Isi TOTAL HARIAN ----------------------------------->
 
-    <div class="row">
+    <div class="row pl-6">
         <!-- Pending Requests Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
+            <div class="bg-gradient-to-r from-green-200 to-green-400 rounded-lg shadow-lg p-4 border-l-8 border-green-600 hover:from-green-300 hover:to-green-500 transition duration-200">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -26,7 +26,7 @@
 
         <!-- Pending Requests Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
+            <div class="bg-gradient-to-r from-blue-200 to-blue-400 rounded-lg shadow-lg p-4 border-l-8 border-blue-600 hover:from-blue-300 hover:to-blue-500 transition duration-200">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -46,7 +46,7 @@
 
         <!-- Pending Requests Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
+            <div class="bg-gradient-to-r from-yellow-200 to-yellow-400 rounded-lg shadow-lg p-4 border-l-8 border-yellow-600 hover:from-yellow-300 hover:to-yellow-500 transition duration-200">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -66,7 +66,7 @@
 
         <!-- Pending Requests Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
+            <div class="bg-gradient-to-r from-purple-200 to-purple-400 rounded-lg shadow-lg p-4 border-l-8 border-purple-600 hover:from-purple-300 hover:to-purple-500 transition duration-200">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -86,7 +86,7 @@
 
         <!-- Customer Ratings Card -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
+            <div class="bg-gradient-to-r from-orange-200 to-orange-400 rounded-lg shadow-lg p-4 border-l-8 border-orange-600 hover:from-orange-300 hover:to-orange-500 transition duration-200">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -104,8 +104,6 @@
                     </div>
                 </div>
                 <a href="{{ route('admin.reviews.index') }}" class="card-footer text-center text-primary">
-
-
                     <span>Lihat Semua Ulasan</span>
                     <i class="fas fa-arrow-right ml-1"></i>
                 </a>
@@ -131,7 +129,7 @@
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
-                <span>Powered by &copy; KLINIK KALISARI HEALTHCARE 2025</span>
+                <span>Powered by © KLINIK KALISARI HEALTHCARE 2025</span>
             </div>
         </div>
     </footer>
