@@ -21,6 +21,7 @@
                             <th>Rating</th>
                             <th>Komentar</th>
                             <th>Dibuat Pada</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,6 +32,11 @@
                             <td>{{ $feedback->rating }} / 10</td>
                             <td>{{ $feedback->comment ?? 'Tidak ada komentar' }}</td>
                             <td>{{ $feedback->created_at->format('d M Y H:i') }}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $feedback->id }}, '{{ $feedback->dokter->nama ?? 'Dokter tidak ditemukan' }}')">
+                                    <i class="fas fa-trash"></i> Hapus
+                                </button>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -76,6 +82,38 @@
     </div>
 </div>
 
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteModalLabel">
+                    <i class="fas fa-exclamation-triangle mr-2"></i> Konfirmasi Hapus
+                </h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Apakah Anda yakin ingin menghapus ulasan untuk dokter <strong id="doctorName"></strong>?</p>
+                <p class="text-muted small">Tindakan ini tidak dapat dibatalkan.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    <i class="fas fa-times mr-1"></i> Batal
+                </button>
+                <form id="deleteForm" method="POST" style="display: inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash mr-1"></i> Hapus
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     function openWhatsAppModal() {
         $('#whatsappModal').modal('show');
@@ -110,6 +148,17 @@
         }
     }
     
+    function confirmDelete(feedbackId, doctorName) {
+        // Set doctor name in the modal
+        document.getElementById('doctorName').textContent = doctorName;
+        
+        // Set the form action URL
+        document.getElementById('deleteForm').action = `/admin/feedback/${feedbackId}`;
+        
+        // Show the modal
+        $('#deleteModal').modal('show');
+    }
+    
     // Tambahkan event listener untuk tombol Enter pada input nomor
     document.getElementById('phoneNumber').addEventListener('keyup', function(event) {
         if (event.key === 'Enter') {
@@ -128,7 +177,14 @@
     .modal-header {
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
+    }
+    
+    .modal-header.bg-success {
         background-color: #3EB8BE !important;
+    }
+    
+    .modal-header.bg-danger {
+        background-color: #e74a3b !important;
     }
     
     .input-group-text {
@@ -147,8 +203,22 @@
         border-color: #2a9599 !important;
     }
     
+    .btn-danger:hover {
+        background-color: #c9302c !important;
+        border-color: #ac2925 !important;
+    }
+    
     .close:focus {
         outline: none;
+    }
+    
+    .table td {
+        vertical-align: middle;
+    }
+    
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
     }
 </style>
 @endsection

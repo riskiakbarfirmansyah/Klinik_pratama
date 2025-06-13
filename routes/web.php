@@ -68,6 +68,9 @@ Route::get('/admin/reviews', function () {
         'feedbacks' => \App\Models\Feedback::latest()->get(),
     ]);
 })->middleware('isAdmin')->name('admin.reviews.index');
+Route::delete('/admin/feedback/{id}', [FeedbackController::class, 'destroy'])->name('feedback.destroy');
+
+Route::get('/admin/feedback', [FeedbackController::class, 'admin'])->name('feedback.admin');
 
 // Tambahan route untuk tentangkami.blade.php
 Route::get('/tentangkami', function () {
