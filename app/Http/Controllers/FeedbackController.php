@@ -23,6 +23,19 @@ class FeedbackController extends Controller
     }
 
     /**
+     * Menampilkan halaman admin untuk melihat semua feedback.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function admin()
+    {
+        // Mengambil semua feedback dengan relasi dokter, diurutkan berdasarkan tanggal terbaru
+        $feedbacks = Feedback::with('dokter')->orderBy('created_at', 'desc')->get();
+        
+        return view('admin.feedback', compact('feedbacks'));
+    }
+
+    /**
      * Menyimpan feedback baru ke database.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -53,6 +66,33 @@ class FeedbackController extends Controller
 
         return redirect()->route('feedback.thank-you')
             ->with('success', 'Terima kasih atas feedback Anda!');
+    }
+
+    /**
+     * Menghapus feedback dari database.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id)
+    {
+        try {
+            // Cari feedback berdasarkan ID
+            $feedback = Feedback::findOrFail($id);
+            
+            // Simpan nama dokter untuk pesan sukses
+            $doctorName = $feedback->dokter->nama ?? 'Dokter tidak ditemukan';
+            
+            // Hapus feedback
+            $feedback->delete();
+            
+            return redirect()->back()
+                ->with('success', "Ulasan untuk dokter {$doctorName} berhasil dihapus.");
+                
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Terjadi kesalahan saat menghapus ulasan. Silakan coba lagi.');
+        }
     }
 
     /**
