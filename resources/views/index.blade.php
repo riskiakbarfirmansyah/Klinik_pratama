@@ -1,7 +1,7 @@
 <?php
     $klinikkk= "Antah";
     $mappp= "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.49177223431!2d106.85003697453266!3d-6.330269861939016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ed8b9c14261b%3A0xbaca66ee48dd8659!2sKlinik%20Pratama%20Kalisari%20Healthcare!5e0!3m2!1sen!2sid!4v1738385250473!5m2!1sen!2sid";
-    
+
 ?>
 
 <!DOCTYPE html>
@@ -35,17 +35,17 @@
 
 
 <body id="page-top" onload="initClock()">
-   
+
     <!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
     <div class="elfsight-app-500168c1-753c-4664-a39d-4ca993794cbb" data-elfsight-app-lazy></div>
-    
-  <!------------------------------ loading loading spinner ------------------------------>  
+
+  <!------------------------------ loading loading spinner ------------------------------>
     <div class="spinner-wrapper text-light">
         <div class="spinner-border" role="status">
-        </div>      
+        </div>
       </div>
-    
+
     <style>
         .spinner-wrapper {
             background-color: #58D1D7;
@@ -68,12 +68,12 @@
     <script>
         const spinnerWrapperEl = document.querySelector('.spinner-wrapper');
         window.addEventListener('load', ()=> {
-            spinnerWrapperEl.style.opacity = '0'; 
+            spinnerWrapperEl.style.opacity = '0';
             setTimeout(()=> {
                 spinnerWrapperEl.style.display = 'none';
             }, 200);
         })
-    
+
     </script>
 <!------------------------------ loading loading spinner ------------------------------>
 
@@ -82,7 +82,7 @@
         <div class="container">
             <a class="navbar-brand" href="#page-top">
                 <img src="{{ asset('img/logo_kalisari.png') }}" style="float:left; width:160px; height:65px;" />
-            </a>            
+            </a>
             <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -510,14 +510,14 @@
         function updateCarousel() {
             cards.forEach((card, index) => {
                 card.classList.remove('active');
-                
+
                 // Calculate the position relative to the current index
                 let offset = (index - currentIndex + cards.length) % cards.length;
-                
+
                 card.style.transform = getTransform(offset);
                 card.style.opacity = getOpacity(offset);
                 card.style.zIndex = getZIndex(offset);
-                
+
                 if (offset === 0) {
                     card.classList.add('active');
                 }
@@ -602,11 +602,11 @@
                 </a>
             </div>
 
-            <!-- Masuk Sebagai Staff -->
+            <!-- Masuk -->
             <div class="col-lg-3 col-md-6">
                 <a class="btn btn-xl btn-outline-light w-100" href="/dashboard">
                     <i class="fas fa-user me-2"></i>
-                    Masuk Staff
+                    Masuk
                 </a>
             </div>
 
@@ -646,7 +646,7 @@
             </div>
         </div>
     </section>
-    
+
     <!--------------------------------------------------------Footer----------------------------------------------------------------------------------->
     <footer class="footer text-center">
     <div class="container">
@@ -687,7 +687,7 @@
                         <a href="pasien-lama">
                         <img src="{{ asset('img/tombol-pasienlama.png') }}" style=”float:left;
                                 width="355";height="255" /></a>
-                        
+
                         <a href="#">
                         <img src="{{ asset('img/tombol-pasienbaru.png') }}" style=”float:left;
                                 width="255";height="155" data-bs-toggle="modal"
@@ -714,7 +714,7 @@
         <div class="modal-header">
             <label class="col-sm-5 col-form-label"><a href="pasien-lama" type="button"
                 class="btn btn-warning">Pasien Lama klik disini</a></label>
-     
+
         </div>
         <div class="modal-body">
             <form action="{{ route('pasien.store') }}" method="post">
@@ -723,7 +723,7 @@
 
             <!--------------------------------------------------------pasien lama----------------------------------------------------------------------------------->
             <div class="form-group row">
-                
+
                 <div class="col-sm">
                 </div>
             </div>
@@ -764,7 +764,7 @@
                     yyyy=today.getFullYear();
                     return mm+ "-" +dd+ "-"+yyyy;
                 }
-                
+
                 </script>
 
             <!--------------------------------------------------------Lahir----------------------------------------------------------------------------------->
@@ -777,7 +777,7 @@
                 </div>
             </div>
 
-            
+
             <!--------------------------------------------------------NIK----------------------------------------------------------------------------------->
             <div class="form-group row mt-2">
                 <label class="col-sm-2 col-form-label">NIK</label>
@@ -901,7 +901,7 @@
         <select name="doktor" class="form-control" required
             oninvalid="this.setCustomValidity('Silahkan pilih dokter yang tersedia')"
             oninput="setCustomValidity('')">
-            
+
             <option value="">pilih dokter...</option>
 
             @foreach ($dokter as $row)
@@ -938,7 +938,7 @@
     </div>
   </div>
     <!-- Daftar Pasien Modal -->
-        
+
     <!-- Antrian -->
 
 
@@ -970,8 +970,8 @@
                             <p>Mohon Tunggu Jam : <span
                                     class="h3 text-primary">{{ Session::has('jadwalkedatangan') ? Session::get('jadwalkedatangan') : '' }}</span>
                             </p>
-    
-                        
+
+
                     </div>
                     <div class="modal-footer">
                         <p>Tanggal : <span
@@ -1050,7 +1050,7 @@
     }
     }
     </script>
-    
+
     <script>
         @if (Session::has('nomorAntrian'))
             $(document).ready(function() {
