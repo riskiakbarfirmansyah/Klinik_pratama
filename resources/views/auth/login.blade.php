@@ -4,7 +4,7 @@
             <x-slot name="logo">
                 <a href="/">
                     <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                    <h1>Halaman Login Admin</h1>
+                    <h1>Halaman Login</h1>
                 </a>
             </x-slot>
 
@@ -19,29 +19,38 @@
 
                 <!-- Email Address -->
                 <div>
-                    <x-label for="email" :value="__('Email Staff Klinik')" />
-                    <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                    <x-label for="email" :value="__('Mauskkan Email Terdaftar')" />
+                    <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                        required autofocus />
                 </div>
 
                 <!-- Password -->
                 <div class="mt-4">
                     <x-label for="password" :value="__('Password')" />
-                    <x-input id="password" class="block mt-1 w-full"
-                                    type="password"
-                                    name="password"
-                                    required autocomplete="current-password" />
+                    <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                        autocomplete="current-password" />
                 </div>
 
-                <div class="flex items-center justify-end mt-4">
-                    @if (Route::has('password.request'))
-                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                            {{ __('Lupa Password?') }}
-                        </a>
-                    @endif
+                <div class="mt-4">
+                    <!-- Button Container -->
+                    <div class="flex justify-center">
+                        <x-button class="w-full justify-center py-2">
+                            {{ __('Masuk') }}
+                        </x-button>
+                    </div>
 
-                    <x-button class="ml-3">
-                        {{ __('Masuk') }}
-                    </x-button>
+                    <!-- Links Container -->
+                    <div class="flex flex-col space-y-2 mt-4">
+                        <a href="{{ route('register-user') }}" class="text-sm text-center text-gray-600 hover:text-gray-900">
+                            {{ __('Belum punya akun?') }}
+                        </a>
+
+                        @if (Route::has('password.request'))
+                            <a class="text-sm text-center text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                                {{ __('Lupa Password?') }}
+                            </a>
+                        @endif
+                    </div>
                 </div>
             </form>
         </x-auth-card>

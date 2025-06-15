@@ -47,10 +47,13 @@ Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.s
 Route::get('/feedback/thank-you', [FeedbackController::class, 'thankYou'])->name('feedback.thank-you');
 
 // User routes
+Route::get('/register-user', function () {
+    return view('auth.register-user');
+})->name('register-user');
 Route::middleware(['auth', 'isUser'])->group(function () {
     Route::get('/user/dashboard-user', function () {
         return view('user.dashboard-user', [
-            'users' => \App\Models\User::where('id','!=', auth()->id())->get(),
+            'users' => \App\Models\User::where('id', '!=', auth()->id())->get(),
         ]);
     })->name('user.dashboard-user');
 
@@ -59,8 +62,8 @@ Route::middleware(['auth', 'isUser'])->group(function () {
     })->name('user.chat-user');
 
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-    ->middleware('auth')
-    ->name('logout');
+        ->middleware('auth')
+        ->name('logout');
 });
 
 Route::get('/admin/reviews', function () {
