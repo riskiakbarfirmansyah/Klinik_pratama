@@ -1,5 +1,5 @@
 <title>Tambah Akun/User</title>
-@include('partials.navdashboard')
+@extends('layouts.main')
 
     @if ($errors->any())
         @foreach ($errors->all() as $item)

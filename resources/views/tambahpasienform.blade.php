@@ -1,5 +1,5 @@
 <title>Daftarkan Pasien Baru</title>
-@include('partials.navdashboard')
+@extends('layouts.main')
 
     @if ($errors->any())
         @foreach ($errors->all() as $item)

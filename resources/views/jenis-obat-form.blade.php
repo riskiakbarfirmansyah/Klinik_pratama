@@ -1,5 +1,5 @@
 <title>Pilihan Jenis Obat Baru</title>
-    @include('partials.navdashboard')
+    @extends('layouts.main')
 
     @if ($errors->any())
         @foreach ($errors->all() as $item)
