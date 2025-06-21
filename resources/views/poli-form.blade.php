@@ -1,5 +1,5 @@
 <title>Poli / Spesialis</title>
-    @extends('layouts.main')
+    @include('partials.navdashboard')
 
     @if ($errors->any())
         @foreach ($errors->all() as $item)
