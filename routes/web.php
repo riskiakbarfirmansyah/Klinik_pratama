@@ -90,6 +90,7 @@ Route::get('/reservasi-homecare', [ReservasiController::class, 'index'])->name('
 Route::get('/reservasi-homecare', function () {
     return view('reservasi-homecare'); // pastikan nama file = resources/views/reservasi-homecare.blade.php
 })->name('reservasi.homecare');
+Route::delete('/antrian-homecare/{id}', [ReservasiController::class, 'destroy'])->name('antrian.destroy');
 
 
 Route::post('/reservasi/process', [ReservasiController::class, 'process'])->name('reservasi.process');

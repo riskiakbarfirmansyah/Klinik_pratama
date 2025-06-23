@@ -48,4 +48,12 @@ class ReservasiController extends Controller
         // Redirect biasa jika bukan AJAX
         return redirect()->route('antrian.homecare')->with('success', 'Reservasi berhasil dikirim!');
     }
+
+    public function destroy($id)
+    {
+    $reservasi = Reservasi::findOrFail($id); // Sesuaikan dengan nama model Anda
+    $reservasi->delete();
+    
+    return redirect()->back()->with('success', 'Data antrian homecare berhasil dihapus');
+    }
 }
