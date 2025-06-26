@@ -39,6 +39,8 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('dashboard');
         } elseif (auth()->user()->is_superadmin == 1) {
             return redirect()->route('dashboard');
+        }elseif (auth()->user()->is_dokter == 1) {
+            return redirect()->route('dashboard'); // You can change to 'dokter.dashboard' if needed
         }
 
         // if (auth()->user()->is_admin == 1) {

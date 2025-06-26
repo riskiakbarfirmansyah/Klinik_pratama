@@ -102,14 +102,12 @@ Route::group(['middleware' => 'isAdmin'], function () {
     Route::get('/piechart', [DashboardController::class, 'piechart']);
     Route::view("dokter-form", 'dokter-form')->middleware('auth');
     Route::view("jadwal-form", 'jadwal-form')->middleware('auth');
-    Route::view('/diagnosa-form', 'diagnosa-form')->middleware('auth');
     Route::view('/obat-stok', 'obat-stok')->middleware('auth');
     Route::view('/jenis-obat-create', 'jenis-obat-form')->middleware('auth');
     Route::get('/admin/feedback', [FeedbackController::class, 'adminIndex'])->name('feedback.admin');
 
     Route::get('/antrian-pasien-admin', [DashboardController::class, 'antrianpasien'])->middleware('auth');
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard')->middleware('auth');
-    Route::get('/diagnosa', [DashboardController::class, 'diagnosa'])->middleware('auth');
     Route::get('/obat-jenis', [JenisController::class, 'index'])->middleware('auth');
     Route::get('/obat-form', [ObatController::class, 'form'])->middleware('auth');
     Route::get('/obat-total-stok', [ObatController::class, 'index'])->middleware('auth');
@@ -118,7 +116,6 @@ Route::group(['middleware' => 'isAdmin'], function () {
     Route::get('/tambahpasienadmin', [DashboardController::class, 'tambahpasienform'])->middleware('auth');
     Route::get('/pendaftaran', [DashboardController::class, 'pendaftaran'])->middleware('auth');
     Route::get('/poli-form', [PoliController::class, 'index'])->middleware('auth');
-    Route::get("laporan-harian", [DashboardController::class, 'indexlaporan'])->middleware('auth');
     Route::get('/akun', [UserController::class, 'index'])->middleware('auth');
     Route::get('/tambah-akun', [UserController::class, 'tambahakun'])->middleware('auth');
 
@@ -129,7 +126,6 @@ Route::group(['middleware' => 'isAdmin'], function () {
     Route::post('rekam-store', [PasienController::class, 'rekamstore'])->middleware('auth');
     Route::post('update-pasien', [PasienController::class, 'updatepasien'])->middleware('auth');
     Route::post('/tambahstok', [ObatController::class, 'tambahstok'])->middleware('auth');
-    Route::post('/clearlaporan', [DashboardController::class, 'clearlaporan'])->middleware('auth');
     Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
     Route::resource('/poli', PoliController::class)->middleware('auth');
@@ -161,6 +157,14 @@ Route::group(['middleware' => 'isSuperAdmin'], function () {
     Route::get('/akun', [UserController::class, 'index'])->middleware('auth');
     Route::get('/tambah-akun', [UserController::class, 'tambahakun'])->middleware('auth');
     Route::resource('/user', UserController::class)->middleware('auth');
+});
+
+Route::group(['middleware' => 'isDokter'], function () {
+    Route::view('/diagnosa-form', 'diagnosa-form')->middleware('auth');
+    Route::get('/diagnosa', [DashboardController::class, 'diagnosa'])->middleware('auth');
+    Route::get("laporan-harian", [DashboardController::class, 'indexlaporan'])->middleware('auth');
+    Route::post('rekam-store', [PasienController::class, 'rekamstore'])->middleware('auth');
+    Route::post('/clearlaporan', [DashboardController::class, 'clearlaporan'])->middleware('auth');
 });
 
 // Route::middleware(['auth', 'roles:superadmin,admin'])->group(function () {

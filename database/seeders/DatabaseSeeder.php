@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             'role' => 'superadmin',
             'is_superadmin' => 1,
             'is_admin' => 1,
+            'is_dokter' => 0,
         ]);
 
         // Membuat akun Admin
@@ -33,6 +34,18 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
             'is_superadmin' => 0,
             'is_admin' => 1,
+            'is_dokter' => 0,
+        ]);
+
+        // Membuat akun Dokter
+        User::create([
+            'name' => 'Dokter',
+            'email' => 'dokter@example.com',
+            'password' => Hash::make('password123'),
+            'role' => 'dokter',
+            'is_superadmin' => 0,
+            'is_admin' => 1,
+            'is_dokter' => 1,
         ]);
 
         // Membuat akun User
@@ -40,6 +53,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'User',
             'email' => 'user@example.com',
             'password' => Hash::make('password123'),
+            'role' => 'user',
+            'is_superadmin' => 0,
+            'is_admin' => 0,
+            'is_dokter' => 0,
         ]);
 
         // Membuat akun User
@@ -47,6 +64,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'User2',
             'email' => 'user2@example.com',
             'password' => Hash::make('password123'),
+            'role' => 'user',
+            'is_superadmin' => 0,
+            'is_admin' => 0,
+            'is_dokter' => 0,
         ]);
     }
 }

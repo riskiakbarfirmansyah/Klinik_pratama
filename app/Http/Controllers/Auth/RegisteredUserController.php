@@ -48,6 +48,7 @@ class RegisteredUserController extends Controller
             'role' => 'user', // set default role field to 'user'
             'is_admin' => 0, // set default is_admin field to 0
             'is_superadmin' => 0, // set default is_superadmin field to 0
+            'is_dokter' => 0, // set default is_dokter field to 0
         ]);
 
         event(new Registered($user));

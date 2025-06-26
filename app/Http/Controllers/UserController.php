@@ -46,6 +46,7 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'isadmin' => ['required'],
             'issuperadmin' => ['required'],
+            'isdokter' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required'],
         ]);
@@ -56,6 +57,7 @@ class UserController extends Controller
             'email' => $request->email,
             'is_admin' => $request->isadmin,
             'is_superadmin' => $request->issuperadmin,
+            'is_dokter' => $request->isdokter,
             'password' => Hash::make($request->password),
         ]);
 
@@ -99,6 +101,7 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'isadmin' => ['required'],
             'issuperadmin' => ['required'],
+            'isdokter' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255'],
         ]);
 
@@ -110,6 +113,7 @@ class UserController extends Controller
         $akun->email = $request->email;
         $akun->is_admin = $request->isadmin;
         $akun->is_superadmin = $request->issuperadmin;
+        $akun->is_dokter = $request->isdokter;
         $akun->save();
 
         

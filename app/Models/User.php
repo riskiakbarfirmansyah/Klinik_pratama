@@ -23,7 +23,8 @@ class User extends Authenticatable
         'password',
         'role',
         'is_admin',
-        'is_superadmin'
+        'is_superadmin',
+        'is_dokter'
     ];
 
     /**
