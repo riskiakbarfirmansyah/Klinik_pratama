@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('rating');
             $table->text('comment')->nullable();
             $table->foreignId('dokter_id')->nullable()->constrained('dokters')->nullOnDelete();
+            $table->boolean('is_archived')->default(false); // Menambahkan kolom is_archived
             $table->timestamps();
         });
     }

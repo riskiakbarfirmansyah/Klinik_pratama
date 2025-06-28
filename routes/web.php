@@ -71,6 +71,11 @@ Route::get('/admin/reviews', function () {
         'feedbacks' => \App\Models\Feedback::latest()->get(),
     ]);
 })->middleware('isAdmin')->name('admin.reviews.index');
+
+Route::get('/admin/feedback/arsip', [FeedbackController::class, 'archived'])->name('feedback.archived');
+
+Route::patch('/admin/feedback/archive/{id}', [FeedbackController::class, 'archive'])->name('feedback.archive');
+
 Route::delete('/admin/feedback/{id}', [FeedbackController::class, 'destroy'])->name('feedback.destroy');
 
 Route::get('/admin/feedback', [FeedbackController::class, 'admin'])->name('feedback.admin');
