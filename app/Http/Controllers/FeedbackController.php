@@ -104,4 +104,13 @@ class FeedbackController extends Controller
     {
         return view('feedback.thank-you');
     }
+
+    public function archive($id)
+    {
+        $feedback = Feedback::findOrFail($id);
+        $feedback->is_archived = true;
+        $feedback->save();
+
+        return redirect()->route('feedback.index')->with('success', 'Ulasan berhasil diarsipkan.');
+    }
 }

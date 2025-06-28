@@ -2,11 +2,21 @@
 
 @section('content')
 <div class="container-fluid">
+    <!-- Judul dan Tombol Kirim WhatsApp -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="h3 text-gray-800">Ulasan Pelanggan</h1>
         <button class="btn btn-success" onclick="openWhatsAppModal()">Kirim WhatsApp</button>
     </div>
-    
+
+    <!-- Checkbox untuk Menampilkan Ulasan yang Diarsipkan -->
+    <div class="mb-4">
+        <label for="showArchived">
+            <input type="checkbox" id="showArchived" onclick="filterFeedback()" {{ old('showArchived') ? 'checked' : '' }}>
+            Lihat Arsip
+        </label>
+    </div>
+
+    <!-- Tabel Daftar Ulasan -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Daftar Ulasan</h6>
@@ -26,16 +36,20 @@
                     </thead>
                     <tbody>
                         @foreach($feedbacks as $index => $feedback)
-                        <tr>
+                        <tr class="{{ $feedback->is_archived ? 'archived' : '' }}">
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $feedback->dokter->nama ?? 'Dokter tidak ditemukan' }}</td>
                             <td>{{ $feedback->rating }} / 10</td>
                             <td>{{ $feedback->comment ?? 'Tidak ada komentar' }}</td>
                             <td>{{ $feedback->created_at->format('d M Y H:i') }}</td>
                             <td>
-                                <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $feedback->id }}, '{{ $feedback->dokter->nama ?? 'Dokter tidak ditemukan' }}')">
-                                    <i class="fas fa-trash"></i> Hapus
+                                @if(!$feedback->is_archived)
+                                <button type="button" class="btn btn-warning btn-sm" onclick="confirmArchive({{ $feedback->id }}, '{{ $feedback->dokter->nama ?? 'Dokter tidak ditemukan' }}')">
+                                    <i class="fas fa-archive"></i> Arsip
                                 </button>
+                                @else
+                                <span class="badge badge-secondary">Diarsipkan</span>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -82,31 +96,31 @@
     </div>
 </div>
 
-<!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<!-- Archive Confirmation Modal -->
+<div class="modal fade" id="archiveModal" tabindex="-1" role="dialog" aria-labelledby="archiveModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title" id="deleteModalLabel">
-                    <i class="fas fa-exclamation-triangle mr-2"></i> Konfirmasi Hapus
+            <div class="modal-header bg-warning text-white">
+                <h5 class="modal-title" id="archiveModalLabel">
+                    <i class="fas fa-archive mr-2"></i> Konfirmasi Arsip
                 </h5>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Apakah Anda yakin ingin menghapus ulasan untuk dokter <strong id="doctorName"></strong>?</p>
-                <p class="text-muted small">Tindakan ini tidak dapat dibatalkan.</p>
+                <p>Apakah Anda yakin ingin mengarsipkan ulasan untuk dokter <strong id="doctorName"></strong>?</p>
+                <p class="text-muted small">Tindakan ini tidak akan menampilkan ulasan dalam daftar ulasan aktif.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                     <i class="fas fa-times mr-1"></i> Batal
                 </button>
-                <form id="deleteForm" method="POST" style="display: inline;">
+                <form id="archiveForm" method="POST" style="display: inline;">
                     @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">
-                        <i class="fas fa-trash mr-1"></i> Hapus
+                    @method('PATCH')
+                    <button type="submit" class="btn btn-warning">
+                        <i class="fas fa-archive mr-1"></i> Arsipkan
                     </button>
                 </form>
             </div>
@@ -118,7 +132,7 @@
     function openWhatsAppModal() {
         $('#whatsappModal').modal('show');
     }
-    
+
     function sendWhatsApp() {
         let phoneNumber = document.getElementById('phoneNumber').value.trim();
 
@@ -147,23 +161,35 @@
             alert('Silakan masukkan nomor pelanggan!');
         }
     }
-    
-    function confirmDelete(feedbackId, doctorName) {
+
+    function confirmArchive(feedbackId, doctorName) {
         // Set doctor name in the modal
         document.getElementById('doctorName').textContent = doctorName;
         
         // Set the form action URL
-        document.getElementById('deleteForm').action = `/admin/feedback/${feedbackId}`;
+        document.getElementById('archiveForm').action = `/admin/feedback/archive/${feedbackId}`;
         
         // Show the modal
-        $('#deleteModal').modal('show');
+        $('#archiveModal').modal('show');
     }
-    
-    // Tambahkan event listener untuk tombol Enter pada input nomor
-    document.getElementById('phoneNumber').addEventListener('keyup', function(event) {
-        if (event.key === 'Enter') {
-            sendWhatsApp();
-        }
+
+    function filterFeedback() {
+        var showArchived = document.getElementById('showArchived').checked;
+        var rows = document.querySelectorAll('tbody tr');
+
+        rows.forEach(function(row) {
+            var isArchived = row.classList.contains('archived');
+            if (showArchived || !isArchived) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    // On page load, filter based on checkbox state (if checked or not)
+    document.addEventListener('DOMContentLoaded', function() {
+        filterFeedback();
     });
 </script>
 
@@ -173,49 +199,59 @@
         border: none;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     }
-    
+
     .modal-header {
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
     }
-    
+
     .modal-header.bg-success {
         background-color: #3EB8BE !important;
     }
-    
-    .modal-header.bg-danger {
-        background-color: #e74a3b !important;
+
+    .modal-header.bg-warning {
+        background-color: #f39c12 !important;
     }
-    
+
     .input-group-text {
         background-color: #3EB8BE;
         color: white;
         border: 1px solid #3EB8BE;
     }
-    
+
     .btn-success {
         background-color: #3EB8BE !important;
         border-color: #3EB8BE !important;
     }
-    
+
     .btn-success:hover {
         background-color: #2a9599 !important;
         border-color: #2a9599 !important;
     }
-    
+
+    .btn-warning {
+        background-color: #f39c12 !important;
+        border-color: #f39c12 !important;
+    }
+
+    .btn-warning:hover {
+        background-color: #e67e22 !important;
+        border-color: #e67e22 !important;
+    }
+
     .btn-danger:hover {
         background-color: #c9302c !important;
         border-color: #ac2925 !important;
     }
-    
+
     .close:focus {
         outline: none;
     }
-    
+
     .table td {
         vertical-align: middle;
     }
-    
+
     .btn-sm {
         padding: 0.25rem 0.5rem;
         font-size: 0.875rem;
