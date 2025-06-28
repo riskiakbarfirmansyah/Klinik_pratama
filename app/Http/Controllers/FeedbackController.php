@@ -107,10 +107,17 @@ class FeedbackController extends Controller
 
     public function archive($id)
     {
+        // Cari feedback berdasarkan ID
         $feedback = Feedback::findOrFail($id);
+
+        // Set feedback menjadi diarsipkan
         $feedback->is_archived = true;
         $feedback->save();
 
-        return redirect()->route('feedback.index')->with('success', 'Ulasan berhasil diarsipkan.');
+        // Mendapatkan semua feedback yang sudah diarsipkan dan yang tidak
+        $feedbacks = Feedback::all();  // Mengambil semua data, baik yang diarsipkan maupun yang tidak
+
+        // Mengarahkan langsung ke tampilan feedadmin setelah pengarsipan berhasil
+        return view('admin.feedadmin', compact('feedbacks'))->with('success', 'Ulasan berhasil diarsipkan.');
     }
 }
