@@ -106,6 +106,7 @@ Route::group(['middleware' => 'isAdmin'], function () {
     Route::get('/chartlayanan', [DashboardController::class, 'chartlayanan']);
     Route::get('/piechart', [DashboardController::class, 'piechart']);
     Route::view("dokter-form", 'dokter-form')->middleware('auth');
+    Route::get('/dokter-ratings-chart', [DashboardController::class, 'dokterRatingsChart']);
     Route::view("jadwal-form", 'jadwal-form')->middleware('auth');
     Route::view('/obat-stok', 'obat-stok')->middleware('auth');
     Route::view('/jenis-obat-create', 'jenis-obat-form')->middleware('auth');

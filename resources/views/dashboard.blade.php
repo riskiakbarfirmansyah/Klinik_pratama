@@ -125,6 +125,21 @@
 
     </div>
 
+    <div class="row d-flex justify-content-center mt-4">
+        <div class="col-md-8">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Statistik Rata-rata Penilaian per Dokter</h6>
+                </div>
+                <div class="card-body">
+                    <div style="height: 400px; width: 100%;">
+                        <canvas id="chartRatingDokter"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
@@ -145,4 +160,77 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('/dokter-ratings-chart')
+            .then(response => response.json())
+            .then(data => {
+                const dokterRatings = data.dokterRatings;
+                
+                // Siapkan data
+                const chartData = {
+                    labels: dokterRatings.map(item => item.dokter),
+                    datasets: [{
+                        label: 'Rata-rata Rating',
+                        data: dokterRatings.map(item => item.averageRating),
+                        backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                };
+
+                // Konfigurasi
+                const config = {
+                    type: 'bar',
+                    data: chartData,
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    display: false
+                                }
+                            },
+                            x: {
+                                min: 0,
+                                max: 10,
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const dokter = dokterRatings[context.dataIndex];
+                                        return [
+                                            `Rating: ${dokter.averageRating}`,
+                                            `Total Ulasan: ${dokter.totalReviews}`
+                                        ];
+                                    }
+                                }
+                            }
+                        }
+                    }
+                };
+
+                // Buat chart
+                const ctx = document.getElementById('chartRatingDokter');
+                new Chart(ctx, config);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+    </script>
 @endsection

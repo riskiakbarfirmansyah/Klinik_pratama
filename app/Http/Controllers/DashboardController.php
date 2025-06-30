@@ -367,4 +367,50 @@ class DashboardController extends Controller
             'asuransi' => $asuransi,
         ]);
     }
+
+    public function dokterRatingsChart()
+    {
+        try {
+            // Ambil semua dokter
+            $dokters = Dokter::all();
+            
+            // Debug
+            \Log::info('Total dokter: ' . $dokters->count());
+            
+            // Ambil semua feedback dengan eager loading
+            $feedbacks = DB::table('feedback')
+                ->select('dokter_id', DB::raw('ROUND(AVG(rating), 1) as avg_rating'), DB::raw('COUNT(*) as total_reviews'))
+                ->groupBy('dokter_id')
+                ->get()
+                ->keyBy('dokter_id');
+            
+            // Mapping untuk setiap dokter
+            $dokterRatings = $dokters->map(function ($dokter) use ($feedbacks) {
+                $feedback = $feedbacks->get($dokter->id);
+                
+                $rating = $feedback ? (float)$feedback->avg_rating : 0.0;
+                $reviews = $feedback ? (int)$feedback->total_reviews : 0;
+                
+                // Debug
+                \Log::info("Dokter {$dokter->nama}: Rating = {$rating}, Reviews = {$reviews}");
+                
+                return [
+                    'dokter' => $dokter->nama,
+                    'averageRating' => $rating,
+                    'totalReviews' => $reviews
+                ];
+            })->values()->all();
+            
+            return response()->json([
+                'dokterRatings' => $dokterRatings
+            ]);
+            
+        } catch (\Exception $e) {
+            \Log::error('Error in dokterRatingsChart: ' . $e->getMessage());
+            return response()->json([
+                'error' => 'Terjadi kesalahan saat mengambil data rating dokter'
+            ], 500);
+        }
+    }
+
 }
