@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('alamat')->nullable();
             $table->date('lahir');
-            $table->string('nik')->nullable();
+            $table->string('nik')->nullable()->unique();
             $table->string('kelamin');
             $table->string('telepon');
             $table->string('agama');
