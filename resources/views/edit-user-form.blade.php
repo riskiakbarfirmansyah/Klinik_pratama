@@ -85,6 +85,22 @@
             </div>
         </div>
 
+        <!-- --------------------------------------------------------Is Dokter----------------------------------------------------------------------------------- -->
+<div class="form-group row">
+    <label class="col-form-label col-sm-2 pt-0">Apakah dokter?</label>
+    <div class="col-sm-5">
+        <select name="isdokter" class="form-control @error('Kelamin') is-invalid @enderror">
+            <option value="0" {{ $akun->is_dokter == 0 ? 'selected' : '' }}>Tidak</option>
+            <option value="1" {{ $akun->is_dokter == 1 ? 'selected' : '' }}>Ya</option>
+        </select>
+        @error('Kelamin')
+            <div class="invalid-feedback">
+                "pilih jenis obat
+            </div>
+        @enderror
+    </div>
+</div>
+
         <div class="form-group row">
             <div class="col-sm-10">
                 <button type="submit" class="btn btn-primary">Edit</button>
