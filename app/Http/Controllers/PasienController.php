@@ -24,6 +24,30 @@ class PasienController extends Controller
         return view('pasien', compact('datapasien'));
     }
 
+    public function formRegistrasiPasienLama()
+    {
+    return view('auth.register-pasienlama'); // sesuai blade view-mu
+    }
+
+    public function cekNIKPasienLama(Request $request)
+{
+    $request->validate([
+        'nik' => 'required|string'
+    ]);
+
+    $pasien = Pasien::where('nik', $request->nik)->first();
+
+    if (!$pasien) {
+        return redirect()->route('register.pasienlama.form')->withErrors(['nik' => 'NIK tidak ditemukan']);
+    }
+
+    session(['pasien' => $pasien]);
+
+    return redirect()->route('register.pasienlama.form');
+    }
+
+    
+
     /**
      * Show the form for creating a new resource.
      *

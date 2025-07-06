@@ -19,7 +19,7 @@
 
                 <!-- Email Address -->
                 <div>
-                    <x-label for="email" :value="__('Mauskkan Email Terdaftar')" />
+                    <x-label for="email" :value="__('Masukkan Email Terdaftar')" />
                     <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
                         required autofocus />
                 </div>
@@ -50,6 +50,11 @@
                                 {{ __('Lupa Password?') }}
                             </a>
                         @endif
+
+                         <!-- Untuk pasien lama -->
+                             <a href="{{ route('register.pasienlama.form') }}" class="text-sm text-center text-gray-600 hover:text-gray-900">
+                                {{ __('Anda Pasien Lama?') }}
+                        </a>
                     </div>
                 </div>
             </form>

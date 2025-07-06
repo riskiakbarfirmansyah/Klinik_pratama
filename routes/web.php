@@ -37,6 +37,9 @@ Route::post('/cekpasienlama', [PasienController::class, 'cekpasienlama']);
 Route::get('/pasien-lama', [PasienController::class, 'pasienlama']);
 Route::post('/pasien', [PasienController::class, 'store'])->name('pasien.store');
 Route::post('/addrekam', [RekamController::class, 'store']);
+Route::get('/register/pasienlama', [PasienController::class, 'formRegistrasiPasienLama'])->name('register.pasienlama.form');
+Route::post('/register/pasienlama', [PasienController::class, 'cekNIKPasienLama'])->name('register.pasienlama.cek');
+
 
 Route::view("buku-panduan", 'buku-panduan');
 Route::view("buku-panduan-admin", 'buku-panduan-admin');

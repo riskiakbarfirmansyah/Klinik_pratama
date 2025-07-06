@@ -5,7 +5,7 @@
             A
         </div>
         <div class="ml-3">
-            <div class="font-weight-bold">Admin</div>
+            <div class="font-weight-bold">Dokter</div>
             <div class="small text-muted">Klinik Pratama</div>
         </div>
     </div>
