@@ -30,7 +30,7 @@
 
 
 
-      @if(auth()->check() && auth()->user()->is_superadmin == 1)
+      @if(auth()->check() && auth()->user()->is_dokter == 1)
       <!-- Chat Icon -->
       <li class="nav-item dropdown no-arrow mx-1">
           <a class="nav-link" href="{{ route('admin.chat.list') }}" role="button">

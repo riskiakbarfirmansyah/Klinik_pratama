@@ -14,6 +14,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden; /* Tambahkan ini */
         }
         .chat-header {
             background: #fff;
@@ -25,23 +26,18 @@
             z-index: 10;
         }
         .chat-main {
-            flex: 1 1 0%;
+            flex: 1;
             display: flex;
-            flex-direction: column;
-            background: #f4f7fa;
             min-height: 0;
+            overflow: hidden; /* Tambahkan ini */
         }
         .chat-content-area {
-            flex: 1 1 0%;
+            flex: 1;
             display: flex;
             flex-direction: column;
-            background: #fff;
-            border-radius: 0;
-            box-shadow: none;
             min-height: 0;
-            height: 100%;
-            width: 100vw;
-            max-width: 100vw;
+            max-width: 100%; /* Tambahkan ini */
+            overflow: hidden; /* Tambahkan ini */
         }
         @media (max-width: 700px) {
             .chat-content-area {
@@ -54,8 +50,50 @@
         body, html {
             overflow: hidden;
         }
-        .chat-main {
-            height: 100vh;
+
+        /* Tambahkan style baru */
+        .messages-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            width: 100%; /* Tambahkan ini */
+            overflow: hidden; /* Tambahkan ini */
+        }
+
+        #messages-area {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden; /* Tambahkan ini */
+            width: 100%; /* Tambahkan ini */
+        }
+
+        .input-container {
+            flex-shrink: 0;
+            width: 100%;
+            background: white;
+            border-top: 1px solid #e3e6f0;
+            padding: 1rem;
+            position: relative;
+            bottom: 0;
+        }
+
+        /* Tambahkan untuk container flex utama */
+        .d-flex.h-100 {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* Perbaiki sidebar dokter */
+        .border-right {
+            flex-shrink: 0;
+            width: 280px;
+        }
+
+        /* Perbaiki area konten chat */
+        .flex-grow-1 {
+            min-width: 0; /* Tambahkan ini */
+            overflow: hidden; /* Tambahkan ini */
         }
     </style>
 </head>
@@ -79,8 +117,23 @@
 
         <!-- Main Chat Area -->
         <main class="chat-main" style="flex:1;min-height:0;">
-            <div class="chat-content-area" style="height:100%;max-width:100vw;">
-                @livewire('chat')
+            <div class="d-flex h-100">
+                <!-- Doctor List Sidebar -->
+                <div class="border-right" style="width: 280px; background: white;">
+                    <div class="p-3">
+                        <h6 class="font-weight-bold text-primary mb-3">Pilih Dokter</h6>
+                        <div class="list-group list-group-flush">
+                            @livewire('doctor-list')
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Content -->
+                <div class="flex-grow-1">
+                    <div class="flex-grow-1 d-flex flex-column chat-content-area" style="height:100%;">
+                        @livewire('chat', ['userId' => request()->query('user_id')])
+                    </div>
+                </div>
             </div>
         </main>
     </div>
